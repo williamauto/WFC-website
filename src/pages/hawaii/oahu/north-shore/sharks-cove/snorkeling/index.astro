@@ -1,0 +1,138 @@
+---
+import Layout from '../../../../../../layouts/Layout.astro';
+import Hero from '../../../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../../../components/Breadcrumbs.astro';
+import OperatorCard from '../../../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../../../components/FAQSection.astro';
+import { buildTouristAttractionSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../../../data/schema';
+
+const faqs = [
+  {
+    question: 'Where is Sharks Cove and how do I get there?',
+    answer: 'Sharks Cove is on Oahu\'s North Shore, at the northern end of Waimea Bay (59-712 Kamehameha Hwy, Haleiwa, HI 96712). It\'s a 45-minute drive from Waikiki. Look for the food trucks and the rocky lava-rock shoreline — that\'s the entrance.'
+  },
+  {
+    question: 'Is Sharks Cove safe for snorkeling?',
+    answer: 'Sharks Cove is safe in summer (May–October) when the water is calm. In winter (November–April), the North Shore gets massive surf and Sharks Cove becomes dangerous — do NOT enter the water during winter swells. Always check conditions before entering.'
+  },
+  {
+    question: 'Do you need to pay to snorkel at Sharks Cove?',
+    answer: 'No — Sharks Cove is a free public beach with no entry fee. You only pay for parking ($3/hour at the county lot) and gear rental if you need it. Snorkel gear rentals cost $15–$25/day from nearby shops.'
+  },
+  {
+    question: 'What marine life will I see at Sharks Cove?',
+    answer: 'Despite the name, sharks are rarely seen. You\'ll find green sea turtles, tropical fish (butterflyfish, tangs, parrotfish), octopus, and occasionally reef sharks in deeper water. The lava rock formations create tunnels and caves full of marine life.'
+  },
+  {
+    question: 'What is the best time of day to visit Sharks Cove?',
+    answer: 'Early morning (7–9 AM) is best — calmest water, best visibility, and fewest people. The cove gets crowded by 10 AM in summer. Weekdays are quieter than weekends.'
+  }
+];
+
+const schema = [
+  buildTouristAttractionSchema({
+    name: 'Sharks Cove Snorkeling',
+    description: 'Sharks Cove on Oahu\'s North Shore — free snorkeling in a protected marine reserve with sea turtles and tropical fish.',
+    url: '/hawaii/oahu/north-shore/sharks-cove/snorkeling/',
+    address: 'Haleiwa, Hawaii',
+    priceRange: 'Free (parking $3/hr)'
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'North Shore', url: '/hawaii/oahu/north-shore/' },
+    { label: 'Sharks Cove', url: '/hawaii/oahu/north-shore/sharks-cove/' },
+    { label: 'Snorkeling', url: '/hawaii/oahu/north-shore/sharks-cove/snorkeling/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Sharks Cove Snorkeling — Complete Guide (Oahu)" description="Complete guide to Sharks Cove snorkeling on Oahu's North Shore: free entry, sea turtles, best times, safety, and what to expect." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'North Shore', url: '/hawaii/oahu/north-shore/' },
+    { label: 'Sharks Cove', url: '/hawaii/oahu/north-shore/sharks-cove/' },
+    { label: 'Snorkeling' }
+  ]} />
+
+  <Hero
+    title="Sharks Cove Snorkeling"
+    subtitle="Oahu's best free snorkeling — a protected marine reserve on the North Shore with sea turtles, lava tunnels, and incredible reef life."
+  />
+
+  <!-- Overview -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Overview</h2>
+    <div class="prose-custom">
+      <p>Sharks Cove is a protected marine reserve on Oahu's North Shore — and it's widely considered the best shore snorkeling on the island. The lava rock formations create a natural aquarium of tunnels, caves, and channels teeming with marine life.</p>
+      <p>Despite the intimidating name, sharks are rarely seen here. What you WILL see: green sea turtles, schools of tropical fish, octopus hiding in crevices, and coral gardens in crystal-clear water.</p>
+      <p><strong>Key facts:</strong></p>
+      <ul>
+        <li><strong>Entry:</strong> Free (parking $3/hour)</li>
+        <li><strong>Best season:</strong> Summer (May–October) — calm water</li>
+        <li><strong>Winter warning:</strong> Dangerous surf November–April — do not enter</li>
+        <li><strong>Depth:</strong> 3–15 feet in the main pools, deeper outside</li>
+        <li><strong>Skill level:</strong> Beginner to intermediate</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Marine life -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Marine Life at Sharks Cove</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 border border-gray-100">
+          <div class="text-3xl mb-2">🐢</div>
+          <h3 class="font-bold text-ocean-900">Green Sea Turtles</h3>
+          <p class="text-sm text-gray-600 mt-2">Common year-round. Keep 10+ feet distance — they're protected by law.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-gray-100">
+          <div class="text-3xl mb-2">🐠</div>
+          <h3 class="font-bold text-ocean-900">Tropical Fish</h3>
+          <p class="text-sm text-gray-600 mt-2">Butterflyfish, tangs, parrotfish, wrasses, and triggerfish in the lava pools.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-gray-100">
+          <div class="text-3xl mb-2">🐙</div>
+          <h3 class="font-bold text-ocean-900">Octopus & Eels</h3>
+          <p class="text-sm text-gray-600 mt-2">Look in the crevices and under ledges — day octopus and moray eels hide here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical info -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Practical Information</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <h3 class="font-bold text-ocean-900 mb-3">Getting There</h3>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><strong>Address:</strong> 59-712 Kamehameha Hwy, Haleiwa, HI 96712</li>
+          <li><strong>From Waikiki:</strong> 45 min via H-1 West → Kamehameha Hwy</li>
+          <li><strong>Parking:</strong> County lot across the street ($3/hr) + street parking</li>
+          <li><strong>Landmark:</strong> Food trucks at the entrance</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <h3 class="font-bold text-ocean-900 mb-3">Safety Rules</h3>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>⚠️ <strong>Winter (Nov–Apr):</strong> Do NOT enter — dangerous surf</li>
+          <li>Wear reef shoes — lava rock is sharp</li>
+          <li>Stay inside the protected cove area</li>
+          <li>Never touch coral or marine life</li>
+          <li>Check conditions at the lifeguard station</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

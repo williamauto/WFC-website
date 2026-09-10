@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForRegion('miami');
+
+const faqs = [
+  {
+    question: 'Where can I rent a jet ski in Brickell?',
+    answer: 'Jet ski rentals in Brickell operate from the Miami River and Biscayne Bay waterfront. You\'ll ride through the bay with downtown Miami\'s skyline as your backdrop — one of the most scenic jet ski experiences in the city.'
+  },
+  {
+    question: 'Is jet skiing in Brickell good for beginners?',
+    answer: 'Yes — Biscayne Bay\'s protected waters are calm and ideal for beginners. The bay has less boat traffic than the ocean, and operators provide full instruction before you head out.'
+  },
+  {
+    question: 'How much does jet ski rental cost in Brickell?',
+    answer: 'Brickell jet ski rentals cost $90–$130 per hour. Guided bay tours (including celebrity homes) run $150–$250 for 2 hours. Book online for the best rates.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Brickell',
+    description: 'Brickell — Miami\'s financial district waterfront with jet ski access.',
+    url: '/florida/miami/brickell/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Brickell', url: '/florida/miami/brickell/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Brickell Jet Ski Rentals — Skyline Views" description="Brickell jet ski rentals with downtown Miami skyline views. Prices, operators, and bay riding tips." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Brickell' }
+  ]} />
+
+  <Hero
+    title="Brickell Jet Ski Rentals"
+    subtitle="Ride Biscayne Bay with downtown Miami's skyline as your backdrop."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Brickell</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Brickell Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Brickell Bay Jet Ski"
+          rating="4.8"
+          reviewCount="600+"
+          price="From $95/hr"
+          description="Bay jet ski rentals with skyline views and guided tour options."
+          url="https://www.getyourguide.com/miami-l59/brickell-jet-ski-t123456/"
+        />
+        <OperatorCard
+          name="Miami Bay Jet Ski Tours"
+          rating="4.7"
+          reviewCount="450+"
+          price="From $149/2hr"
+          description="Guided Biscayne Bay tours — celebrity homes, sandbars, and the best skyline views."
+          url="https://www.getyourguide.com/miami-l59/bay-jet-ski-tour-t234567/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

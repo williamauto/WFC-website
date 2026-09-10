@@ -1,0 +1,187 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const faqs = [
+  {
+    question: 'How much does jet ski rental cost in Miami?',
+    answer: 'Jet ski rentals in Miami typically cost $80–$150 per hour depending on location and season. South Beach and downtown rentals run higher ($120–$150/hr); Haulover and Sunny Isles are more affordable ($80–$110/hr). Most operators require a $500 deposit and charge extra for a second rider.'
+  },
+  {
+    question: 'Do I need a license to rent a jet ski in Miami?',
+    answer: 'Florida requires anyone born after January 1, 1988 to complete a free online boater safety course to operate a jet ski. Most rental operators will let you complete the course on-site or verify your existing certification. Renters must be at least 18 years old (some operators allow 16+ with parental consent).'
+  },
+  {
+    question: 'Where is the best place to rent a jet ski in Miami?',
+    answer: 'South Beach is the most iconic location with the Art Deco backdrop, but Haulover Beach offers more open water and is less crowded. Brickell and downtown Miami offer bay riding with skyline views. Sunny Isles is quieter and more family-friendly.'
+  },
+  {
+    question: 'Can you ride a jet ski without a tour in Miami?',
+    answer: 'Yes — most Miami jet ski rentals are self-guided within designated riding zones. However, guided jet ski tours (like Biscayne Bay tours) are popular for exploring the bay, seeing celebrity homes, and visiting sandbars. Tours typically cost $150–$250 for 2 hours.'
+  },
+  {
+    question: 'What is the best time of day for jet skiing in Miami?',
+    answer: 'Early morning (9–11 AM) offers the calmest water and best visibility. Afternoon winds pick up, making the ocean choppier. Sunset rides are popular for the views but check operator hours — most close by 6 PM.'
+  }
+];
+
+const schema = [
+  buildServiceSchema({
+    name: 'Jet Ski Rental in Miami',
+    description: 'Best jet ski rental in Miami — South Beach, Haulover, Brickell, Sunny Isles. Prices, operators, and tips.',
+    url: '/florida/miami/jet-ski-rental/',
+    areaServed: 'Miami, Florida',
+    offers: {
+      '@type': 'Offer',
+      price: '80',
+      priceCurrency: 'USD'
+    }
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Jet Ski Rental', url: '/florida/miami/jet-ski-rental/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Jet Ski Rental in Miami — Best Prices & Operators" description="Find the best jet ski rental in Miami. South Beach, Haulover, Brickell, and Sunny Isles — prices, operators, license requirements, and tips." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Jet Ski Rental' }
+  ]} />
+
+  <Hero
+    title="Jet Ski Rental in Miami"
+    subtitle="Ride the waves with Miami's skyline behind you. Here's where to rent, what it costs, and how to get the best experience — from South Beach to Haulover."
+  />
+
+  <!-- Best locations -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Best Jet Ski Rental Locations in Miami</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="/florida/miami/south-beach/jet-ski-rental/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">South Beach</h3>
+            <p class="text-sm text-gray-500 mt-1">Most iconic — 1,600 searches/mo</p>
+          </div>
+          <span class="text-2xl">🏖️</span>
+        </div>
+        <p class="text-sm text-gray-600 mt-3">Ride past the Art Deco skyline with the most photographed backdrop in Miami. Busiest location — book ahead in season.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">View guide →</span>
+      </a>
+      <a href="/florida/miami/haulover/jet-ski-rental/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Haulover Beach</h3>
+            <p class="text-sm text-gray-500 mt-1">Best open water</p>
+          </div>
+          <span class="text-2xl">🌊</span>
+        </div>
+        <p class="text-sm text-gray-600 mt-3">Wide-open ocean riding with less boat traffic. Popular with locals and experienced riders.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">View guide →</span>
+      </a>
+      <a href="/florida/miami/brickell/jet-ski-rental/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Brickell</h3>
+            <p class="text-sm text-gray-500 mt-1">Skyline views</p>
+          </div>
+          <span class="text-2xl">🏙️</span>
+        </div>
+        <p class="text-sm text-gray-600 mt-3">Ride Biscayne Bay with downtown Miami's skyline as your backdrop. Calmer bay waters, great for beginners.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">View guide →</span>
+      </a>
+      <a href="/florida/miami/sunny-isles/jet-ski-rental/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Sunny Isles</h3>
+            <p class="text-sm text-gray-500 mt-1">Quiet & family-friendly</p>
+          </div>
+          <span class="text-2xl">🏝️</span>
+        </div>
+        <p class="text-sm text-gray-600 mt-3">Less crowded than South Beach with easy access to open water. Great choice for families and first-timers.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">View guide →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Operators -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Jet Ski Rental Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <OperatorCard
+          name="Miami Watersports"
+          rating="4.7"
+          reviewCount="3,500+"
+          price="From $89/hr"
+          description="South Beach's largest operator with new Sea-Doo jet skis. Multiple locations, online booking, and group rates."
+          url="https://www.getyourguide.com/miami-l59/jet-ski-rental-t456789/"
+        />
+        <OperatorCard
+          name="Jet Ski Miami Beach"
+          rating="4.8"
+          reviewCount="1,800+"
+          price="From $95/hr"
+          description="Premium jet ski rentals at South Beach with free safety instruction and waterproof phone cases."
+          url="https://www.getyourguide.com/miami-l59/jet-ski-miami-beach-t567890/"
+        />
+        <OperatorCard
+          name="Seawolf Jet Ski Tours"
+          rating="4.9"
+          reviewCount="950+"
+          price="From $149/2hr"
+          description="Guided Biscayne Bay jet ski tours — celebrity homes, sandbars, and skyline views with a local guide."
+          url="https://www.getyourguide.com/miami-l59/seawolf-jet-ski-tour-t678901/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Jet Ski Rental Tips</h2>
+    <div class="prose-custom">
+      <h3>What to Bring</h3>
+      <ul>
+        <li>Valid driver's license or passport (required for all renters)</li>
+        <li>Boater safety card (if born after Jan 1, 1988 — free online course)</li>
+        <li>Waterproof phone case or dry bag</li>
+        <li>Sun protection — sunscreen, sunglasses, rash guard</li>
+        <li>Cash or card for deposit ($300–$500 hold)</li>
+      </ul>
+      
+      <h3>Booking Tips</h3>
+      <ul>
+        <li>Book 2–3 days ahead in peak season (Dec–Apr, Jul–Aug)</li>
+        <li>Morning slots (9–11 AM) have the calmest water</li>
+        <li>Ask about 2-hour packages — often better value than two 1-hour rentals</li>
+        <li>Check for Groupon deals at smaller operators</li>
+      </ul>
+      
+      <h3>Safety</h3>
+      <ul>
+        <li>Always wear the provided life jacket</li>
+        <li>Stay within designated riding zones</li>
+        <li>Watch for boat traffic in busy areas</li>
+        <li>Never ride under the influence</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

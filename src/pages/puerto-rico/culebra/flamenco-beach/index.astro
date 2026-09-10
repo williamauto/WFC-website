@@ -1,0 +1,87 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('culebra');
+const activities = getActivitiesForRegion('culebra');
+
+const faqs = [
+  {
+    question: 'What is Flamenco Beach?',
+    answer: 'Flamenco Beach (Playa Flamenco) is Culebra\'s most famous beach — a horseshoe-shaped bay with white sand and crystal-clear turquoise water. It\'s consistently ranked among the top 10 beaches in the world.'
+  },
+  {
+    question: 'Is Flamenco Beach good for snorkeling?',
+    answer: 'Yes — Flamenco Beach has calm, shallow water with seagrass beds and coral heads. You\'ll see tropical fish, rays, and occasionally sea turtles. The best snorkeling is at the rocky points at either end of the beach.'
+  },
+  {
+    question: 'How do I get to Culebra?',
+    answer: 'Take a ferry from Ceiba (1 hour, $2.50) or fly from San Juan (30 minutes, $80–$120). Flamenco Beach is a 10-minute taxi ride from the ferry terminal. Rent a golf cart to explore the island.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Flamenco Beach',
+    description: 'Flamenco Beach — world-famous white sand beach with snorkeling.',
+    url: '/puerto-rico/culebra/flamenco-beach/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'Culebra', url: '/puerto-rico/culebra/' },
+    { label: 'Flamenco Beach', url: '/puerto-rico/culebra/flamenco-beach/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Flamenco Beach Snorkeling — Culebra Guide" description="Flamenco Beach snorkeling guide — world-famous white sand beach in Culebra with crystal-clear water." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'Culebra', url: '/puerto-rico/culebra/' },
+    { label: 'Flamenco Beach' }
+  ]} />
+
+  <Hero
+    title="Flamenco Beach Snorkeling"
+    subtitle="Consistently ranked among the world's best beaches — white sand, turquoise water, and incredible snorkeling."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Flamenco Beach</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="culebra" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Why Flamenco Beach?</h2>
+      <div class="prose-custom">
+        <ul>
+          <li><strong>World-class beach</strong> — ranked in the top 10 beaches globally by multiple publications</li>
+          <li><strong>Crystal-clear water</strong> — visibility up to 50 feet</li>
+          <li><strong>Calm conditions</strong> — protected horseshoe bay with gentle waves</li>
+          <li><strong>Free entry</strong> — no admission fee, $2 parking</li>
+          <li><strong>Snorkel gear rental</strong> — $10–$15/day from beach vendors</li>
+          <li><strong>Camping available</strong> — the beach has a campground for overnight stays</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

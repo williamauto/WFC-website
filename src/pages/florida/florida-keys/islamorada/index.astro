@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('florida-keys');
+const activities = getActivitiesForRegion('florida-keys');
+
+const faqs = [
+  {
+    question: 'What is Islamorada known for?',
+    answer: 'Islamorada is known as the sportfishing capital of the world, but it\'s also a fantastic kayaking destination. The mangrove islands and calm backcountry waters are perfect for paddling, with abundant bird life and occasional manatees.'
+  },
+  {
+    question: 'Where can I kayak in Islamorada?',
+    answer: 'The best kayaking in Islamorada is in the mangrove backcountry — Indian Key Historic State Park and Lignumvitae Key Botanical State Park are popular paddling destinations. Kayak rentals cost $30–$50 per hour or $60–$90 for a half-day.'
+  },
+  {
+    question: 'Is Islamorada good for snorkeling?',
+    answer: 'Yes — Islamorada has excellent snorkeling at the offshore reefs (Alligator Reef, Cheeca Rocks). Several operators run snorkel trips from Islamorada, and the reefs are less crowded than Key Largo.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Islamorada',
+    description: 'Islamorada — sportfishing capital with kayak tours through mangrove islands.',
+    url: '/florida/florida-keys/islamorada/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys', url: '/florida/florida-keys/' },
+    { label: 'Islamorada', url: '/florida/florida-keys/islamorada/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Islamorada Water Activities — Kayaking & Snorkeling" description="Islamorada water activities: mangrove kayaking, reef snorkeling, and fishing in the Florida Keys." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys', url: '/florida/florida-keys/' },
+    { label: 'Islamorada' }
+  ]} />
+
+  <Hero
+    title="Islamorada Water Activities"
+    subtitle="The sportfishing capital of the world — and a hidden gem for mangrove kayaking and reef snorkeling."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Islamorada</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="florida-keys" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Islamorada Experiences</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Indian Key Kayak Tour"
+          rating="4.8"
+          reviewCount="700+"
+          price="From $65"
+          description="Guided kayak paddle to Indian Key Historic State Park with snorkeling stop."
+          url="https://www.getyourguide.com/islamorada-l123/indian-key-kayak-t123456/"
+        />
+        <OperatorCard
+          name="Alligator Reef Snorkel Trip"
+          rating="4.7"
+          reviewCount="500+"
+          price="From $70"
+          description="Snorkel the Alligator Reef Lighthouse — one of the best reefs in the Keys."
+          url="https://www.getyourguide.com/islamorada-l123/alligator-reef-snorkel-t234567/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

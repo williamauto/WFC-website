@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('oahu');
+const activities = getActivitiesForRegion('oahu');
+
+const faqs = [
+  {
+    question: 'What is the Kaneohe Sandbar?',
+    answer: 'The Kaneohe Sandbar is a shallow sandbar in Kaneohe Bay on Oahu\'s windward side. At low tide, the sandbar emerges from the water creating a natural island. Catamaran tours bring visitors to snorkel, paddle board, and relax in the shallow turquoise water.'
+  },
+  {
+    question: 'How much does a Kaneohe Sandbar tour cost?',
+    answer: 'Kaneohe Sandbar tours cost $99–$150 per person and typically include catamaran transport, snorkel gear, paddle boards, and lunch. Tours run 4–5 hours. The most popular operators are Captain Bruce and Captain Bob.'
+  },
+  {
+    question: 'Is the Kaneohe Sandbar good for snorkeling?',
+    answer: 'Yes — the sandbar area has calm, shallow water with coral heads and tropical fish. The nearby reef offers better snorkeling than the sandbar itself. Most tours include a snorkel stop at the reef before or after the sandbar.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Kaneohe',
+    description: 'Kaneohe — windward side with sandbar tours and calm bay waters.',
+    url: '/hawaii/oahu/kaneohe/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Kaneohe', url: '/hawaii/oahu/kaneohe/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Kaneohe Sandbar Tours & Water Activities" description="Kaneohe Sandbar tours — catamaran cruises, snorkeling, and paddle boarding on Oahu's windward side." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Kaneohe' }
+  ]} />
+
+  <Hero
+    title="Kaneohe Sandbar Tours"
+    subtitle="A natural sandbar rising from turquoise water — Oahu's most unique water experience."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Kaneohe</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="oahu" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Sandbar Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Captain Bruce Sandbar Tour"
+          rating="4.8"
+          reviewCount="4,500+"
+          price="From $99"
+          description="The most popular Kaneohe Sandbar tour — catamaran, snorkeling, paddle boards, and lunch included."
+          url="https://www.getyourguide.com/oahu-l123/captain-bruce-sandbar-tour-t012345/"
+        />
+        <OperatorCard
+          name="Captain Bob Sandbar Tour"
+          rating="4.7"
+          reviewCount="3,800+"
+          price="From $109"
+          description="Premium sandbar experience with smaller groups, better snorkeling stops, and gourmet lunch."
+          url="https://www.getyourguide.com/oahu-l123/captain-bob-sandbar-tour-t123456/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

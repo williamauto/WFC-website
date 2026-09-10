@@ -1,0 +1,88 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('oahu');
+const activities = getActivitiesForRegion('oahu');
+
+const faqs = [
+  {
+    question: 'What is the North Shore known for?',
+    answer: 'The North Shore is famous for its legendary winter surf — waves reach 30+ feet from November to February. In summer, the water calms and it becomes a snorkeling paradise with spots like Sharks Cove and Kuilima Cove.'
+  },
+  {
+    question: 'When is the best time to visit the North Shore?',
+    answer: 'Summer (May–October) is best for snorkeling and swimming — the water is calm and safe. Winter (November–April) is for watching big-wave surfing from the shore — do NOT enter the water during winter swells.'
+  },
+  {
+    question: 'What are the best snorkeling spots on the North Shore?',
+    answer: 'Sharks Cove is the best snorkeling on the North Shore — a protected marine reserve with incredible reef life. Kuilima Cove at Turtle Bay is the best beginner spot. Both are free.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'North Shore',
+    description: 'North Shore — legendary surf coast with Sharks Cove snorkeling.',
+    url: '/hawaii/oahu/north-shore/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'North Shore', url: '/hawaii/oahu/north-shore/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="North Shore Oahu — Surf & Snorkel Guide" description="North Shore Oahu guide: legendary winter surf, Sharks Cove snorkeling, and the best water activities." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'North Shore' }
+  ]} />
+
+  <Hero
+    title="North Shore Oahu"
+    subtitle="Legendary winter surf, summer snorkeling paradise, and the laid-back surf town vibe of Haleiwa."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities on the North Shore</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="oahu" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top North Shore Spots</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="/hawaii/oahu/north-shore/sharks-cove/snorkeling/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Sharks Cove</h3>
+          <p class="text-sm text-gray-600 mt-2">The best free snorkeling on Oahu — lava tunnels, sea turtles, and incredible reef life.</p>
+          <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">View guide →</span>
+        </a>
+        <a href="/hawaii/oahu/kuilima-cove/snorkeling/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Kuilima Cove</h3>
+          <p class="text-sm text-gray-600 mt-2">Beginner-friendly cove at Turtle Bay with calm water and sea turtle sightings.</p>
+          <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">View guide →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('florida-keys');
+const activities = getActivitiesForRegion('florida-keys');
+
+const faqs = [
+  {
+    question: 'What is night kayaking in Key West?',
+    answer: 'Night kayaking in Key West is a guided paddle through the mangrove channels after dark. The water glows with bioluminescent plankton, and you\'ll see nocturnal wildlife like crabs, rays, and sometimes tarpon. Tours run 90 minutes and cost $50–$75 per person.'
+  },
+  {
+    question: 'Where is the best mangrove kayaking in Key West?',
+    answer: 'The best mangrove kayaking is in the backcountry around Key West — the mangrove islands south of the city. Guided tours paddle through narrow mangrove tunnels where you\'ll see birds, rays, and small sharks. Tours cost $60–$90 for 2–3 hours.'
+  },
+  {
+    question: 'Do I need experience for mangrove kayaking?',
+    answer: 'No — mangrove kayaking in Key West is suitable for beginners. The water is calm and protected, and guides provide instruction. Single and tandem kayaks are available. Children as young as 5 can ride in tandem kayaks.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Key West',
+    description: 'Key West — southernmost point with night kayaking, mangrove tours, and snorkeling.',
+    url: '/florida/florida-keys/key-west/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys', url: '/florida/florida-keys/' },
+    { label: 'Key West', url: '/florida/florida-keys/key-west/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Key West Water Activities — Kayaking & More" description="Key West water activities: night kayaking, mangrove tours, snorkeling, and jet ski. Tours, prices, and tips." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys', url: '/florida/florida-keys/' },
+    { label: 'Key West' }
+  ]} />
+
+  <Hero
+    title="Key West Water Activities"
+    subtitle="The southernmost point of the US — where night kayaking through glowing mangroves is a must-do."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Key West</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="florida-keys" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Kayaking Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Night Kayak Key West"
+          rating="4.9"
+          reviewCount="1,200+"
+          price="From $55"
+          description="Guided night paddle through glowing bioluminescent waters — the most unique experience in Key West."
+          url="https://www.getyourguide.com/key-west-l123/night-kayak-tour-t567890/"
+        />
+        <OperatorCard
+          name="Mangrove Kayak Eco Tour"
+          rating="4.8"
+          reviewCount="900+"
+          price="From $65"
+          description="Paddle through mangrove tunnels with a naturalist guide. See birds, rays, and baby sharks."
+          url="https://www.getyourguide.com/key-west-l123/mangrove-kayak-tour-t678901/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

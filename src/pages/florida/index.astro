@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { REGIONS } from '../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema } from '../../data/schema';
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Florida',
+    description: 'From Miami\'s vibrant coastline to the laid-back Florida Keys, Florida is America\'s water playground.',
+    url: '/florida/',
+    activities: []
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' }
+  ])
+];
+---
+
+<Layout title="Florida Water Activities" description="Florida water activities guide — Miami jet ski, Biscayne National Park snorkeling, Florida Keys kayaking, and more." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida' }
+  ]} />
+
+  <Hero
+    title="Florida Water Activities"
+    subtitle="America's water playground — from Miami's high-energy coastline to the Florida Keys' laid-back reef diving."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Explore Florida</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="/florida/miami/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Miami</h3>
+        <p class="text-sm text-gray-600 mt-2">Jet ski rentals, Biscayne National Park snorkeling, mangrove kayaking, and the newest efoil experiences.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Miami →</span>
+      </a>
+      <a href="/florida/florida-keys/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Florida Keys</h3>
+        <p class="text-sm text-gray-600 mt-2">Key Largo reef snorkeling, Key West night kayaking, and mangrove tours through the island chain.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Florida Keys →</span>
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,13 @@
+---
+const { title, subtitle, children } = Astro.props;
+---
+
+<section class="bg-gradient-to-br from-ocean-50 via-white to-sand-50 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-ocean-950 tracking-tight">{title}</h1>
+      {subtitle && <p class="mt-4 text-lg text-gray-600 leading-relaxed">{subtitle}</p>}
+      {children && <div class="mt-6">{children}</div>}
+    </div>
+  </div>
+</section>

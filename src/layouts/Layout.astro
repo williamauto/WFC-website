@@ -1,0 +1,111 @@
+---
+import '../styles/global.css';
+import { SITE } from '../data/site-data';
+
+const { title, description, schema, canonical } = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} | ${SITE.tagline}`;
+const pageDescription = description || SITE.description;
+const pageCanonical = canonical || (Astro.url.pathname === '/' ? SITE.url : `${SITE.url}${Astro.url.pathname}`);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+  <link rel="canonical" href={pageCanonical} />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:url" content={pageCanonical} />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={pageDescription} />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="bg-ocean-900 text-white shadow-lg sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center space-x-2">
+          <span class="text-2xl">🌊</span>
+          <span class="font-bold text-xl tracking-tight">Water Fun Club</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="/florida/miami/" class="hover:text-ocean-300 transition-colors font-medium">Miami</a>
+          <a href="/hawaii/oahu/" class="hover:text-ocean-300 transition-colors font-medium">Oahu</a>
+          <a href="/puerto-rico/" class="hover:text-ocean-300 transition-colors font-medium">Puerto Rico</a>
+          <a href="/activities/" class="hover:text-ocean-300 transition-colors font-medium">Activities</a>
+        </div>
+        <button class="md:hidden text-2xl" aria-label="Open menu" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">☰</button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+        <a href="/florida/miami/" class="block py-2 hover:text-ocean-300">Miami</a>
+        <a href="/hawaii/oahu/" class="block py-2 hover:text-ocean-300">Oahu</a>
+        <a href="/puerto-rico/" class="block py-2 hover:text-ocean-300">Puerto Rico</a>
+        <a href="/activities/" class="block py-2 hover:text-ocean-300">Activities</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+    <slot />
+  </main>
+
+  <footer class="bg-ocean-950 text-ocean-200 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <span class="text-2xl">🌊</span>
+            <span class="font-bold text-xl text-white">Water Fun Club</span>
+          </div>
+          <p class="text-sm leading-relaxed">{SITE.description}</p>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-4">Destinations</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/florida/miami/" class="hover:text-white transition-colors">Miami</a></li>
+            <li><a href="/florida/florida-keys/" class="hover:text-white transition-colors">Florida Keys</a></li>
+            <li><a href="/hawaii/oahu/" class="hover:text-white transition-colors">Oahu</a></li>
+            <li><a href="/hawaii/maui/" class="hover:text-white transition-colors">Maui</a></li>
+            <li><a href="/puerto-rico/" class="hover:text-white transition-colors">Puerto Rico</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold mb-4">Activities</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/activities/snorkeling/" class="hover:text-white transition-colors">Snorkeling</a></li>
+            <li><a href="/activities/kayaking/" class="hover:text-white transition-colors">Kayaking</a></li>
+            <li><a href="/activities/jet-ski-rental/" class="hover:text-white transition-colors">Jet Ski</a></li>
+            <li><a href="/activities/efoil/" class="hover:text-white transition-colors">Efoil</a></li>
+            <li><a href="/activities/paddleboarding/" class="hover:text-white transition-colors">Paddle Boarding</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-ocean-800 mt-8 pt-6 text-xs text-ocean-400">
+        <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved. Water Fun Club is an independent guide and may earn affiliate commissions from bookings made through links on this site.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

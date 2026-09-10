@@ -1,0 +1,136 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const faqs = [
+  {
+    question: 'What is efoil?',
+    answer: 'Efoil (electric hydrofoil) is a surfboard with an electric motor and a hydrofoil wing underneath. As you accelerate, the board lifts above the water — you literally fly above the surface. It\'s the newest water sport, combining surfing, flying, and silence (no gas engine noise).'
+  },
+  {
+    question: 'How much does efoil cost in Miami?',
+    answer: 'Efoil lessons in Miami cost $150–$395 for a private session. Rentals run $100–$200 per hour. Buying a board costs $5,000–$12,000, so lessons and rentals are the smart way to start.'
+  },
+  {
+    question: 'Do I need experience to try efoil?',
+    answer: 'No — most operators teach complete beginners. The learning curve is about 30–60 minutes to get flying. You need basic balance and comfort in water, but no prior surfing or wakeboarding experience is required.'
+  },
+  {
+    question: 'Is efoil safe?',
+    answer: 'Yes, when done with proper instruction. You wear a life jacket and helmet. The motor cuts off when you release the throttle. Operators teach you safety protocols before you get on the water.'
+  },
+  {
+    question: 'Where can I try efoil in Miami?',
+    answer: 'RideFoil Miami operates on Biscayne Bay, and eFoil Miami offers private lessons. Both are easily accessible from downtown and South Beach. Sessions typically run 60–90 minutes including instruction.'
+  }
+];
+
+const schema = [
+  buildServiceSchema({
+    name: 'Efoil in Miami',
+    description: 'Efoil lessons and rentals in Miami — fly above the water on an electric hydrofoil. The newest water sport.',
+    url: '/florida/miami/efoil/',
+    areaServed: 'Miami, Florida',
+    offers: {
+      '@type': 'Offer',
+      price: '150',
+      priceCurrency: 'USD'
+    }
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Efoil', url: '/florida/miami/efoil/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Efoil in Miami — Lessons & Rentals" description="Try efoil in Miami — the newest water sport. Lessons from $150, rentals available on Biscayne Bay. Fly above the water on an electric hydrofoil." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Efoil' }
+  ]} />
+
+  <Hero
+    title="Efoil in Miami"
+    subtitle="Fly above the water on an electric hydrofoil — the newest, most exciting water sport in Miami. Zero competition, zero noise, 100% adrenaline."
+  />
+
+  <!-- What is efoil -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">What is Efoil?</h2>
+    <div class="prose-custom">
+      <p>An <strong>efoil</strong> (electric hydrofoil) is a surfboard with an electric motor and hydrofoil wing. When you accelerate, the board lifts out of the water and you glide silently above the surface — like flying.</p>
+      <p>It's the fastest-growing water sport in the world. Search demand for "efoil rental near me" is up <strong>200% year-over-year</strong>, and Miami is one of the first US cities with dedicated efoil operators.</p>
+      <p>Why Miami is perfect for efoil:</p>
+      <ul>
+        <li><strong>Calm bay waters</strong> — Biscayne Bay's protected waters are ideal for learning</li>
+        <li><strong>Year-round season</strong> — water stays above 72°F even in winter</li>
+        <li><strong>First-mover advantage</strong> — only a handful of operators exist, so you'll be ahead of the curve</li>
+        <li><strong>Instagram-worthy</strong> — the skyline backdrop makes for incredible photos and videos</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Operators -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Efoil Operators in Miami</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="RideFoil Miami"
+          rating="5.0"
+          reviewCount="120+"
+          price="From $150"
+          description="Biscayne Bay efoil lessons and rentals. Small groups, top-of-the-line Lift efoils, and patient instructors."
+          url="https://www.getyourguide.com/miami-l59/efoil-lesson-t789012/"
+        />
+        <OperatorCard
+          name="eFoil Miami"
+          rating="4.9"
+          reviewCount="85+"
+          price="$395 private lesson"
+          description="Private efoil lessons with one-on-one instruction. Includes all gear, safety briefing, and 90 minutes on the water."
+          url="https://www.getyourguide.com/miami-l59/efoil-miami-private-lesson-t890123/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">What to Expect in Your First Efoil Session</h2>
+    <div class="prose-custom">
+      <h3>1. Safety Briefing (15 min)</h3>
+      <p>Your instructor covers board controls, throttle management, safety protocols, and what to do if you fall.</p>
+      
+      <h3>2. Dry Land Practice (10 min)</h3>
+      <p>You'll practice the stance and throttle control on land before getting in the water.</p>
+      
+      <h3>3. Water Time (45–60 min)</h3>
+      <p>Start kneeling, then progress to standing. Most beginners get their first "flight" within 30 minutes. The feeling of lifting off the water is unforgettable.</p>
+      
+      <h3>4. What to Wear</h3>
+      <ul>
+        <li>Swimsuit or wetsuit (provided by most operators)</li>
+        <li>Life jacket (provided)</li>
+        <li>Helmet (provided)</li>
+        <li>Water shoes (recommended)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

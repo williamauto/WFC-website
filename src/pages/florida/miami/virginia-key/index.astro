@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForRegion('miami');
+
+const faqs = [
+  {
+    question: 'Where is Virginia Key?',
+    answer: 'Virginia Key is an island between Miami and Key Biscayne (accessible via the Rickenbacker Causeway). It\'s home to Virginia Key Beach Park, a nature preserve with calm waters perfect for kayaking and paddle boarding.'
+  },
+  {
+    question: 'Is Virginia Key good for kayaking?',
+    answer: 'Yes — Virginia Key has calm, protected waters ideal for kayaking and paddle boarding. You can paddle through mangrove channels and see birds, rays, and manatees. Rentals cost $25–$40 per hour.'
+  },
+  {
+    question: 'What is the Virginia Key Outdoor Center?',
+    answer: 'The Virginia Key Outdoor Center is the main kayak and paddle board rental operator on the island. They offer rentals, guided tours, and lessons. It\'s the best starting point for exploring the island\'s waterways.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Virginia Key',
+    description: 'Virginia Key — nature preserve with kayaking and paddle boarding.',
+    url: '/florida/miami/virginia-key/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Virginia Key', url: '/florida/miami/virginia-key/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Virginia Key Kayaking & Paddle Boarding" description="Virginia Key kayaking and paddle boarding guide — calm waters, mangrove channels, and wildlife in Miami." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Virginia Key' }
+  ]} />
+
+  <Hero
+    title="Virginia Key Kayaking"
+    subtitle="Miami's hidden nature island — paddle through mangroves and spot manatees minutes from downtown."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Virginia Key</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Virginia Key Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Virginia Key Outdoor Center"
+          rating="4.8"
+          reviewCount="1,000+"
+          price="From $30/hr"
+          description="Kayak and paddle board rentals with guided eco-tours through the mangroves."
+          url="https://www.getyourguide.com/miami-l59/virginia-key-outdoor-t901234/"
+        />
+        <OperatorCard
+          name="Miami Eco Kayak Tours"
+          rating="4.7"
+          reviewCount="500+"
+          price="From $55"
+          description="Guided mangrove kayak tours with wildlife spotting — manatees, birds, and rays."
+          url="https://www.getyourguide.com/miami-l59/eco-kayak-tour-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

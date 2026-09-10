@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForSubDestination } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForSubDestination('miami', 'biscayne-national-park');
+
+const faqs = [
+  {
+    question: 'What is Biscayne National Park?',
+    answer: 'Biscayne National Park is a 173,000-acre national park in Biscayne Bay, 95% underwater. It protects coral reefs, mangrove shorelines, and shipwrecks. It\'s one of the best snorkeling destinations in the continental US.'
+  },
+  {
+    question: 'How do I get to Biscayne National Park?',
+    answer: 'The park\'s visitor center is at Convoy Point, about 30 minutes south of downtown Miami. Most snorkeling tours depart from there by boat. You can also reach the islands by private boat or kayak.'
+  },
+  {
+    question: 'What is the best snorkeling in Biscayne National Park?',
+    answer: 'The best snorkeling is at the reef line, about 3–5 miles offshore. Tours take you to spots like the Maritime Heritage Trail shipwrecks and the coral reefs. Visibility is best in summer (June–September).'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Biscayne National Park',
+    description: 'Biscayne National Park — protected bay waters with world-class snorkeling and kayaking.',
+    url: '/florida/miami/biscayne-national-park/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Biscayne National Park', url: '/florida/miami/biscayne-national-park/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Biscayne National Park Water Activities — Snorkeling & Kayaking" description="Biscayne National Park water activities: snorkeling tours, kayaking, and paddle boarding in Miami's underwater national park." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Biscayne National Park' }
+  ]} />
+
+  <Hero
+    title="Biscayne National Park Water Activities"
+    subtitle="America's underwater national park — coral reefs, shipwrecks, and mangrove kayaking 30 minutes from Miami."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Biscayne National Park</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" subSlug="biscayne-national-park" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Biscayne National Park Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Biscayne National Park Snorkel Tours"
+          rating="4.8"
+          reviewCount="2,000+"
+          price="From $65"
+          description="Guided snorkeling tours to the coral reefs and Maritime Heritage Trail shipwrecks."
+          url="https://www.getyourguide.com/miami-l59/biscayne-snorkel-tour-t901234/"
+        />
+        <OperatorCard
+          name="Biscayne Bay Kayak Adventures"
+          rating="4.7"
+          reviewCount="800+"
+          price="From $55"
+          description="Kayak tours through mangrove shorelines with wildlife spotting."
+          url="https://www.getyourguide.com/miami-l59/biscayne-kayak-tour-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

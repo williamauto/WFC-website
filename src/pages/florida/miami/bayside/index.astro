@@ -1,0 +1,104 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForRegion('miami');
+
+const faqs = [
+  {
+    question: 'What boat tours depart from Bayside?',
+    answer: 'Bayside Marketplace is the main departure point for Miami boat tours. You\'ll find sightseeing cruises, celebrity homes tours, sunset cruises, and party boats. The most popular is the 90-minute sightseeing cruise ($30–$45) and the celebrity homes tour ($40–$60).'
+  },
+  {
+    question: 'How much does a Bayside boat tour cost?',
+    answer: 'Bayside boat tours cost $25–$60 per person depending on duration and type. Sightseeing cruises run $25–$40, celebrity homes tours $40–$60, and sunset cruises $45–$75. Private charters start around $300 for up to 6 people.'
+  },
+  {
+    question: 'What is the best time for a Bayside boat tour?',
+    answer: 'Sunset tours are the most popular — the skyline lights up and the weather is cooler. Morning tours (10 AM–12 PM) have calmer water and fewer crowds. Book sunset tours 2–3 days ahead in peak season.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Bayside',
+    description: 'Bayside — downtown Miami waterfront with boat tours and sunset cruises.',
+    url: '/florida/miami/bayside/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Bayside', url: '/florida/miami/bayside/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Bayside Miami Boat Tours & Cruises" description="Bayside Miami boat tours: sightseeing cruises, celebrity homes tours, sunset cruises, and party boats. Prices and tips." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Bayside' }
+  ]} />
+
+  <Hero
+    title="Bayside Miami Boat Tours"
+    subtitle="Downtown Miami's waterfront hub — where the best boat tours and sunset cruises depart."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Bayside</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Bayside Boat Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <OperatorCard
+          name="Miami Sightseeing Cruise"
+          rating="4.5"
+          reviewCount="8,000+"
+          price="From $30"
+          description="90-minute narrated cruise through Biscayne Bay with skyline views."
+          url="https://www.getyourguide.com/miami-l59/sightseeing-cruise-t678901/"
+        />
+        <OperatorCard
+          name="Celebrity Homes Boat Tour"
+          rating="4.6"
+          reviewCount="5,500+"
+          price="From $45"
+          description="Cruise past Star Island and Millionaires Row — see where the stars live."
+          url="https://www.getyourguide.com/miami-l59/celebrity-homes-tour-t789012/"
+        />
+        <OperatorCard
+          name="Miami Sunset Cruise"
+          rating="4.7"
+          reviewCount="3,200+"
+          price="From $55"
+          description="Sunset sail with skyline views, drinks, and the best photo opportunities in Miami."
+          url="https://www.getyourguide.com/miami-l59/sunset-cruise-t890123/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

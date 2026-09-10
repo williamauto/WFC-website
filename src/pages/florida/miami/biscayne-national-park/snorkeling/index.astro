@@ -1,0 +1,140 @@
+---
+import Layout from '../../../../../layouts/Layout.astro';
+import Hero from '../../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import OperatorCard from '../../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../../components/FAQSection.astro';
+import { buildTouristAttractionSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../../data/schema';
+
+const faqs = [
+  {
+    question: 'How do you get to Biscayne National Park for snorkeling?',
+    answer: 'Biscayne National Park is 30–45 minutes from downtown Miami. The visitor center is at 9700 SW 328th St, Homestead, FL 33033. Snorkel tours depart from the Dante Fascell Visitor Center dock. You can also reach the park by boat from Coconut Grove or Key Biscayne.'
+  },
+  {
+    question: 'Do you need a reservation for Biscayne National Park snorkeling?',
+    answer: 'Yes — snorkel tours require advance booking, especially in peak season (December–April). The park itself has no entry fee, but boat tours cost $50–$90 per person. Book 2–3 weeks ahead for weekend slots.'
+  },
+  {
+    question: 'What will I see snorkeling in Biscayne National Park?',
+    answer: 'The park protects 95% underwater habitat with over 500 species of fish, 30 species of coral, sea turtles, nurse sharks, and occasionally manatees. The reefs are part of the third-largest coral barrier reef system in the world.'
+  },
+  {
+    question: 'Is Biscayne National Park snorkeling good for beginners?',
+    answer: 'Yes — the park\'s protected bay waters are calm and shallow near the reefs. Tour operators provide instruction and all gear. Children as young as 5 can join family-friendly tours.'
+  },
+  {
+    question: 'What is the best time of year for Biscayne National Park snorkeling?',
+    answer: 'December through April offers the clearest water and best visibility (30–40 feet). Summer has warmer water but more afternoon storms. Water temperature ranges from 72°F in winter to 86°F in summer.'
+  }
+];
+
+const schema = [
+  buildTouristAttractionSchema({
+    name: 'Biscayne National Park Snorkeling',
+    description: 'Snorkeling in Biscayne National Park — 95% underwater park with living coral reefs, sea turtles, and 500+ fish species.',
+    url: '/florida/miami/biscayne-national-park/snorkeling/',
+    address: 'Homestead, Florida',
+    priceRange: '$50–$90'
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Biscayne National Park', url: '/florida/miami/biscayne-national-park/' },
+    { label: 'Snorkeling', url: '/florida/miami/biscayne-national-park/snorkeling/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Biscayne National Park Snorkeling — Tours & Guide" description="Complete guide to snorkeling in Biscayne National Park: tours, prices, what you'll see, how to get there, and tips for the best experience." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Biscayne National Park', url: '/florida/miami/biscayne-national-park/' },
+    { label: 'Snorkeling' }
+  ]} />
+
+  <Hero
+    title="Biscayne National Park Snorkeling"
+    subtitle="95% of Biscayne National Park is underwater — and it's hiding one of America's best snorkeling reefs just 30 minutes from downtown Miami."
+  />
+
+  <!-- Overview -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Overview</h2>
+    <div class="prose-custom">
+      <p>Biscayne National Park protects 172,000 acres of bay, mangrove, and coral reef habitat — 95% of it underwater. It's part of the third-largest living coral barrier reef system in the world, stretching from Miami to the Florida Keys.</p>
+      <p>Unlike the crowded reefs of the Keys, Biscayne's reefs see far fewer visitors. You'll snorkel over living coral gardens, past sea turtles, and through schools of tropical fish — often with just a handful of other snorkelers.</p>
+      <p><strong>Why it's special:</strong> The park's protected status means the reef is healthier than most in Florida. You'll see brain coral, elkhorn coral, sea fans, and an incredible diversity of marine life.</p>
+    </div>
+  </section>
+
+  <!-- Tours -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Snorkeling Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <OperatorCard
+          name="Biscayne National Park Institute"
+          rating="4.8"
+          reviewCount="1,200+"
+          price="From $59"
+          description="Official park partner. Guided reef snorkeling with naturalist, all gear included, and park entry covered."
+          url="https://www.getyourguide.com/miami-l59/biscayne-national-park-snorkeling-tour-t123456/"
+        />
+        <OperatorCard
+          name="Biscayne Bay Snorkel Tours"
+          rating="4.7"
+          reviewCount="650+"
+          price="From $65"
+          description="Small-group tours from Coconut Grove. Two reef stops, light breakfast, and certified marine guides."
+          url="https://www.getyourguide.com/miami-l59/biscayne-bay-snorkel-tour-t234567/"
+        />
+        <OperatorCard
+          name="Sundiver Snorkel Tours"
+          rating="4.9"
+          reviewCount="850+"
+          price="From $70"
+          description="Premium small-group experience with max 12 guests. Includes reef-safe sunscreen, snacks, and underwater photos."
+          url="https://www.getyourguide.com/miami-l59/sundiver-snorkel-tours-t345678/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
+    </div>
+  </section>
+
+  <!-- Practical info -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Practical Information</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <h3 class="font-bold text-ocean-900 mb-3">Getting There</h3>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><strong>Visitor Center:</strong> 9700 SW 328th St, Homestead, FL 33033</li>
+          <li><strong>From Miami:</strong> 45 min via US-1 South or Florida Turnpike</li>
+          <li><strong>From Key Biscayne:</strong> 30 min by boat (some tours depart here)</li>
+          <li><strong>Parking:</strong> Free at the visitor center</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <h3 class="font-bold text-ocean-900 mb-3">What to Bring</h3>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>Swimsuit (wear it under clothes)</li>
+          <li>Towel and change of clothes</li>
+          <li>Reef-safe sunscreen (required)</li>
+          <li>Waterproof phone case</li>
+          <li>Water and snacks</li>
+          <li>Dry bag for valuables</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

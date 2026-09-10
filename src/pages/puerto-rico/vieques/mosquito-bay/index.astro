@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('vieques');
+const activities = getActivitiesForRegion('vieques');
+
+const faqs = [
+  {
+    question: 'What is Mosquito Bay?',
+    answer: 'Mosquito Bay (Bahía Mosquito) in Vieques is the brightest bioluminescent bay in the world, certified by Guinness World Records. Millions of microscopic dinoflagellates glow blue when disturbed — kayaking through the bay at night is like paddling through stars.'
+  },
+  {
+    question: 'How much does a Mosquito Bay kayak tour cost?',
+    answer: 'Mosquito Bay kayak tours cost $45–$65 per person and run 90 minutes to 2 hours. Tours depart after dark (7–9 PM) and are led by certified guides. Book ahead — tours sell out, especially during new moon phases when the glow is brightest.'
+  },
+  {
+    question: 'When is the best time to visit Mosquito Bay?',
+    answer: 'The bioluminescence is brightest on new moon nights (no moonlight) and during the warmer months. Check the lunar calendar before booking — a new moon tour is dramatically brighter than a full moon tour.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Mosquito Bay',
+    description: 'Mosquito Bay — brightest bioluminescent bay — night kayaking.',
+    url: '/puerto-rico/vieques/mosquito-bay/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'Vieques', url: '/puerto-rico/vieques/' },
+    { label: 'Mosquito Bay', url: '/puerto-rico/vieques/mosquito-bay/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Mosquito Bay Bioluminescent Kayaking — Vieques" description="Mosquito Bay kayaking guide — the brightest bioluminescent bay in the world. Tours, prices, and best times to visit." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'Vieques', url: '/puerto-rico/vieques/' },
+    { label: 'Mosquito Bay' }
+  ]} />
+
+  <Hero
+    title="Mosquito Bay Bioluminescent Kayaking"
+    subtitle="Paddle through the brightest bioluminescent bay on Earth — every stroke lights up like stars in the water."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Mosquito Bay</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="vieques" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Mosquito Bay Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Mosquito Bay Night Kayak"
+          rating="4.9"
+          reviewCount="2,800+"
+          price="From $55"
+          description="The classic Vieques experience — guided night kayaking through glowing waters."
+          url="https://www.getyourguide.com/vieques-l123/mosquito-bay-kayak-t567890/"
+        />
+        <OperatorCard
+          name="Bio Bay Glass Kayak Tour"
+          rating="4.8"
+          reviewCount="1,200+"
+          price="From $65"
+          description="Clear-bottom kayaks for the ultimate bioluminescence viewing experience."
+          url="https://www.getyourguide.com/vieques-l123/glass-kayak-t678901/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

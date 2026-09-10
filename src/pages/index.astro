@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ActivityCard from '../components/ActivityCard.astro';
+import { ACTIVITIES, DESTINATIONS, REGIONS, SITE } from '../data/site-data';
+import { buildWebSiteSchema, buildBreadcrumbSchema } from '../data/schema';
+
+const schema = [
+  buildWebSiteSchema(),
+  buildBreadcrumbSchema([{ label: 'Home', url: '/' }])
+];
+---
+
+<Layout title="Water Activities & Tours Guide" description={SITE.description} schema={schema}>
+  <Hero
+    title="Find Your Next Water Adventure"
+    subtitle="Discover the best snorkeling, jet ski, kayaking, paddle boarding, efoil and electric boat experiences at the world's top water destinations. Expert guides, spot reviews, and booking recommendations."
+  >
+    <div class="flex flex-wrap gap-3">
+      <a href="/florida/miami/" class="px-6 py-3 bg-ocean-600 text-white font-semibold rounded-lg hover:bg-ocean-700 transition-colors">Explore Miami</a>
+      <a href="/hawaii/oahu/" class="px-6 py-3 bg-white text-ocean-700 font-semibold rounded-lg border-2 border-ocean-600 hover:bg-ocean-50 transition-colors">Explore Oahu</a>
+      <a href="/puerto-rico/" class="px-6 py-3 bg-white text-ocean-700 font-semibold rounded-lg border-2 border-ocean-600 hover:bg-ocean-50 transition-colors">Explore Puerto Rico</a>
+    </div>
+  </Hero>
+
+  <!-- Activities Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-ocean-950">Water Activities</h2>
+      <p class="mt-3 text-gray-600 max-w-2xl mx-auto">From underwater exploration to flying above the waves — find the activity that matches your adventure style.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {ACTIVITIES.map(activity => (
+        <ActivityCard activitySlug={activity.slug} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Destinations Section -->
+  <section class="bg-ocean-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-ocean-950">Top Water Destinations</h2>
+        <p class="mt-3 text-gray-600 max-w-2xl mx-auto">Hand-picked destinations with the best water activities, verified spots, and local expertise.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <a href="/florida/miami/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-gray-100">
+          <div class="h-48 bg-gradient-to-br from-ocean-400 to-ocean-600 flex items-center justify-center">
+            <span class="text-6xl">🏖️</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Miami</h3>
+            <p class="text-sm text-gray-600 mt-2">Jet ski rentals, Biscayne National Park snorkeling, mangrove kayaking, and the newest efoil experiences.</p>
+            <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Miami →</span>
+          </div>
+        </a>
+        <a href="/hawaii/oahu/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-gray-100">
+          <div class="h-48 bg-gradient-to-br from-ocean-500 to-ocean-800 flex items-center justify-center">
+            <span class="text-6xl">🌺</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Oahu, Hawaii</h3>
+            <p class="text-sm text-gray-600 mt-2">Sharks Cove, Hanauma Bay, Waikiki sunset cruises, and world-class surfing on the North Shore.</p>
+            <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Oahu →</span>
+          </div>
+        </a>
+        <a href="/puerto-rico/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-gray-100">
+          <div class="h-48 bg-gradient-to-br from-sand-400 to-sand-600 flex items-center justify-center">
+            <span class="text-6xl">🏝️</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Puerto Rico</h3>
+            <p class="text-sm text-gray-600 mt-2">Bioluminescent bay kayaking in Vieques, Flamenco Beach snorkeling, and Caribbean water adventures.</p>
+            <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Puerto Rico →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Water Fun Club -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center p-6">
+        <div class="text-4xl mb-3">📍</div>
+        <h3 class="font-bold text-ocean-900 mb-2">Spot-Level Guides</h3>
+        <p class="text-sm text-gray-600">We go beyond generic destination lists. Every page covers a specific spot with conditions, access, and what to expect.</p>
+      </div>
+      <div class="text-center p-6">
+        <div class="text-4xl mb-3">✅</div>
+        <h3 class="font-bold text-ocean-900 mb-2">Verified Operators</h3>
+        <p class="text-sm text-gray-600">We research and recommend operators with real reviews, transparent pricing, and safety records.</p>
+      </div>
+      <div class="text-center p-6">
+        <div class="text-4xl mb-3">🌊</div>
+        <h3 class="font-bold text-ocean-900 mb-2">All Water Sports</h3>
+        <p class="text-sm text-gray-600">From classic snorkeling and jet ski to cutting-edge efoil and electric boats — we cover the full spectrum.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Spots -->
+  <section class="bg-sand-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-ocean-950">Featured Water Spots</h2>
+        <p class="mt-3 text-gray-600">Our highest-rated, most-visited guides</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/florida/miami/biscayne-national-park/snorkeling/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+          <div class="text-3xl mb-2">🐠</div>
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Biscayne National Park Snorkeling</h3>
+          <p class="text-sm text-gray-500 mt-1">Miami, FL</p>
+        </a>
+        <a href="/florida/miami/south-beach/jet-ski-rental/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+          <div class="text-3xl mb-2">🚤</div>
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">South Beach Jet Ski</h3>
+          <p class="text-sm text-gray-500 mt-1">Miami Beach, FL</p>
+        </a>
+        <a href="/hawaii/oahu/north-shore/sharks-cove/snorkeling/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+          <div class="text-3xl mb-2">🦈</div>
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Sharks Cove Snorkeling</h3>
+          <p class="text-sm text-gray-500 mt-1">North Shore, Oahu</p>
+        </a>
+        <a href="/hawaii/oahu/hanauma-bay/snorkeling/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+          <div class="text-3xl mb-2">🏝️</div>
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Hanauma Bay Snorkeling</h3>
+          <p class="text-sm text-gray-500 mt-1">Honolulu, Oahu</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

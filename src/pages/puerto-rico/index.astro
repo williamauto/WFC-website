@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ActivityCard from '../../components/ActivityCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getRegion, getActivitiesForRegion } from '../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema } from '../../data/schema';
+
+const region = getRegion('san-juan');
+const activities = getActivitiesForRegion('san-juan');
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Puerto Rico',
+    description: 'Bioluminescent bays, pristine snorkeling coves, and Caribbean charm in Puerto Rico.',
+    url: '/puerto-rico/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' }
+  ])
+];
+---
+
+<Layout title="Puerto Rico Water Activities & Tours" description="Bioluminescent bays, pristine snorkeling coves, and Caribbean charm in Puerto Rico." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico' }
+  ]} />
+
+  <Hero
+    title="Puerto Rico Water Activities"
+    subtitle="Paddle through the world's brightest bioluminescent bay, snorkel Flamenco Beach's crystal waters, and explore the Caribbean's most distinctive water experiences."
+  />
+
+  <!-- Activities -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Puerto Rico</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="san-juan" />
+      ))}
+    </div>
+  </section>
+
+  <!-- Regions -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Explore Puerto Rico</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/puerto-rico/san-juan/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">San Juan</h3>
+          <p class="text-sm text-gray-600 mt-2">Capital city with urban beaches, paddle boarding, and jet ski rentals.</p>
+          <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">Explore →</span>
+        </a>
+        <a href="/puerto-rico/culebra/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Culebra</h3>
+          <p class="text-sm text-gray-600 mt-2">Flamenco Beach — consistently ranked among the world's best beaches.</p>
+          <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">Explore →</span>
+        </a>
+        <a href="/puerto-rico/vieques/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Vieques</h3>
+          <p class="text-sm text-gray-600 mt-2">Mosquito Bay — the brightest bioluminescent bay in the world.</p>
+          <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">Explore →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Puerto Rico -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Why Puerto Rico for Water Activities?</h2>
+    <div class="prose-custom">
+      <p>Puerto Rico is the Caribbean's hidden gem for water activities — 7.5 million visitors a year, distinctive experiences you can't find anywhere else, and thinner English-language SEO competition than Miami or Hawaii.</p>
+      <ul>
+        <li><strong>Mosquito Bay, Vieques</strong> — the brightest bioluminescent bay on Earth, best experienced by night kayak</li>
+        <li><strong>Flamenco Beach, Culebra</strong> — white sand and calm turquoise water, ranked among the world's top beaches</li>
+        <li><strong>Old San Juan harbor</strong> — historic boat tours past 500-year-old forts</li>
+        <li><strong>Isla Verde</strong> — resort beaches with jet ski and water sports rentals</li>
+        <li><strong>Condado Lagoon</strong> — calm paddle boarding and kayaking in the heart of the city</li>
+      </ul>
+      <p>Puerto Rico is the perfect third destination for Water Fun Club — distinctive niches, growing tourism, and a wide-open content landscape.</p>
+    </div>
+  </section>
+</Layout>

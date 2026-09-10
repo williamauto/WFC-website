@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForRegion('miami');
+
+const faqs = [
+  {
+    question: 'Where is Haulover Beach?',
+    answer: 'Haulover Beach is in North Miami Beach (10800 Collins Ave, Miami Beach, FL 33154), about 15 minutes north of South Beach. It\'s known for wide-open ocean water, jet ski rentals, and the famous Haulover Inlet.'
+  },
+  {
+    question: 'Is Haulover good for jet skiing?',
+    answer: 'Yes — Haulover is one of the best jet ski locations in Miami. The beach has direct ocean access with wide-open water and less boat traffic than South Beach. Rentals cost $80–$110 per hour, cheaper than South Beach.'
+  },
+  {
+    question: 'What else can I do at Haulover Beach?',
+    answer: 'Besides jet skiing, Haulover offers paddle boarding, kite surfing, and fishing. The beach has a marina, picnic areas, and is one of the few beaches in Miami with a dedicated kite-surfing zone.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Haulover',
+    description: 'Haulover — North Miami beach known for jet ski rentals and water sports.',
+    url: '/florida/miami/haulover/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Haulover', url: '/florida/miami/haulover/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Haulover Beach Water Activities — Jet Ski & More" description="Haulover Beach water activities: jet ski rentals, paddle boarding, and kite surfing in North Miami Beach." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Haulover' }
+  ]} />
+
+  <Hero
+    title="Haulover Beach Water Activities"
+    subtitle="North Miami's water sports hub — wide-open ocean, jet ski rentals, and the famous Haulover Inlet."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Haulover</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Haulover Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Haulover Jet Ski Rentals"
+          rating="4.7"
+          reviewCount="900+"
+          price="From $85/hr"
+          description="Direct ocean access jet ski rentals with the best open-water riding in Miami."
+          url="https://www.getyourguide.com/miami-l59/haulover-jet-ski-t901234/"
+        />
+        <OperatorCard
+          name="Haulover Paddle Board Co."
+          rating="4.6"
+          reviewCount="350+"
+          price="From $30/hr"
+          description="Paddle board rentals and lessons in the calm waters near the inlet."
+          url="https://www.getyourguide.com/miami-l59/haulover-paddle-board-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

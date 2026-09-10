@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForRegion('miami');
+
+const faqs = [
+  {
+    question: 'What is Star Island?',
+    answer: 'Star Island is a man-made island in Biscayne Bay, home to some of Miami\'s most expensive real estate. Celebrity residents have included Gloria Estefan, Sean Combs, and Jennifer Lopez. The only way to see it is by boat.'
+  },
+  {
+    question: 'How much does a celebrity homes boat tour cost?',
+    answer: 'Celebrity homes boat tours from Bayside cost $40–$60 per person for 90 minutes. Private charters start around $300 for up to 6 people. Tours pass Star Island, Millionaires Row, and the Venetian Islands.'
+  },
+  {
+    question: 'Who lives on Star Island?',
+    answer: 'Star Island residents have included Gloria Estefan, Sean "Diddy" Combs, Jennifer Lopez, and other celebrities. The island has about 30 mansions with private docks and direct bay access.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Star Island',
+    description: 'Star Island — celebrity homes boat tour route through Millionaires Row.',
+    url: '/florida/miami/star-island/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Star Island', url: '/florida/miami/star-island/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Star Island Boat Tours — Celebrity Homes Miami" description="Star Island boat tours: cruise past celebrity homes on Millionaires Row. Prices, operators, and what to expect." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Star Island' }
+  ]} />
+
+  <Hero
+    title="Star Island Boat Tours"
+    subtitle="Cruise past the mansions of Miami's rich and famous — the only way to see Star Island."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Star Island</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Celebrity Homes Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Miami Celebrity Homes Tour"
+          rating="4.6"
+          reviewCount="5,500+"
+          price="From $45"
+          description="90-minute narrated cruise past Star Island, Millionaires Row, and the Venetian Islands."
+          url="https://www.getyourguide.com/miami-l59/celebrity-homes-tour-t789012/"
+        />
+        <OperatorCard
+          name="Private Star Island Charter"
+          rating="4.9"
+          reviewCount="350+"
+          price="From $300"
+          description="Private boat charter with captain — the ultimate celebrity homes experience."
+          url="https://www.getyourguide.com/miami-l59/private-charter-t890123/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

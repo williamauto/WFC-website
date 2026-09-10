@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('san-juan');
+const activities = getActivitiesForRegion('san-juan');
+
+const faqs = [
+  {
+    question: 'What boat tours depart from Old San Juan?',
+    answer: 'Old San Juan harbor offers sightseeing cruises, sunset sails, and dinner cruises. You can also take ferry trips to nearby islands. The most popular is the 90-minute harbor cruise ($35–$50) with views of the forts and the city skyline.'
+  },
+  {
+    question: 'Can I kayak in Old San Juan?',
+    answer: 'Yes — kayak tours depart from the San Juan Bay area, including sunset paddles along the historic waterfront. Tours cost $45–$65 and are suitable for beginners.'
+  },
+  {
+    question: 'What is the best time for a harbor cruise in Old San Juan?',
+    answer: 'Sunset cruises are the most popular — the forts and city lights create a magical atmosphere. Book 2–3 days ahead in peak season (December–April).'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Old San Juan',
+    description: 'Old San Juan — historic walled city with harbor boat tours.',
+    url: '/puerto-rico/san-juan/old-san-juan/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'San Juan', url: '/puerto-rico/san-juan/' },
+    { label: 'Old San Juan', url: '/puerto-rico/san-juan/old-san-juan/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Old San Juan Boat Tours & Water Activities" description="Old San Juan water activities: harbor cruises, sunset sails, and kayaking past 500-year-old forts." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'San Juan', url: '/puerto-rico/san-juan/' },
+    { label: 'Old San Juan' }
+  ]} />
+
+  <Hero
+    title="Old San Juan Boat Tours"
+    subtitle="Cruise past 500-year-old forts and the colorful streets of the historic walled city."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Old San Juan</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="san-juan" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Old San Juan Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="San Juan Harbor Sunset Cruise"
+          rating="4.7"
+          reviewCount="1,500+"
+          price="From $45"
+          description="Sunset sail past El Morro and the San Juan skyline with drinks included."
+          url="https://www.getyourguide.com/san-juan-l123/harbor-sunset-cruise-t789012/"
+        />
+        <OperatorCard
+          name="Old San Juan Kayak Tour"
+          rating="4.6"
+          reviewCount="800+"
+          price="From $50"
+          description="Guided kayak paddle along the historic waterfront at sunset."
+          url="https://www.getyourguide.com/san-juan-l123/kayak-tour-t890123/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

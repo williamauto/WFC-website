@@ -1,0 +1,64 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/Hero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { getRegion, getActivitiesForRegion } from '../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema } from '../../../data/schema';
+
+const region = getRegion('florida-keys');
+const activities = getActivitiesForRegion('florida-keys');
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Florida Keys',
+    description: region.description,
+    url: '/florida/florida-keys/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys', url: '/florida/florida-keys/' }
+  ])
+];
+---
+
+<Layout title="Florida Keys Water Activities" description={region.description} schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys' }
+  ]} />
+
+  <Hero
+    title="Florida Keys Water Activities"
+    subtitle="A 120-mile island chain with the only living coral barrier reef in the continental US — snorkeling, kayaking, and more."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Explore the Florida Keys</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {region.subDestinations.map(sub => (
+        <a href={`/florida/florida-keys/${sub.slug}/`} class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">{sub.name}</h3>
+          <p class="text-sm text-gray-600 mt-2">{sub.description}</p>
+          <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">Explore →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Why the Florida Keys?</h2>
+      <div class="prose-custom">
+        <p>The Florida Keys are a water activity paradise — 43% of visitors go boating, 38% go fishing, and 22% go snorkeling. The island chain offers:</p>
+        <ul>
+          <li><strong>Key Largo</strong> — John Pennekamp Coral Reef State Park, the first underwater park in the US</li>
+          <li><strong>Key West</strong> — night kayaking through glowing waters and mangrove tours</li>
+          <li><strong>Islamorada</strong> — sportfishing capital with kayak tours through mangrove islands</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

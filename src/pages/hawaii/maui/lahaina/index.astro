@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('maui');
+const activities = getActivitiesForRegion('maui');
+
+const faqs = [
+  {
+    question: 'What water activities are available in Lahaina?',
+    answer: 'Lahaina Harbor is the departure point for most Maui boat tours — Molokini snorkel cruises, Lanai day trips, sunset sails, and whale watching (Dec–Apr). You can also kayak and paddle board in the calm waters near the harbor.'
+  },
+  {
+    question: 'Is Lahaina good for snorkeling?',
+    answer: 'The shore snorkeling in Lahaina is limited, but the harbor is the launch point for the best snorkeling tours in Maui — Molokini Crater and Turtle Town. Most tours depart at 6:30–7 AM.'
+  },
+  {
+    question: 'What happened to Lahaina after the 2023 fire?',
+    answer: 'Lahaina was heavily impacted by the August 2023 wildfire. The harbor and boat tour operations have resumed, but visitors should check current conditions and respect the community during recovery.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Lahaina',
+    description: 'Lahaina — historic whaling town with boat tours.',
+    url: '/hawaii/maui/lahaina/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Maui', url: '/hawaii/maui/' },
+    { label: 'Lahaina', url: '/hawaii/maui/lahaina/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Lahaina Water Activities — Boat Tours & More" description="Lahaina water activities: Molokini snorkel cruises, Lanai day trips, sunset sails, and whale watching." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Maui', url: '/hawaii/maui/' },
+    { label: 'Lahaina' }
+  ]} />
+
+  <Hero
+    title="Lahaina Water Activities"
+    subtitle="Maui's historic whaling town — the departure point for the island's best boat tours."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Lahaina</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="maui" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Lahaina Departures</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Lanai Day Trip from Lahaina"
+          rating="4.8"
+          reviewCount="1,800+"
+          price="From $160"
+          description="Full-day catamaran trip to Lanai — snorkeling, cliff jumping, and a beach BBQ lunch."
+          url="https://www.getyourguide.com/lahaina-l123/lanai-day-trip-t901234/"
+        />
+        <OperatorCard
+          name="Whale Watch Cruise (Dec–Apr)"
+          rating="4.9"
+          reviewCount="2,200+"
+          price="From $65"
+          description="Winter whale watching from Lahaina Harbor — guaranteed sightings or your next trip is free."
+          url="https://www.getyourguide.com/lahaina-l123/whale-watch-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

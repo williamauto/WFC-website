@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('maui');
+const activities = getActivitiesForRegion('maui');
+
+const faqs = [
+  {
+    question: 'What is Molokini Crater?',
+    answer: 'Molokini is a partially submerged volcanic crater off Maui\'s southwest coast. It\'s a marine sanctuary with 250+ fish species and visibility up to 150 feet. Snorkel cruises depart from Maalaea Harbor and take 45–60 minutes to reach the crater.'
+  },
+  {
+    question: 'How much does a Molokini snorkel tour cost?',
+    answer: 'Molokini snorkel tours cost $100–$180 per person depending on boat size and inclusions. Morning tours (6:30–7 AM departure) are best for calm water. Most tours include breakfast, lunch, gear, and two snorkel stops.'
+  },
+  {
+    question: 'Is Molokini good for beginner snorkelers?',
+    answer: 'Yes — Molokini\'s protected crater walls create calm water with easy entry. The snorkeling is shallow (10–30 feet) with incredible visibility. It\'s one of the best beginner snorkeling experiences in Hawaii.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Molokini',
+    description: 'Molokini Crater — volcanic atoll with world-class snorkeling.',
+    url: '/hawaii/maui/molokini/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Maui', url: '/hawaii/maui/' },
+    { label: 'Molokini', url: '/hawaii/maui/molokini/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Molokini Crater Snorkeling — Tours & Guide" description="Molokini Crater snorkeling guide: tours, prices, marine life, and tips for the best experience in Maui." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Maui', url: '/hawaii/maui/' },
+    { label: 'Molokini' }
+  ]} />
+
+  <Hero
+    title="Molokini Crater Snorkeling"
+    subtitle="A volcanic atoll with 250+ fish species and 150-foot visibility — Maui's most famous snorkeling destination."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Molokini</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="maui" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Molokini Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Molokini Morning Snorkel Cruise"
+          rating="4.8"
+          reviewCount="4,000+"
+          price="From $120"
+          description="Classic morning cruise to Molokini with breakfast, lunch, and two snorkel stops."
+          url="https://www.getyourguide.com/maui-l123/molokini-snorkel-tour-t567890/"
+        />
+        <OperatorCard
+          name="Molokini & Turtle Town Tour"
+          rating="4.9"
+          reviewCount="2,500+"
+          price="From $145"
+          description="Molokini plus a second stop at Turtle Town for guaranteed sea turtle sightings."
+          url="https://www.getyourguide.com/maui-l123/molokini-turtle-town-t678901/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

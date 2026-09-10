@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('maui');
+const activities = getActivitiesForRegion('maui');
+
+const faqs = [
+  {
+    question: 'Where is Kaanapali Beach?',
+    answer: 'Kaanapali Beach is on Maui\'s west coast (2525 Kaanapali Pkwy, Lahaina, HI 96761), about 45 minutes from Kahului Airport. It\'s a 3-mile stretch of white sand with calm, protected waters.'
+  },
+  {
+    question: 'Is Kaanapali good for snorkeling?',
+    answer: 'Yes — Kaanapali Beach has excellent shore snorkeling, especially at Black Rock (Puu Kekaa). The lava rock point attracts tropical fish and sea turtles. Snorkeling is best in the morning when the water is calmest.'
+  },
+  {
+    question: 'What water activities are available at Kaanapali?',
+    answer: 'Kaanapali offers snorkeling, surfing lessons, paddle boarding, outrigger canoe rides, and sunset cruises. There are also several boat tour operators that depart from Kaanapali Beach for Molokini and Lanai.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Kaanapali',
+    description: 'Kaanapali — resort coast with calm snorkeling waters.',
+    url: '/hawaii/maui/kaanapali/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Maui', url: '/hawaii/maui/' },
+    { label: 'Kaanapali', url: '/hawaii/maui/kaanapali/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Kaanapali Beach Water Activities" description="Kaanapali Beach water activities: snorkeling at Black Rock, surfing lessons, paddle boarding, and sunset cruises." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Maui', url: '/hawaii/maui/' },
+    { label: 'Kaanapali' }
+  ]} />
+
+  <Hero
+    title="Kaanapali Beach Water Activities"
+    subtitle="Maui's most famous resort beach — 3 miles of white sand with world-class shore snorkeling."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Kaanapali</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="maui" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Kaanapali Experiences</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Black Rock Snorkel Adventure"
+          rating="4.8"
+          reviewCount="2,000+"
+          price="From $45"
+          description="Guided shore snorkeling at Black Rock — sea turtles, tropical fish, and lava rock formations."
+          url="https://www.getyourguide.com/kaanapali-l123/black-rock-snorkel-t789012/"
+        />
+        <OperatorCard
+          name="Kaanapali Sunset Sail"
+          rating="4.9"
+          reviewCount="1,500+"
+          price="From $89"
+          description="Sunset catamaran sail along the Kaanapali coast with drinks and whale watching (Dec–Apr)."
+          url="https://www.getyourguide.com/kaanapali-l123/sunset-sail-t890123/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

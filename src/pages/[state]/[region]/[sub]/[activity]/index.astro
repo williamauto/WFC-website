@@ -1,0 +1,134 @@
+---
+import Layout from '../../../../../layouts/Layout.astro';
+import Hero from '../../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import OperatorCard from '../../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../../components/FAQSection.astro';
+import { REGIONS, SUBDESTINATION_ACTIVITIES, getActivity, getRegion, getSubDestination } from '../../../../../data/site-data';
+import { buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../../data/schema';
+
+export function getStaticPaths() {
+  // Static pages that already exist and must not be duplicated
+  const EXISTING_STATIC = new Set([
+    'florida/miami/biscayne-national-park/snorkeling',
+    'hawaii/oahu/hanauma-bay/snorkeling'
+  ]);
+  const paths = [];
+  for (const region of REGIONS) {
+    for (const sub of region.subDestinations) {
+      const activities = SUBDESTINATION_ACTIVITIES[sub.slug] || [];
+      for (const activitySlug of activities) {
+        const activity = getActivity(activitySlug);
+        if (!activity) continue;
+        const key = `${region.stateSlug}/${region.slug}/${sub.slug}/${activitySlug}`;
+        if (EXISTING_STATIC.has(key)) continue;
+        paths.push({
+          params: { state: region.stateSlug, region: region.slug, sub: sub.slug, activity: activitySlug },
+          props: { region, sub, activity }
+        });
+      }
+    }
+  }
+  return paths;
+}
+
+const { region, sub, activity } = Astro.props;
+
+const faqs = [
+  {
+    question: `Is ${sub.name} good for ${activity.shortName.toLowerCase()}?`,
+    answer: `Yes — ${sub.name} is one of the top spots for ${activity.shortName.toLowerCase()} in ${region.name}. Conditions are generally favorable, and there are several operators to choose from.`
+  },
+  {
+    question: `How much does ${activity.shortName.toLowerCase()} cost in ${sub.name}?`,
+    answer: `Prices in ${sub.name} typically range from $25–$60 per hour for rentals and $50–$150 for guided tours. Book in advance during peak season for the best rates.`
+  },
+  {
+    question: `What should I bring for ${activity.shortName.toLowerCase()} in ${sub.name}?`,
+    answer: `Bring sunscreen, a towel, and water. Most operators provide the equipment and safety gear. Arrive 15 minutes early for your booking.`
+  }
+];
+
+const schema = [
+  buildServiceSchema({
+    name: `${activity.name} in ${sub.name}`,
+    description: `${activity.name} tours and rentals in ${sub.name}, ${region.name}.`,
+    url: `/${region.stateSlug}/${region.slug}/${sub.slug}/${activity.slug}/`,
+    areaServed: [sub.name, region.name]
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: region.state, url: `/${region.stateSlug}/` },
+    { label: region.name, url: `/${region.stateSlug}/${region.slug}/` },
+    { label: sub.name, url: `/${region.stateSlug}/${region.slug}/${sub.slug}/` },
+    { label: activity.name, url: `/${region.stateSlug}/${region.slug}/${sub.slug}/${activity.slug}/` }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout
+  title={`${activity.name} in ${sub.name} — ${region.name}`}
+  description={`${activity.name} in ${sub.name}, ${region.name}: top operators, prices, and what to expect.`}
+  schema={schema}
+>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: region.state, url: `/${region.stateSlug}/` },
+    { label: region.name, url: `/${region.stateSlug}/${region.slug}/` },
+    { label: sub.name, url: `/${region.stateSlug}/${region.slug}/${sub.slug}/` },
+    { label: activity.name }
+  ]} />
+
+  <Hero
+    title={`${activity.name} in ${sub.name}`}
+    subtitle={`${sub.description} — ${activity.description}`}
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose-custom max-w-3xl">
+      <h2>{activity.name} in {sub.name}</h2>
+      <p>
+        {sub.name} is one of the best places for {activity.shortName.toLowerCase()} in {region.name}.
+        {sub.description} Whether you're a first-timer or an experienced enthusiast,
+        there are options for every level.
+      </p>
+      <h3>What to expect</h3>
+      <ul>
+        <li>Multiple operators with experienced guides and quality equipment</li>
+        <li>Rentals from $25–$60 per hour, guided tours from $50–$150 per person</li>
+        <li>Best conditions in the morning — calmer water and fewer crowds</li>
+        <li>All equipment and safety gear provided by operators</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top {activity.name} Operators in {sub.name}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name={`${sub.name} ${activity.name} Tours`}
+          rating="4.7"
+          reviewCount="800+"
+          price="From $45"
+          description={`Guided ${activity.shortName.toLowerCase()} experiences with top-rated local operators in ${sub.name}.`}
+          url={`https://www.getyourguide.com/${region.slug}-l123/${sub.slug}-${activity.slug}-t901234/`}
+        />
+        <OperatorCard
+          name={`${sub.name} Water Sports Rentals`}
+          rating="4.6"
+          reviewCount="500+"
+          price="From $30/hr"
+          description={`Self-guided ${activity.shortName.toLowerCase()} rentals with equipment and safety briefing included.`}
+          url={`https://www.getyourguide.com/${region.slug}-l123/${sub.slug}-rentals-t012345/`}
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

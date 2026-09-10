@@ -1,0 +1,95 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/Hero.astro';
+import ActivityCard from '../../../components/ActivityCard.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { getRegion, getActivitiesForRegion } from '../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema } from '../../../data/schema';
+
+const region = getRegion('oahu');
+const activities = getActivitiesForRegion('oahu');
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Oahu',
+    description: region.description,
+    url: '/hawaii/oahu/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' }
+  ])
+];
+---
+
+<Layout title="Oahu Water Activities & Tours" description={region.description} schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu' }
+  ]} />
+
+  <Hero
+    title="Oahu Water Activities"
+    subtitle="Sharks Cove, Hanauma Bay, Waikiki sunset cruises, and legendary North Shore surf — Oahu is Hawaii's water activity capital."
+  />
+
+  <!-- Activities -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Oahu</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="oahu" />
+      ))}
+    </div>
+  </section>
+
+  <!-- Sub-destinations -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Explore Oahu by Area</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {region.subDestinations.map(sub => (
+          <a href={`/hawaii/oahu/${sub.slug}/`} class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
+            <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">{sub.name}</h3>
+            <p class="text-sm text-gray-600 mt-2">{sub.description}</p>
+            <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">View activities →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Oahu -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Why Oahu for Water Activities?</h2>
+    <div class="prose-custom">
+      <p>Oahu is the most visited island in Hawaii — and for good reason. It packs more world-class water experiences into one island than almost anywhere on Earth.</p>
+      <ul>
+        <li><strong>Sharks Cove</strong> — a protected marine reserve on the North Shore with incredible reef snorkeling (KD 1, 6,600 searches/month)</li>
+        <li><strong>Hanauma Bay</strong> — a volcanic crater turned marine sanctuary, drawing 400K+ visitors annually</li>
+        <li><strong>Waikiki</strong> — gentle waves perfect for beginner surfing and sunset catamaran cruises</li>
+        <li><strong>Kaneohe Sandbar</strong> — a shallow sandbar in the bay, perfect for boat tours and snorkeling</li>
+        <li><strong>North Shore</strong> — legendary winter surf (November–February) with 30-foot waves</li>
+      </ul>
+      <p>Oahu's snorkeling cluster is one of the biggest SEO opportunities in the water activities space — the head terms are dominated by OTAs, but spot-level pages with real detail win.</p>
+    </div>
+  </section>
+
+  <!-- Best time -->
+  <section class="bg-sand-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Best Time for Water Activities in Oahu</h2>
+      <div class="prose-custom">
+        <p>Oahu has two distinct seasons for water activities — summer (May–October) and winter (November–April). Both are excellent, but for different activities.</p>
+        <ul>
+          <li><strong>Summer (May–Oct):</strong> Calm waters, best for snorkeling, kayaking, and paddle boarding. North Shore is flat and perfect for beginners.</li>
+          <li><strong>Winter (Nov–Apr):</strong> Big surf on the North Shore (30+ ft waves), but south shore (Waikiki) stays calm. Great for whale watching (Dec–Apr).</li>
+          <li><strong>Peak travel:</strong> July and December each draw ~900K visitors — book tours in advance.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

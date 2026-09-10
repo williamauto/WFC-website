@@ -1,0 +1,104 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/Hero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../components/ActivityCard.astro';
+import FAQSection from '../../../components/FAQSection.astro';
+import { ACTIVITIES, REGIONS, REGION_ACTIVITIES, getActivity } from '../../../data/site-data';
+import { buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../data/schema';
+
+export function getStaticPaths() {
+  return ACTIVITIES.map(activity => ({
+    params: { activity: activity.slug },
+    props: { activity }
+  }));
+}
+
+const { activity } = Astro.props;
+
+// Regions offering this activity
+const regions = REGIONS.filter(r => (REGION_ACTIVITIES[r.slug] || []).includes(activity.slug));
+
+const faqs = [
+  {
+    question: `What is the best time for ${activity.shortName.toLowerCase()}?`,
+    answer: `The best time depends on the destination. Generally, calm morning waters are ideal for ${activity.shortName.toLowerCase()}. Check the specific destination pages for seasonal conditions.`
+  },
+  {
+    question: `How much does ${activity.shortName.toLowerCase()} cost?`,
+    answer: `Prices vary by destination and operator. Rentals typically start around $25–$40 per hour, while guided tours and lessons range from $50–$150 per person. See destination pages for specific pricing.`
+  },
+  {
+    question: `Do I need experience for ${activity.shortName.toLowerCase()}?`,
+    answer: `Most operators welcome beginners and provide instruction. Guided tours and lessons are the best option if you're new to ${activity.shortName.toLowerCase()}. Always book with operators that provide safety briefings and equipment.`
+  }
+];
+
+const schema = [
+  buildServiceSchema({
+    name: `${activity.name} Tours & Rentals`,
+    description: activity.description,
+    url: `/activities/${activity.slug}/`,
+    areaServed: regions.map(r => r.name)
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Activities', url: '/activities/' },
+    { label: activity.name, url: `/activities/${activity.slug}/` }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout
+  title={`${activity.name} — Tours, Rentals & Best Spots`}
+  description={activity.description}
+  schema={schema}
+>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Activities', url: '/activities/' },
+    { label: activity.name }
+  ]} />
+
+  <Hero
+    title={`${activity.name} Guides`}
+    subtitle={activity.description}
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Destinations for {activity.name}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {regions.map(region => (
+        <a href={`/${region.stateSlug}/${region.slug}/`} class="group block bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-ocean-300 transition-all overflow-hidden">
+          <div class="p-6">
+            <div class="text-4xl mb-3">{activity.icon}</div>
+            <h3 class="font-bold text-lg text-ocean-900 group-hover:text-ocean-600 transition-colors">{region.name}</h3>
+            <p class="text-sm text-gray-600 mt-2 leading-relaxed">{region.description}</p>
+            <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600 group-hover:text-ocean-800">
+              Explore {region.name}
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">All Water Activities</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {ACTIVITIES.map(a => (
+          <ActivityCard activitySlug={a.slug} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

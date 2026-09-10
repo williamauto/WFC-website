@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ActivityCard from '../../components/ActivityCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { ACTIVITIES } from '../../data/site-data';
+import { buildBreadcrumbSchema } from '../../data/schema';
+
+const schema = [
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Activities', url: '/activities/' }
+  ])
+];
+---
+
+<Layout title="Water Activities Guide" description="Complete guide to water activities: snorkeling, surfing, kayaking, paddle boarding, jet ski, efoil, and electric boats." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Activities' }
+  ]} />
+
+  <Hero
+    title="Water Activities Guide"
+    subtitle="Everything you need to know about the world's best water activities — where to do them, what they cost, and how to get started."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {ACTIVITIES.map(activity => (
+        <ActivityCard activitySlug={activity.slug} />
+      ))}
+    </div>
+  </section>
+
+  <!-- How to choose -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">How to Choose Your Water Activity</h2>
+      <div class="prose-custom">
+        <p>Not sure which water activity is right for you? Here's a quick guide:</p>
+        <ul>
+          <li><strong>Snorkeling</strong> — easiest to start, lowest cost, great for all ages. Best in calm, clear water.</li>
+          <li><strong>Surfing</strong> — requires the most practice, but the most rewarding. Best for ocean lovers.</li>
+          <li><strong>Kayaking</strong> — peaceful and scenic. Great for exploring mangroves, coves, and coastlines.</li>
+          <li><strong>Paddle Boarding</strong> — easy to learn, great workout, perfect for calm bays and lagoons.</li>
+          <li><strong>Jet Ski</strong> — adrenaline rush, easy to learn, best for thrill-seekers.</li>
+          <li><strong>Efoil</strong> — the newest sport, feels like flying. Requires balance but no prior experience needed.</li>
+          <li><strong>Electric Boats</strong> — relaxing, eco-friendly, perfect for groups and families.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('san-juan');
+const activities = getActivitiesForRegion('san-juan');
+
+const faqs = [
+  {
+    question: 'What water activities are available in Condado?',
+    answer: 'Condado offers paddle boarding in the lagoon, jet ski rentals, and surfing lessons at the beach. The Condado Lagoon is calm and perfect for beginners. Several operators run water sports from the beachfront.'
+  },
+  {
+    question: 'Is Condado good for paddle boarding?',
+    answer: 'Yes — the Condado Lagoon is one of the best paddle boarding spots in Puerto Rico. The water is calm, shallow, and protected. Rentals cost $25–$40 per hour with lessons available.'
+  },
+  {
+    question: 'Where can I rent a jet ski in Condado?',
+    answer: 'Jet ski rentals operate from Condado Beach and the lagoon. Prices run $80–$120 per hour. You can ride in the lagoon or head out to the open ocean with a guide.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Condado',
+    description: 'Condado — beachfront district with paddle boarding and jet ski.',
+    url: '/puerto-rico/san-juan/condado/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'San Juan', url: '/puerto-rico/san-juan/' },
+    { label: 'Condado', url: '/puerto-rico/san-juan/condado/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Condado Water Activities — Paddle Boarding & Jet Ski" description="Condado water activities: paddle boarding in the lagoon, jet ski rentals, and surfing lessons in San Juan." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'San Juan', url: '/puerto-rico/san-juan/' },
+    { label: 'Condado' }
+  ]} />
+
+  <Hero
+    title="Condado Water Activities"
+    subtitle="San Juan's beachfront district — calm lagoon paddle boarding and jet ski adventures."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Condado</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="san-juan" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Condado Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Condado Lagoon Paddle Co."
+          rating="4.7"
+          reviewCount="400+"
+          price="From $30/hr"
+          description="Paddle board and kayak rentals on the calm Condado Lagoon."
+          url="https://www.getyourguide.com/san-juan-l123/condado-paddle-t345678/"
+        />
+        <OperatorCard
+          name="San Juan Jet Ski Adventures"
+          rating="4.6"
+          reviewCount="350+"
+          price="From $90/hr"
+          description="Jet ski rentals and guided lagoon tours with skyline views."
+          url="https://www.getyourguide.com/san-juan-l123/jet-ski-t456789/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

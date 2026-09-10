@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForSubDestination } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('oahu');
+const activities = getActivitiesForSubDestination('oahu', 'hanauma-bay');
+
+const faqs = [
+  {
+    question: 'What is Hanauma Bay?',
+    answer: 'Hanauma Bay is a protected marine sanctuary on Oahu\'s southeast coast, formed in a volcanic crater. It\'s Hawaii\'s most famous snorkeling spot, with over 400 species of fish in calm, shallow waters.'
+  },
+  {
+    question: 'Do I need a reservation for Hanauma Bay?',
+    answer: 'Yes — reservations are required and can be made up to 2 days in advance on the official website. Entry costs $25 for non-residents. The bay is closed on Mondays and Tuesdays.'
+  },
+  {
+    question: 'Is Hanauma Bay good for beginner snorkelers?',
+    answer: 'Yes — the bay has calm, shallow waters and lifeguards on duty. It\'s one of the best places for first-time snorkelers. Arrive early (before 9am) for the best conditions and parking.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Hanauma Bay',
+    description: 'Hanauma Bay — protected marine sanctuary — Oahu\'s most famous snorkeling spot.',
+    url: '/hawaii/oahu/hanauma-bay/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Hanauma Bay', url: '/hawaii/oahu/hanauma-bay/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Hanauma Bay Snorkeling — Oahu's Marine Sanctuary" description="Hanauma Bay snorkeling guide: reservations, prices, best times, and what to expect at Oahu's most famous marine sanctuary." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Hanauma Bay' }
+  ]} />
+
+  <Hero
+    title="Hanauma Bay Snorkeling"
+    subtitle="Hawaii's most famous snorkeling spot — a volcanic crater filled with 400+ species of fish."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Hanauma Bay</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="oahu" subSlug="hanauma-bay" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Hanauma Bay Essentials</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Hanauma Bay Snorkel & Gear"
+          rating="4.6"
+          reviewCount="1,500+"
+          price="From $25"
+          description="Snorkel gear rental and guided tours at the bay. Includes mask, fins, and safety briefing."
+          url="https://www.getyourguide.com/oahu-l123/hanauma-bay-snorkel-t901234/"
+        />
+        <OperatorCard
+          name="Oahu Snorkel Tours"
+          rating="4.8"
+          reviewCount="2,000+"
+          price="From $89"
+          description="Guided snorkeling tours combining Hanauma Bay with other top Oahu spots."
+          url="https://www.getyourguide.com/oahu-l123/oahu-snorkel-tour-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

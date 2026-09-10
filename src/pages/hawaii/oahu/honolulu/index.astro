@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForSubDestination } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('oahu');
+const activities = getActivitiesForSubDestination('oahu', 'honolulu');
+
+const faqs = [
+  {
+    question: 'What water activities are available in Honolulu?',
+    answer: 'Honolulu offers snorkeling, surfing lessons, kayaking, and paddle boarding. Waikiki Beach is the hub for most activities, with calm waters perfect for beginners. You can also take boat tours from Honolulu Harbor.'
+  },
+  {
+    question: 'Is Honolulu good for surfing?',
+    answer: 'Yes — Waikiki is one of the best places in the world to learn surfing. The gentle, rolling waves are perfect for beginners. Surf lessons cost $60–$100 per person and include boards and instruction.'
+  },
+  {
+    question: 'Where is the best snorkeling in Honolulu?',
+    answer: 'The best snorkeling near Honolulu is at Hanauma Bay (20 minutes away) and at the Waikiki Natatorium. For a quick dip, the waters off Waikiki Beach have decent visibility and sea turtles in the morning.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Honolulu',
+    description: 'Honolulu — capital city with Waikiki Beach and urban water activities.',
+    url: '/hawaii/oahu/honolulu/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Honolulu', url: '/hawaii/oahu/honolulu/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Honolulu Water Activities — Snorkeling, Surfing & More" description="Honolulu water activities: snorkeling, surfing lessons, kayaking, and paddle boarding in Hawaii's capital city." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Honolulu' }
+  ]} />
+
+  <Hero
+    title="Honolulu Water Activities"
+    subtitle="Hawaii's capital — world-famous Waikiki Beach, surf lessons, and urban water adventures."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Honolulu</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="oahu" subSlug="honolulu" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Honolulu Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Waikiki Surf Lessons"
+          rating="4.8"
+          reviewCount="3,000+"
+          price="From $65"
+          description="Beginner surf lessons on Waikiki Beach with certified instructors."
+          url="https://www.getyourguide.com/oahu-l123/waikiki-surf-lesson-t901234/"
+        />
+        <OperatorCard
+          name="Honolulu Snorkel & Kayak"
+          rating="4.7"
+          reviewCount="1,500+"
+          price="From $45"
+          description="Snorkeling and kayaking adventures from Waikiki and Honolulu Harbor."
+          url="https://www.getyourguide.com/oahu-l123/honolulu-snorkel-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

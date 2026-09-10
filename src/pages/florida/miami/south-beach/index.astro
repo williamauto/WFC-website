@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForRegion('miami');
+
+const faqs = [
+  {
+    question: 'What water activities can I do in South Beach?',
+    answer: 'South Beach offers jet ski rentals, parasailing, paddle boarding, and surfing lessons right off the beach. You can also book boat tours that depart from the nearby marina. The iconic Art Deco backdrop makes every activity more memorable.'
+  },
+  {
+    question: 'How much does jet ski rental cost in South Beach?',
+    answer: 'Jet ski rentals in South Beach cost $120–$150 per hour — the highest in Miami due to the prime location. Book online in advance for the best rates. Some operators offer 2-hour packages for $200–$250.'
+  },
+  {
+    question: 'Is there good snorkeling in South Beach?',
+    answer: 'South Pointe Park at the southern tip of South Beach has a jetty that attracts fish — it\'s a decent free shore snorkeling spot. For the best snorkeling, head to Biscayne National Park or Key Biscayne (20–30 minutes away).'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'South Beach',
+    description: 'South Beach — iconic Art Deco beaches with jet ski rentals and parasailing.',
+    url: '/florida/miami/south-beach/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'South Beach', url: '/florida/miami/south-beach/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="South Beach Water Activities — Jet Ski & More" description="South Beach water activities: jet ski rentals, parasailing, paddle boarding, and surfing. Prices, operators, and tips." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'South Beach' }
+  ]} />
+
+  <Hero
+    title="South Beach Water Activities"
+    subtitle="The most iconic water sports location in America — jet ski past the Art Deco skyline."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in South Beach</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top South Beach Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Miami Watersports South Beach"
+          rating="4.7"
+          reviewCount="3,500+"
+          price="From $89/hr"
+          description="South Beach's largest operator with new Sea-Doo jet skis and parasailing."
+          url="https://www.getyourguide.com/miami-l59/jet-ski-rental-t456789/"
+        />
+        <OperatorCard
+          name="South Beach Parasail"
+          rating="4.8"
+          reviewCount="1,200+"
+          price="From $75"
+          description="Fly 500 feet above the ocean with views of the entire Miami coastline."
+          url="https://www.getyourguide.com/miami-l59/parasailing-t567890/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

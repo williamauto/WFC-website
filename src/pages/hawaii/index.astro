@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema } from '../../data/schema';
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Hawaii',
+    description: 'Volcanic islands, crystal-clear bays, and world-class snorkeling make Hawaii a water paradise.',
+    url: '/hawaii/',
+    activities: []
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' }
+  ])
+];
+---
+
+<Layout title="Hawaii Water Activities" description="Hawaii water activities guide — Oahu snorkeling, Maui Molokini, Waikiki surfing, and more." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii' }
+  ]} />
+
+  <Hero
+    title="Hawaii Water Activities"
+    subtitle="Volcanic islands, crystal-clear bays, and the world's most famous snorkeling spots."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Explore Hawaii</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="/hawaii/oahu/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Oahu</h3>
+        <p class="text-sm text-gray-600 mt-2">Sharks Cove, Hanauma Bay, Waikiki sunset cruises, and legendary North Shore surf.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Oahu →</span>
+      </a>
+      <a href="/hawaii/maui/" class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+        <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Maui</h3>
+        <p class="text-sm text-gray-600 mt-2">Molokini Crater snorkeling, Kaanapali Beach, and the Valley Isle's legendary waters.</p>
+        <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Maui →</span>
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('miami');
+const activities = getActivitiesForRegion('miami');
+
+const faqs = [
+  {
+    question: 'Where is Sunny Isles Beach?',
+    answer: 'Sunny Isles Beach is in northeast Miami-Dade County (17200 Collins Ave, Sunny Isles Beach, FL 33160), about 20 minutes north of South Beach. It\'s a quiet, family-friendly beach community.'
+  },
+  {
+    question: 'Is jet skiing good in Sunny Isles?',
+    answer: 'Yes — Sunny Isles offers calm ocean waters with easy access to open water. It\'s less crowded than South Beach, making it a great choice for beginners and families. Rentals cost $80–$110 per hour.'
+  },
+  {
+    question: 'What else can I do in Sunny Isles?',
+    answer: 'Besides jet skiing, Sunny Isles offers paddle boarding, kayaking, and fishing. The beach is quieter than South Beach with plenty of restaurants and resorts nearby.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Sunny Isles',
+    description: 'Sunny Isles — quiet beach community with jet ski and water sport rentals.',
+    url: '/florida/miami/sunny-isles/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Sunny Isles', url: '/florida/miami/sunny-isles/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Sunny Isles Water Activities — Jet Ski & More" description="Sunny Isles water activities: jet ski rentals, paddle boarding, and kayaking in a quiet Miami beach community." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Miami', url: '/florida/miami/' },
+    { label: 'Sunny Isles' }
+  ]} />
+
+  <Hero
+    title="Sunny Isles Water Activities"
+    subtitle="Miami's quiet beach community — calm waters, fewer crowds, and great jet ski rentals."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Sunny Isles</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="miami" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Sunny Isles Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Sunny Isles Jet Ski Rentals"
+          rating="4.7"
+          reviewCount="500+"
+          price="From $85/hr"
+          description="Family-friendly jet ski rentals with calm water access and patient instruction."
+          url="https://www.getyourguide.com/miami-l59/sunny-isles-jet-ski-t345678/"
+        />
+        <OperatorCard
+          name="Sunny Isles Paddle & Kayak"
+          rating="4.6"
+          reviewCount="300+"
+          price="From $25/hr"
+          description="Paddle board and kayak rentals for exploring the calm waters off Sunny Isles."
+          url="https://www.getyourguide.com/miami-l59/sunny-isles-paddle-t456789/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

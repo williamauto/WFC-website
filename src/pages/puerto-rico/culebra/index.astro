@@ -1,0 +1,62 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/Hero.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../components/ActivityCard.astro';
+import { getRegion, getActivitiesForRegion } from '../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema } from '../../../data/schema';
+
+const region = getRegion('culebra');
+const activities = getActivitiesForRegion('culebra');
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Culebra',
+    description: region.description,
+    url: '/puerto-rico/culebra/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'Culebra', url: '/puerto-rico/culebra/' }
+  ])
+];
+---
+
+<Layout title="Culebra Water Activities" description={region.description} schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'Culebra' }
+  ]} />
+
+  <Hero
+    title="Culebra Water Activities"
+    subtitle="Flamenco Beach — consistently ranked among the world's best — with crystal-clear snorkeling and kayaking."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Culebra</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="culebra" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Explore Culebra</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {region.subDestinations.map(sub => (
+          <a href={`/puerto-rico/culebra/${sub.slug}/`} class="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all p-6">
+            <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">{sub.name}</h3>
+            <p class="text-sm text-gray-600 mt-2">{sub.description}</p>
+            <span class="inline-flex items-center mt-3 text-sm font-medium text-ocean-600">Explore →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

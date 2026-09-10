@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('florida-keys');
+const activities = getActivitiesForRegion('florida-keys');
+
+const faqs = [
+  {
+    question: 'Where is the best snorkeling in Key Largo?',
+    answer: 'John Pennekamp Coral Reef State Park is the best snorkeling in Key Largo — the first underwater park in the US. The park protects 70 nautical square miles of coral reef, including the famous Christ of the Deep statue. Molasses Reef and Grecian Rocks are the top snorkel sites.'
+  },
+  {
+    question: 'How much does snorkeling in Key Largo cost?',
+    answer: 'Snorkel tours from Key Largo cost $60–$120 per person including gear. The two-reef tour (visiting two different reefs) is the most popular at $75–$95. Private charters start around $350 for up to 6 people.'
+  },
+  {
+    question: 'Is Key Largo snorkeling good for beginners?',
+    answer: 'Yes — the reefs near Key Largo are shallow (10–25 feet) with calm conditions most days. Tour operators provide instruction and all gear. Children as young as 5 can join most tours.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Key Largo',
+    description: 'Key Largo — dive capital of the world with John Pennekamp Coral Reef State Park.',
+    url: '/florida/florida-keys/key-largo/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys', url: '/florida/florida-keys/' },
+    { label: 'Key Largo', url: '/florida/florida-keys/key-largo/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Key Largo Water Activities — Snorkeling & More" description="Key Largo water activities: John Pennekamp reef snorkeling, kayaking, and paddle boarding. Tours, prices, and tips." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Florida', url: '/florida/' },
+    { label: 'Florida Keys', url: '/florida/florida-keys/' },
+    { label: 'Key Largo' }
+  ]} />
+
+  <Hero
+    title="Key Largo Water Activities"
+    subtitle="The dive capital of the world — home to the only living coral barrier reef in the continental US."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Key Largo</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="florida-keys" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Snorkeling Tours</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Key Largo Two Reef Snorkel Tour"
+          rating="4.8"
+          reviewCount="2,100+"
+          price="From $75"
+          description="The classic Key Largo experience — two reef stops, all gear, and certified guides."
+          url="https://www.getyourguide.com/key-largo-l123/two-reef-snorkel-tour-t345678/"
+        />
+        <OperatorCard
+          name="Pennekamp Park Snorkel Adventure"
+          rating="4.7"
+          reviewCount="1,500+"
+          price="From $65"
+          description="Guided snorkeling inside John Pennekamp State Park with the Christ of the Deep statue."
+          url="https://www.getyourguide.com/key-largo-l123/pennekamp-snorkel-tour-t456789/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

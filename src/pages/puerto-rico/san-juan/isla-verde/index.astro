@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Hero from '../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForRegion } from '../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../data/schema';
+
+const region = getRegion('san-juan');
+const activities = getActivitiesForRegion('san-juan');
+
+const faqs = [
+  {
+    question: 'What water activities are available in Isla Verde?',
+    answer: 'Isla Verde offers jet ski rentals, paddle boarding, kayaking, and surfing lessons. The beach has calm waters in the morning and is one of the most popular water sports areas in San Juan.'
+  },
+  {
+    question: 'Is Isla Verde good for jet skiing?',
+    answer: 'Yes — Isla Verde is one of the best jet ski locations in Puerto Rico. The water is calm and there are several operators on the beach. Rentals cost $80–$120 per hour.'
+  },
+  {
+    question: 'Where is Isla Verde?',
+    answer: 'Isla Verde is a beachfront neighborhood in Carolina, Puerto Rico — about 10 minutes from the airport and 15 minutes from Old San Juan. It\'s home to several major resorts.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Isla Verde',
+    description: 'Isla Verde — resort beach area with water sports.',
+    url: '/puerto-rico/san-juan/isla-verde/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'San Juan', url: '/puerto-rico/san-juan/' },
+    { label: 'Isla Verde', url: '/puerto-rico/san-juan/isla-verde/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Isla Verde Water Activities — Jet Ski & More" description="Isla Verde water activities: jet ski rentals, paddle boarding, and surfing near San Juan airport." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Puerto Rico', url: '/puerto-rico/' },
+    { label: 'San Juan', url: '/puerto-rico/san-juan/' },
+    { label: 'Isla Verde' }
+  ]} />
+
+  <Hero
+    title="Isla Verde Water Activities"
+    subtitle="San Juan's resort beach — jet ski, paddle boarding, and water sports minutes from the airport."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities in Isla Verde</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="san-juan" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Isla Verde Operators</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="Isla Verde Jet Ski Rentals"
+          rating="4.7"
+          reviewCount="600+"
+          price="From $85/hr"
+          description="Jet ski rentals with calm water access and guided tour options."
+          url="https://www.getyourguide.com/san-juan-l123/isla-verde-jet-ski-t901234/"
+        />
+        <OperatorCard
+          name="Isla Verde Paddle & Surf"
+          rating="4.6"
+          reviewCount="300+"
+          price="From $25/hr"
+          description="Paddle board rentals and surf lessons on the resort beach."
+          url="https://www.getyourguide.com/san-juan-l123/isla-verde-paddle-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

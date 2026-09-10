@@ -1,0 +1,133 @@
+---
+import Layout from '../../../../../layouts/Layout.astro';
+import Hero from '../../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import OperatorCard from '../../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../../components/FAQSection.astro';
+import { buildTouristAttractionSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../../data/schema';
+
+const faqs = [
+  {
+    question: 'How do I get Hanauma Bay reservations?',
+    answer: 'Reservations open 2 days before your visit date at 7 AM HST on the official Hanauma Bay reservation site. Tickets are $25 for non-residents and sell out within hours, especially on weekends. Book as soon as your dates are confirmed — there is no walk-up entry.'
+  },
+  {
+    question: 'How much does Hanauma Bay cost?',
+    answer: 'Entry is $25 for non-residents (ages 13+), free for children under 12 and Hawaii residents. Parking is $3/hour. Snorkel gear rental is $20–$30 for mask, snorkel, and fins. Lockers cost $10.'
+  },
+  {
+    question: 'What is the best time to visit Hanauma Bay?',
+    answer: 'Early morning (7–9 AM) is best — calmest water, best visibility, and fewer crowds. The bay gets busy by 10 AM. Weekdays are significantly quieter than weekends. The bay closes at 6 PM (last entry 4 PM).'
+  },
+  {
+    question: 'Is Hanauma Bay good for beginner snorkelers?',
+    answer: 'Yes — Hanauma Bay is one of the best beginner snorkeling spots in Hawaii. The protected lagoon has calm, shallow water (3–10 feet deep) with sandy entry. You must watch a 9-minute safety video before entering the water.'
+  },
+  {
+    question: 'What marine life will I see at Hanauma Bay?',
+    answer: 'Over 400 species of fish call Hanauma Bay home, including parrotfish, butterflyfish, tangs, and triggerfish. You\'ll also see green sea turtles and occasionally Hawaiian monk seals resting on the beach.'
+  }
+];
+
+const schema = [
+  buildTouristAttractionSchema({
+    name: 'Hanauma Bay Snorkeling',
+    description: 'Hanauma Bay — Oahu\'s famous volcanic crater marine sanctuary. Reservations required, 400+ fish species.',
+    url: '/hawaii/oahu/hanauma-bay/snorkeling/',
+    address: 'Honolulu, Hawaii',
+    priceRange: '$25 (non-residents)'
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Hanauma Bay', url: '/hawaii/oahu/hanauma-bay/' },
+    { label: 'Snorkeling', url: '/hawaii/oahu/hanauma-bay/snorkeling/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Hanauma Bay Snorkeling — Reservations & Guide" description="Complete Hanauma Bay snorkeling guide: reservations, prices, best times, marine life, and everything you need to know." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'Hanauma Bay', url: '/hawaii/oahu/hanauma-bay/' },
+    { label: 'Snorkeling' }
+  ]} />
+
+  <Hero
+    title="Hanauma Bay Snorkeling"
+    subtitle="Oahu's most famous snorkeling destination — a volcanic crater turned marine sanctuary with 400+ fish species. Here's how to get in."
+  />
+
+  <!-- Overview -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Overview</h2>
+    <div class="prose-custom">
+      <p>Hanauma Bay is a volcanic crater that flooded with seawater thousands of years ago, creating a protected marine sanctuary. It's the most visited snorkeling destination in Hawaii — drawing 400,000+ visitors annually.</p>
+      <p>The bay's horseshoe shape protects it from ocean swells, creating calm, shallow water perfect for snorkeling. Over 400 species of fish live in the bay, along with green sea turtles and occasional Hawaiian monk seals.</p>
+      <p><strong>Important:</strong> Since 2021, Hanauma Bay requires advance reservations. There is no walk-up entry. Book 2 days before your visit at 7 AM HST.</p>
+    </div>
+  </section>
+
+  <!-- Reservation info -->
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">Reservations & Pricing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl border border-gray-200 p-6">
+          <h3 class="font-bold text-ocean-900 mb-3">How to Book</h3>
+          <ol class="space-y-2 text-sm text-gray-700 list-decimal pl-5">
+            <li>Go to the official Hanauma Bay reservation site</li>
+            <li>Reservations open 2 days before visit date at 7 AM HST</li>
+            <li>Select your entry time (slots every 30 min from 7 AM–4 PM)</li>
+            <li>Pay $25 per non-resident adult</li>
+            <li>Arrive 30 minutes early for the safety video</li>
+          </ol>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-6">
+          <h3 class="font-bold text-ocean-900 mb-3">Cost Breakdown</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Entry:</strong> $25 (non-residents, 13+)</li>
+            <li><strong>Children under 12:</strong> Free</li>
+            <li><strong>Hawaii residents:</strong> Free</li>
+            <li><strong>Parking:</strong> $3/hour</li>
+            <li><strong>Snorkel gear:</strong> $20–$30 (mask, snorkel, fins)</li>
+            <li><strong>Lockers:</strong> $10</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tours -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Hanauma Bay Tours</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <OperatorCard
+        name="Hanauma Bay Snorkeling Tour"
+        rating="4.7"
+        reviewCount="1,800+"
+        price="From $89"
+        description="Guided tour with reservation handling, round-trip transport from Waikiki, gear, and marine life education."
+        url="https://www.getyourguide.com/oahu-l123/hanauma-bay-snorkeling-tour-t567890/"
+      />
+      <OperatorCard
+        name="Hanauma Bay Express"
+        rating="4.6"
+        reviewCount="950+"
+        price="From $75"
+        description="Transportation + reservation service only — perfect if you want to explore the bay at your own pace."
+        url="https://www.getyourguide.com/oahu-l123/hanauma-bay-express-t678901/"
+      />
+    </div>
+    <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>

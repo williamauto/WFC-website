@@ -1,0 +1,98 @@
+---
+import Layout from '../../../../../layouts/Layout.astro';
+import Hero from '../../../../../components/Hero.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import ActivityCard from '../../../../../components/ActivityCard.astro';
+import OperatorCard from '../../../../../components/OperatorCard.astro';
+import FAQSection from '../../../../../components/FAQSection.astro';
+import { getRegion, getActivitiesForSubDestination } from '../../../../../data/site-data';
+import { buildTouristDestinationSchema, buildBreadcrumbSchema, buildFAQSchema } from '../../../../../data/schema';
+
+const region = getRegion('oahu');
+const activities = getActivitiesForSubDestination('oahu', 'north-shore');
+
+const faqs = [
+  {
+    question: 'Where is Sharks Cove?',
+    answer: 'Sharks Cove is on Oahu\'s North Shore, just past Waimea Bay on Kamehameha Highway. It\'s a rocky tide pool area with calm, clear water — one of the best shore snorkeling spots in Hawaii.'
+  },
+  {
+    question: 'Is Sharks Cove safe for snorkeling?',
+    answer: 'Sharks Cove is safe in summer (May–September) when the water is calm. In winter, big surf makes it dangerous. Always check conditions, stay within the reef-protected pools, and never snorkel alone.'
+  },
+  {
+    question: 'Is Sharks Cove free?',
+    answer: 'Yes — Sharks Cove is a public beach with free access. There\'s no entrance fee, but parking is limited and fills up early. Snorkel gear can be rented from nearby shops.'
+  }
+];
+
+const schema = [
+  buildTouristDestinationSchema({
+    name: 'Sharks Cove',
+    description: 'Sharks Cove — North Shore tide pools with beginner-friendly snorkeling.',
+    url: '/hawaii/oahu/north-shore/sharks-cove/',
+    activities
+  }),
+  buildBreadcrumbSchema([
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'North Shore', url: '/hawaii/oahu/north-shore/' },
+    { label: 'Sharks Cove', url: '/hawaii/oahu/north-shore/sharks-cove/' }
+  ]),
+  buildFAQSchema(faqs)
+];
+---
+
+<Layout title="Sharks Cove Snorkeling — North Shore Oahu" description="Sharks Cove snorkeling guide: free access, best times, safety tips, and what you'll see at Oahu's North Shore tide pools." schema={schema}>
+  <Breadcrumbs items={[
+    { label: 'Home', url: '/' },
+    { label: 'Hawaii', url: '/hawaii/' },
+    { label: 'Oahu', url: '/hawaii/oahu/' },
+    { label: 'North Shore', url: '/hawaii/oahu/north-shore/' },
+    { label: 'Sharks Cove' }
+  ]} />
+
+  <Hero
+    title="Sharks Cove Snorkeling"
+    subtitle="Oahu's best free shore snorkeling — volcanic tide pools teeming with sea life."
+  />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-ocean-900 mb-6">Water Activities at Sharks Cove</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {activities.map(activity => (
+        <ActivityCard activitySlug={activity.slug} regionSlug="oahu" subSlug="north-shore" />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ocean-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-ocean-900 mb-6">North Shore Snorkeling Essentials</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <OperatorCard
+          name="North Shore Snorkel Gear Rental"
+          rating="4.7"
+          reviewCount="900+"
+          price="From $15/day"
+          description="Quality snorkel gear rental from shops near Sharks Cove and Waimea Bay."
+          url="https://www.getyourguide.com/oahu-l123/north-shore-gear-t901234/"
+        />
+        <OperatorCard
+          name="North Shore Snorkel Tours"
+          rating="4.8"
+          reviewCount="1,200+"
+          price="From $75"
+          description="Guided snorkeling tours covering Sharks Cove, Waimea Bay, and other North Shore spots."
+          url="https://www.getyourguide.com/oahu-l123/north-shore-tour-t012345/"
+        />
+      </div>
+      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <FAQSection items={faqs} />
+  </section>
+</Layout>
