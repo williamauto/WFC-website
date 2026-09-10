@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ACTIVITIES, DESTINATIONS, SITE } from '../data/site-data';
+import { SITE } from '../data/site-data';
 import { buildWebSiteSchema, buildBreadcrumbSchema } from '../data/schema';
 
 const schema = [
@@ -25,7 +25,7 @@ const featured = [
     area: 'Coconut Grove',
     price: '$89 / person',
     rating: '4.8',
-    tag: 'Boat Tours',
+    tag: 'Sailing',
     icon: '⛵',
     desc: 'A quiet sail across the bay as the Miami skyline turns gold.',
     url: '/florida/miami/bayside/'
@@ -55,7 +55,7 @@ const featured = [
     area: 'Biscayne Bay',
     price: '$150 / person',
     rating: '5.0',
-    tag: 'Snorkeling',
+    tag: 'Boat Tours',
     icon: '🏝️',
     desc: 'Cruise past the historic stilt houses, then anchor for an open-water snorkel.',
     url: '/florida/miami/biscayne-national-park/snorkeling/'
@@ -65,7 +65,7 @@ const featured = [
     area: 'Islamorada',
     price: '$135 / person',
     rating: '4.8',
-    tag: 'Snorkeling',
+    tag: 'Diving',
     icon: '🪸',
     desc: 'Two-tank reef dive on one of the Keys\' best-preserved living reefs.',
     url: '/florida/florida-keys/islamorada/snorkeling/'
@@ -75,7 +75,7 @@ const featured = [
     area: 'South Beach Marina',
     price: '$220 / boat',
     rating: '4.6',
-    tag: 'Boat Tours',
+    tag: 'Fishing Charters',
     icon: '🎣',
     desc: 'Half-day offshore run for mahi, sailfish, and whatever\'s biting.',
     url: '/florida/miami/south-beach/'
@@ -85,7 +85,7 @@ const featured = [
     area: 'Virginia Key',
     price: '$55 / person',
     rating: '4.9',
-    tag: 'Kayaking',
+    tag: 'Snorkeling',
     icon: '🌊',
     desc: 'Paddle out to a calm reef flat, then snorkel right off the kayak.',
     url: '/florida/miami/virginia-key/kayaking/'
@@ -93,17 +93,17 @@ const featured = [
 ];
 
 const stats = [
-  { value: '148+', label: 'Spot guides' },
-  { value: '25+', label: 'Waterways covered' },
-  { value: '7', label: 'Activities' },
-  { value: '3', label: 'Destinations' }
+  { value: '180+', label: 'Verified experiences' },
+  { value: '60', label: 'Local operators' },
+  { value: '4.9', label: 'Average guest rating' },
+  { value: '12', label: 'Miami waterways covered' }
 ];
 
 const steps = [
   {
     num: '01',
     title: 'Browse verified spots',
-    desc: 'Filter the coastline by activity, location, and price — every guide is researched and confirmed with operators directly.'
+    desc: 'Filter Miami\'s coastline by activity, location, and price — every listing is confirmed with the operator directly.'
   },
   {
     num: '02',
@@ -116,25 +116,43 @@ const steps = [
     desc: 'Your captain or guide meets you dockside with your booking already confirmed. No paperwork, no surprises.'
   }
 ];
+
+// Filter tabs — link to real pages where they exist
+const filters = [
+  { label: 'All spots', url: '/activities/' },
+  { label: 'Snorkeling', url: '/activities/snorkeling/' },
+  { label: 'Boat tours', url: '/florida/miami/bayside/' },
+  { label: 'Diving', url: '/activities/snorkeling/' },
+  { label: 'Paddleboarding', url: '/activities/paddleboarding/' },
+  { label: 'Sailing', url: '/florida/miami/bayside/' },
+  { label: 'Jet ski', url: '/activities/jet-ski-rental/' },
+  { label: 'Fishing charters', url: '/florida/miami/south-beach/' }
+];
 ---
 
 <Layout title="Water Activities & Tours Guide" description={SITE.description} schema={schema}>
   <!-- Hero -->
-  <section class="bg-gradient-to-br from-ocean-800 via-ocean-900 to-ocean-950 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-      <p class="text-ocean-200 font-semibold tracking-widest uppercase text-sm mb-4">Explore — spots and experiences, picked for the water you're in the mood for</p>
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">Find your calm<br />below the surface.</h1>
-      <p class="mt-6 text-lg text-ocean-100 max-w-2xl leading-relaxed">
-        Water Fun Club is your guide to marine experiences — snorkeling, jet ski, boat tours, and paddling —
-        from Miami to Oahu to Puerto Rico, researched and reviewed so you can book with confidence.
+  <section class="bg-mist">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <p class="text-ocean-700 font-semibold tracking-widest uppercase text-sm mb-4">Explore — spots and experiences, picked for the water you're in the mood for</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-ocean-950 leading-tight">MIAMI, ON THE WATER</h1>
+      <p class="mt-4 text-2xl md:text-3xl font-bold text-ocean-800">Find your calm below the surface.</p>
+      <p class="mt-6 text-lg text-gray-600 max-w-2xl leading-relaxed">
+        Water Fun Club is Miami's marketplace for marine experiences — snorkeling, boat tours, diving, and paddling,
+        booked straight from the people who run them, from Haulover to Islamorada.
       </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/activities/" class="px-6 py-3 bg-ocean-800 text-white font-semibold rounded-lg hover:bg-ocean-700 transition-colors">Explore experiences</a>
+        <a href="/florida/miami/" class="px-6 py-3 bg-white text-ocean-800 font-semibold rounded-lg border-2 border-ocean-800 hover:bg-ocean-50 transition-colors">List your business</a>
+      </div>
 
       <!-- Search bar -->
       <div class="mt-8 max-w-2xl">
-        <form action="/activities/" class="flex flex-col sm:flex-row gap-2 bg-white rounded-xl p-2 shadow-xl">
+        <form action="/activities/" class="flex flex-col sm:flex-row gap-2 bg-white rounded-xl p-2 shadow-md border border-ocean-100">
           <input
             type="text"
-            placeholder="Snorkeling, jet ski, kayak… Anywhere in Miami"
+            placeholder="Snorkeling, boat tour, jet ski… Anywhere in Miami"
             class="flex-1 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none rounded-lg"
             aria-label="Search activities"
           />
@@ -144,17 +162,12 @@ const steps = [
         </form>
       </div>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/activities/" class="px-6 py-3 bg-white text-ocean-900 font-semibold rounded-lg hover:bg-ocean-100 transition-colors">Explore experiences</a>
-        <a href="/florida/miami/" class="px-6 py-3 bg-ocean-700 text-white font-semibold rounded-lg border border-ocean-500 hover:bg-ocean-600 transition-colors">Start in Miami</a>
-      </div>
-
       <!-- Stats -->
-      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl">
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
         {stats.map(s => (
           <div>
-            <div class="text-3xl font-extrabold text-sand-300">{s.value}</div>
-            <div class="text-sm text-ocean-200 mt-1">{s.label}</div>
+            <div class="text-3xl font-extrabold text-ocean-800">{s.value}</div>
+            <div class="text-sm text-gray-500 mt-1">{s.label}</div>
           </div>
         ))}
       </div>
@@ -162,12 +175,11 @@ const steps = [
   </section>
 
   <!-- Filter tabs + Featured experiences -->
-  <section class="bg-mist py-16">
+  <section class="bg-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap gap-2 mb-10">
-        <a href="/activities/" class="px-4 py-2 rounded-full bg-ocean-800 text-white text-sm font-medium">All spots</a>
-        {ACTIVITIES.map(a => (
-          <a href={`/activities/${a.slug}/`} class="px-4 py-2 rounded-full bg-white border border-ocean-200 text-ocean-800 text-sm font-medium hover:bg-ocean-50 transition-colors">{a.name}</a>
+        {filters.map((f, i) => (
+          <a href={f.url} class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${i === 0 ? 'bg-ocean-800 text-white' : 'bg-mist border border-ocean-200 text-ocean-800 hover:bg-ocean-50'}`}>{f.label}</a>
         ))}
       </div>
 
@@ -179,7 +191,7 @@ const steps = [
             </div>
             <div class="p-5 flex flex-col flex-grow">
               <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-semibold text-ocean-600 bg-ocean-50 px-2 py-1 rounded-full">{f.tag}</span>
+                <span class="text-xs font-semibold text-ocean-700 bg-ocean-50 px-2 py-1 rounded-full">{f.tag}</span>
                 <span class="text-sm font-bold text-sand-600">★ {f.rating}</span>
               </div>
               <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600 transition-colors">{f.name}</h3>
@@ -197,10 +209,10 @@ const steps = [
   </section>
 
   <!-- How it works -->
-  <section class="bg-white py-16">
+  <section class="bg-mist py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-ocean-950 text-center mb-12">How it works</h2>
-      <p class="text-center text-gray-600 mb-12 -mt-8">Three steps between you and the water.</p>
+      <h2 class="text-3xl font-bold text-ocean-950 text-center mb-2">How it works</h2>
+      <p class="text-center text-gray-600 mb-12">Three steps between you and the water.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         {steps.map(s => (
           <div class="text-center">
@@ -213,27 +225,27 @@ const steps = [
     </div>
   </section>
 
-  <!-- Destinations -->
-  <section class="bg-ocean-50 py-16">
+  <!-- More destinations -->
+  <section class="bg-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-ocean-950">Top Water Destinations</h2>
-        <p class="mt-3 text-gray-600 max-w-2xl mx-auto">Hand-picked destinations with the best water activities, verified spots, and local expertise.</p>
+        <h2 class="text-3xl font-bold text-ocean-950">Beyond Miami</h2>
+        <p class="mt-3 text-gray-600 max-w-2xl mx-auto">The same spot-level guides, for more of the world's best water.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <a href="/florida/miami/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
-          <div class="h-48 bg-gradient-to-br from-ocean-400 to-ocean-800 flex items-center justify-center">
-            <span class="text-6xl">🏖️</span>
+        <a href="/florida/florida-keys/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
+          <div class="h-40 bg-gradient-to-br from-ocean-300 to-ocean-600 flex items-center justify-center">
+            <span class="text-5xl">🪸</span>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Miami</h3>
-            <p class="text-sm text-gray-600 mt-2">Jet ski rentals, Biscayne National Park snorkeling, mangrove kayaking, and the newest efoil experiences.</p>
-            <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Miami →</span>
+            <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Florida Keys</h3>
+            <p class="text-sm text-gray-600 mt-2">Key Largo, Key West, and Islamorada — the only living coral barrier reef in the continental US.</p>
+            <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore the Keys →</span>
           </div>
         </a>
         <a href="/hawaii/oahu/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
-          <div class="h-48 bg-gradient-to-br from-ocean-500 to-ocean-900 flex items-center justify-center">
-            <span class="text-6xl">🌺</span>
+          <div class="h-40 bg-gradient-to-br from-ocean-500 to-ocean-900 flex items-center justify-center">
+            <span class="text-5xl">🌺</span>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Oahu, Hawaii</h3>
@@ -242,8 +254,8 @@ const steps = [
           </div>
         </a>
         <a href="/puerto-rico/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
-          <div class="h-48 bg-gradient-to-br from-sand-400 to-sand-700 flex items-center justify-center">
-            <span class="text-6xl">🏝️</span>
+          <div class="h-40 bg-gradient-to-br from-sand-400 to-sand-700 flex items-center justify-center">
+            <span class="text-5xl">🏝️</span>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Puerto Rico</h3>
