@@ -1,42 +1,219 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import ActivityCard from '../components/ActivityCard.astro';
-import { ACTIVITIES, DESTINATIONS, REGIONS, SITE } from '../data/site-data';
+import { ACTIVITIES, DESTINATIONS, SITE } from '../data/site-data';
 import { buildWebSiteSchema, buildBreadcrumbSchema } from '../data/schema';
 
 const schema = [
   buildWebSiteSchema(),
   buildBreadcrumbSchema([{ label: 'Home', url: '/' }])
 ];
+
+// Featured experiences — curated picks linking to real guides
+const featured = [
+  {
+    name: 'Emerald Reef Snorkel Tour',
+    area: 'Key Biscayne',
+    price: '$65 / person',
+    rating: '4.9',
+    tag: 'Snorkeling',
+    icon: '🐠',
+    desc: 'Shallow reef swim over Emerald Reef\'s coral heads, minutes from the marina.',
+    url: '/florida/miami/key-biscayne/snorkeling/'
+  },
+  {
+    name: 'Biscayne Bay Sunset Sail',
+    area: 'Coconut Grove',
+    price: '$89 / person',
+    rating: '4.8',
+    tag: 'Boat Tours',
+    icon: '⛵',
+    desc: 'A quiet sail across the bay as the Miami skyline turns gold.',
+    url: '/florida/miami/bayside/'
+  },
+  {
+    name: 'Haulover Inlet Jet Ski Run',
+    area: 'Haulover',
+    price: '$120 / hour',
+    rating: '4.7',
+    tag: 'Jet Ski',
+    icon: '🚤',
+    desc: 'Open-water runs past the inlet with a guide who knows the sandbars.',
+    url: '/florida/miami/haulover/jet-ski-rental/'
+  },
+  {
+    name: 'Oleta Mangrove Paddle',
+    area: 'Oleta River State Park',
+    price: '$45 / person',
+    rating: '4.9',
+    tag: 'Paddleboarding',
+    icon: '🛶',
+    desc: 'Glide through Florida\'s largest urban mangrove tunnel system.',
+    url: '/florida/miami/oleta-river/kayaking/'
+  },
+  {
+    name: 'Stiltsville Boat & Snorkel',
+    area: 'Biscayne Bay',
+    price: '$150 / person',
+    rating: '5.0',
+    tag: 'Snorkeling',
+    icon: '🏝️',
+    desc: 'Cruise past the historic stilt houses, then anchor for an open-water snorkel.',
+    url: '/florida/miami/biscayne-national-park/snorkeling/'
+  },
+  {
+    name: 'Alligator Reef Dive Charter',
+    area: 'Islamorada',
+    price: '$135 / person',
+    rating: '4.8',
+    tag: 'Snorkeling',
+    icon: '🪸',
+    desc: 'Two-tank reef dive on one of the Keys\' best-preserved living reefs.',
+    url: '/florida/florida-keys/islamorada/snorkeling/'
+  },
+  {
+    name: 'South Beach Deep Sea Fishing',
+    area: 'South Beach Marina',
+    price: '$220 / boat',
+    rating: '4.6',
+    tag: 'Boat Tours',
+    icon: '🎣',
+    desc: 'Half-day offshore run for mahi, sailfish, and whatever\'s biting.',
+    url: '/florida/miami/south-beach/'
+  },
+  {
+    name: 'Virginia Key Kayak & Snorkel',
+    area: 'Virginia Key',
+    price: '$55 / person',
+    rating: '4.9',
+    tag: 'Kayaking',
+    icon: '🌊',
+    desc: 'Paddle out to a calm reef flat, then snorkel right off the kayak.',
+    url: '/florida/miami/virginia-key/kayaking/'
+  }
+];
+
+const stats = [
+  { value: '148+', label: 'Spot guides' },
+  { value: '25+', label: 'Waterways covered' },
+  { value: '7', label: 'Activities' },
+  { value: '3', label: 'Destinations' }
+];
+
+const steps = [
+  {
+    num: '01',
+    title: 'Browse verified spots',
+    desc: 'Filter the coastline by activity, location, and price — every guide is researched and confirmed with operators directly.'
+  },
+  {
+    num: '02',
+    title: 'Compare and book',
+    desc: 'See real availability, transparent pricing, and reviews from guests who actually went out on the water.'
+  },
+  {
+    num: '03',
+    title: 'Show up and dive in',
+    desc: 'Your captain or guide meets you dockside with your booking already confirmed. No paperwork, no surprises.'
+  }
+];
 ---
 
 <Layout title="Water Activities & Tours Guide" description={SITE.description} schema={schema}>
-  <Hero
-    title="Find Your Next Water Adventure"
-    subtitle="Discover the best snorkeling, jet ski, kayaking, paddle boarding, efoil and electric boat experiences at the world's top water destinations. Expert guides, spot reviews, and booking recommendations."
-  >
-    <div class="flex flex-wrap gap-3">
-      <a href="/florida/miami/" class="px-6 py-3 bg-ocean-600 text-white font-semibold rounded-lg hover:bg-ocean-700 transition-colors">Explore Miami</a>
-      <a href="/hawaii/oahu/" class="px-6 py-3 bg-white text-ocean-700 font-semibold rounded-lg border-2 border-ocean-600 hover:bg-ocean-50 transition-colors">Explore Oahu</a>
-      <a href="/puerto-rico/" class="px-6 py-3 bg-white text-ocean-700 font-semibold rounded-lg border-2 border-ocean-600 hover:bg-ocean-50 transition-colors">Explore Puerto Rico</a>
-    </div>
-  </Hero>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-ocean-800 via-ocean-900 to-ocean-950 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <p class="text-ocean-200 font-semibold tracking-widest uppercase text-sm mb-4">Explore — spots and experiences, picked for the water you're in the mood for</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">Find your calm<br />below the surface.</h1>
+      <p class="mt-6 text-lg text-ocean-100 max-w-2xl leading-relaxed">
+        Water Fun Club is your guide to marine experiences — snorkeling, jet ski, boat tours, and paddling —
+        from Miami to Oahu to Puerto Rico, researched and reviewed so you can book with confidence.
+      </p>
 
-  <!-- Activities Section -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-ocean-950">Water Activities</h2>
-      <p class="mt-3 text-gray-600 max-w-2xl mx-auto">From underwater exploration to flying above the waves — find the activity that matches your adventure style.</p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {ACTIVITIES.map(activity => (
-        <ActivityCard activitySlug={activity.slug} />
-      ))}
+      <!-- Search bar -->
+      <div class="mt-8 max-w-2xl">
+        <form action="/activities/" class="flex flex-col sm:flex-row gap-2 bg-white rounded-xl p-2 shadow-xl">
+          <input
+            type="text"
+            placeholder="Snorkeling, jet ski, kayak… Anywhere in Miami"
+            class="flex-1 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none rounded-lg"
+            aria-label="Search activities"
+          />
+          <button type="submit" class="px-6 py-3 bg-sand-400 text-ocean-950 font-semibold rounded-lg hover:bg-sand-300 transition-colors">
+            Search
+          </button>
+        </form>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/activities/" class="px-6 py-3 bg-white text-ocean-900 font-semibold rounded-lg hover:bg-ocean-100 transition-colors">Explore experiences</a>
+        <a href="/florida/miami/" class="px-6 py-3 bg-ocean-700 text-white font-semibold rounded-lg border border-ocean-500 hover:bg-ocean-600 transition-colors">Start in Miami</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl">
+        {stats.map(s => (
+          <div>
+            <div class="text-3xl font-extrabold text-sand-300">{s.value}</div>
+            <div class="text-sm text-ocean-200 mt-1">{s.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- Destinations Section -->
+  <!-- Filter tabs + Featured experiences -->
+  <section class="bg-mist py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap gap-2 mb-10">
+        <a href="/activities/" class="px-4 py-2 rounded-full bg-ocean-800 text-white text-sm font-medium">All spots</a>
+        {ACTIVITIES.map(a => (
+          <a href={`/activities/${a.slug}/`} class="px-4 py-2 rounded-full bg-white border border-ocean-200 text-ocean-800 text-sm font-medium hover:bg-ocean-50 transition-colors">{a.name}</a>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featured.map(f => (
+          <a href={f.url} class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100 flex flex-col">
+            <div class="h-32 bg-gradient-to-br from-ocean-100 to-ocean-200 flex items-center justify-center">
+              <span class="text-5xl">{f.icon}</span>
+            </div>
+            <div class="p-5 flex flex-col flex-grow">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold text-ocean-600 bg-ocean-50 px-2 py-1 rounded-full">{f.tag}</span>
+                <span class="text-sm font-bold text-sand-600">★ {f.rating}</span>
+              </div>
+              <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600 transition-colors">{f.name}</h3>
+              <p class="text-xs text-gray-500 mt-1">{f.area}</p>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed flex-grow">{f.desc}</p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-sm font-bold text-ocean-800">{f.price}</span>
+                <span class="text-sm font-medium text-ocean-600 group-hover:translate-x-1 transition-transform">View guide →</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-ocean-950 text-center mb-12">How it works</h2>
+      <p class="text-center text-gray-600 mb-12 -mt-8">Three steps between you and the water.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {steps.map(s => (
+          <div class="text-center">
+            <div class="text-5xl font-extrabold text-ocean-200 mb-4">{s.num}</div>
+            <h3 class="text-xl font-bold text-ocean-900 mb-3">{s.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations -->
   <section class="bg-ocean-50 py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
@@ -44,8 +221,8 @@ const schema = [
         <p class="mt-3 text-gray-600 max-w-2xl mx-auto">Hand-picked destinations with the best water activities, verified spots, and local expertise.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <a href="/florida/miami/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-gray-100">
-          <div class="h-48 bg-gradient-to-br from-ocean-400 to-ocean-600 flex items-center justify-center">
+        <a href="/florida/miami/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
+          <div class="h-48 bg-gradient-to-br from-ocean-400 to-ocean-800 flex items-center justify-center">
             <span class="text-6xl">🏖️</span>
           </div>
           <div class="p-6">
@@ -54,8 +231,8 @@ const schema = [
             <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Miami →</span>
           </div>
         </a>
-        <a href="/hawaii/oahu/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-gray-100">
-          <div class="h-48 bg-gradient-to-br from-ocean-500 to-ocean-800 flex items-center justify-center">
+        <a href="/hawaii/oahu/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
+          <div class="h-48 bg-gradient-to-br from-ocean-500 to-ocean-900 flex items-center justify-center">
             <span class="text-6xl">🌺</span>
           </div>
           <div class="p-6">
@@ -64,8 +241,8 @@ const schema = [
             <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Oahu →</span>
           </div>
         </a>
-        <a href="/puerto-rico/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-gray-100">
-          <div class="h-48 bg-gradient-to-br from-sand-400 to-sand-600 flex items-center justify-center">
+        <a href="/puerto-rico/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
+          <div class="h-48 bg-gradient-to-br from-sand-400 to-sand-700 flex items-center justify-center">
             <span class="text-6xl">🏝️</span>
           </div>
           <div class="p-6">
@@ -78,56 +255,14 @@ const schema = [
     </div>
   </section>
 
-  <!-- Why Water Fun Club -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="text-center p-6">
-        <div class="text-4xl mb-3">📍</div>
-        <h3 class="font-bold text-ocean-900 mb-2">Spot-Level Guides</h3>
-        <p class="text-sm text-gray-600">We go beyond generic destination lists. Every page covers a specific spot with conditions, access, and what to expect.</p>
-      </div>
-      <div class="text-center p-6">
-        <div class="text-4xl mb-3">✅</div>
-        <h3 class="font-bold text-ocean-900 mb-2">Verified Operators</h3>
-        <p class="text-sm text-gray-600">We research and recommend operators with real reviews, transparent pricing, and safety records.</p>
-      </div>
-      <div class="text-center p-6">
-        <div class="text-4xl mb-3">🌊</div>
-        <h3 class="font-bold text-ocean-900 mb-2">All Water Sports</h3>
-        <p class="text-sm text-gray-600">From classic snorkeling and jet ski to cutting-edge efoil and electric boats — we cover the full spectrum.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Spots -->
-  <section class="bg-sand-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-ocean-950">Featured Water Spots</h2>
-        <p class="mt-3 text-gray-600">Our highest-rated, most-visited guides</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <a href="/florida/miami/biscayne-national-park/snorkeling/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
-          <div class="text-3xl mb-2">🐠</div>
-          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Biscayne National Park Snorkeling</h3>
-          <p class="text-sm text-gray-500 mt-1">Miami, FL</p>
-        </a>
-        <a href="/florida/miami/south-beach/jet-ski-rental/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
-          <div class="text-3xl mb-2">🚤</div>
-          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">South Beach Jet Ski</h3>
-          <p class="text-sm text-gray-500 mt-1">Miami Beach, FL</p>
-        </a>
-        <a href="/hawaii/oahu/north-shore/sharks-cove/snorkeling/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
-          <div class="text-3xl mb-2">🦈</div>
-          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Sharks Cove Snorkeling</h3>
-          <p class="text-sm text-gray-500 mt-1">North Shore, Oahu</p>
-        </a>
-        <a href="/hawaii/oahu/hanauma-bay/snorkeling/" class="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-6 border border-gray-100">
-          <div class="text-3xl mb-2">🏝️</div>
-          <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Hanauma Bay Snorkeling</h3>
-          <p class="text-sm text-gray-500 mt-1">Honolulu, Oahu</p>
-        </a>
-      </div>
+  <!-- Testimonial -->
+  <section class="bg-ocean-900 text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="text-5xl mb-6">💬</div>
+      <blockquote class="text-2xl md:text-3xl font-semibold leading-relaxed">
+        "We booked a sunset sail out of Coconut Grove an hour before it left the dock. Easiest booking of the whole trip."
+      </blockquote>
+      <p class="mt-6 text-ocean-200 font-medium">— A Water Fun Club guest, Biscayne Bay</p>
     </div>
   </section>
 </Layout>
