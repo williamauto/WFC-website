@@ -14,11 +14,11 @@ const activities = getActivitiesForRegion('miami');
 const faqs = [
   {
     question: 'Where can I rent a jet ski in Brickell?',
-    answer: 'Jet ski rentals in Brickell operate from the Miami River and Biscayne Bay waterfront. You\'ll ride through the bay with downtown Miami\'s skyline as your backdrop — one of the most scenic jet ski experiences in the city.'
+    answer: 'Jet ski rentals in Brickell operate from the Miami River and Biscayne Bay waterfront. You\'ll ride through the bay with downtown Miami\'s skyline as your backdrop, one of the most scenic jet ski experiences in the city.'
   },
   {
     question: 'Is jet skiing in Brickell good for beginners?',
-    answer: 'Yes — Biscayne Bay\'s protected waters are calm and ideal for beginners. The bay has less boat traffic than the ocean, and operators provide full instruction before you head out.'
+    answer: 'Yes, Biscayne Bay\'s protected waters are calm and ideal for beginners. The bay has less boat traffic than the ocean, and operators provide full instruction before you head out.'
   },
   {
     question: 'How much does jet ski rental cost in Brickell?',
@@ -29,7 +29,7 @@ const faqs = [
 const schema = [
   buildTouristDestinationSchema({
     name: 'Brickell',
-    description: 'Brickell — Miami\'s financial district waterfront with jet ski access.',
+    description: 'Brickell, Miami\'s financial district waterfront with jet ski access.',
     url: '/florida/miami/brickell/',
     activities
   }),
@@ -43,7 +43,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Brickell Jet Ski Rentals — Skyline Views" description="Brickell jet ski rentals with downtown Miami skyline views. Prices, operators, and bay riding tips." schema={schema}>
+<Layout title="Brickell Jet Ski Rentals, Skyline Views" description="Brickell jet ski rentals with downtown Miami skyline views. Prices, operators, and bay riding tips." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Florida', url: '/florida/' },
@@ -69,22 +69,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Brickell Operators</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name="Brickell Bay Jet Ski"
-          rating="4.8"
-          reviewCount="600+"
-          price="From $95/hr"
-          description="Bay jet ski rentals with skyline views and guided tour options."
-          url="https://www.getyourguide.com/miami-l59/brickell-jet-ski-t123456/"
-        />
-        <OperatorCard
-          name="Miami Bay Jet Ski Tours"
-          rating="4.7"
-          reviewCount="450+"
-          price="From $149/2hr"
-          description="Guided Biscayne Bay tours — celebrity homes, sandbars, and the best skyline views."
-          url="https://www.getyourguide.com/miami-l59/bay-jet-ski-tour-t234567/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

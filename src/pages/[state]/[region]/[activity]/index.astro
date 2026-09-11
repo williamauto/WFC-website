@@ -38,11 +38,11 @@ const { region, activity } = Astro.props;
 const faqs = [
   {
     question: `Is ${region.name} good for ${activity.shortName.toLowerCase()}?`,
-    answer: `Yes — ${region.name} is one of the top destinations for ${activity.shortName.toLowerCase()} in ${region.state}. There are multiple operators, great conditions, and options for every skill level.`
+    answer: `Yes, ${region.name} is one of the top destinations for ${activity.shortName.toLowerCase()} in ${region.state}. There are multiple operators, great conditions, and options for every skill level.`
   },
   {
     question: `How much does ${activity.shortName.toLowerCase()} cost in ${region.name}?`,
-    answer: `Rentals in ${region.name} typically cost $25–$60 per hour, while guided tours and lessons range from $50–$150 per person. Prices vary by season — book in advance for the best rates.`
+    answer: `Rentals in ${region.name} typically cost $25–$60 per hour, while guided tours and lessons range from $50–$150 per person. Prices vary by season, book in advance for the best rates.`
   },
   {
     question: `What are the best spots for ${activity.shortName.toLowerCase()} in ${region.name}?`,
@@ -68,7 +68,7 @@ const schema = [
 ---
 
 <Layout
-  title={`${activity.name} in ${region.name} — Tours & Rentals`}
+  title={`${activity.name} in ${region.name}, Tours & Rentals`}
   description={`${activity.name} in ${region.name}, ${region.state}: top operators, prices, best spots, and what to expect.`}
   schema={schema}
 >
@@ -96,7 +96,7 @@ const schema = [
       <ul>
         <li>Multiple operators with experienced guides and quality equipment</li>
         <li>Rentals from $25–$60 per hour, guided tours from $50–$150 per person</li>
-        <li>Best conditions in the morning — calmer water and fewer crowds</li>
+        <li>Best conditions in the morning, calmer water and fewer crowds</li>
         <li>All equipment and safety gear provided by operators</li>
       </ul>
     </div>
@@ -106,22 +106,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top {activity.name} Operators in {region.name}</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name={`${region.name} ${activity.name} Tours`}
-          rating="4.7"
-          reviewCount="800+"
-          price="From $45"
-          description={`Guided ${activity.shortName.toLowerCase()} experiences with top-rated local operators in ${region.name}.`}
-          url={`https://www.getyourguide.com/${region.slug}-l123/${activity.slug}-t901234/`}
-        />
-        <OperatorCard
-          name={`${region.name} Water Sports Rentals`}
-          rating="4.6"
-          reviewCount="500+"
-          price="From $30/hr"
-          description={`Self-guided ${activity.shortName.toLowerCase()} rentals with equipment and safety briefing included.`}
-          url={`https://www.getyourguide.com/${region.slug}-l123/${activity.slug}-rentals-t012345/`}
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

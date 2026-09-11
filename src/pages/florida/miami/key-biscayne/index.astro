@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: 'Can you kayak in Key Biscayne?',
-    answer: 'Yes — Key Biscayne is one of the best kayaking spots in Miami. Crandon Park has calm lagoon waters perfect for beginners, and you can paddle through mangrove channels to see birds, rays, and manatees. Kayak rentals cost $25–$40 per hour.'
+    answer: 'Yes, Key Biscayne is one of the best kayaking spots in Miami. Crandon Park has calm lagoon waters perfect for beginners, and you can paddle through mangrove channels to see birds, rays, and manatees. Kayak rentals cost $25–$40 per hour.'
   },
   {
     question: 'Is Key Biscayne good for families?',
@@ -29,7 +29,7 @@ const faqs = [
 const schema = [
   buildTouristDestinationSchema({
     name: 'Key Biscayne',
-    description: 'Key Biscayne — tropical island escape with calm snorkeling and kayaking waters.',
+    description: 'Key Biscayne, tropical island escape with calm snorkeling and kayaking waters.',
     url: '/florida/miami/key-biscayne/',
     activities
   }),
@@ -43,7 +43,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Key Biscayne Water Activities — Snorkeling & Kayaking" description="Key Biscayne water activities: snorkeling, kayaking, and paddle boarding in calm tropical waters. Family-friendly guide." schema={schema}>
+<Layout title="Key Biscayne Water Activities, Snorkeling & Kayaking" description="Key Biscayne water activities: snorkeling, kayaking, and paddle boarding in calm tropical waters. Family-friendly guide." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Florida', url: '/florida/' },
@@ -53,7 +53,7 @@ const schema = [
 
   <Hero
     title="Key Biscayne Water Activities"
-    subtitle="A tropical island escape 15 minutes from downtown Miami — calm waters, manatees, and family-friendly adventures."
+    subtitle="A tropical island escape 15 minutes from downtown Miami, calm waters, manatees, and family-friendly adventures."
   />
 
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,22 +69,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Key Biscayne Experiences</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name="Sundiver Snorkel Tours"
-          rating="4.9"
-          reviewCount="850+"
-          price="From $65"
-          description="Small-group snorkeling tours from Key Biscayne to the reef. Family-friendly with all gear included."
-          url="https://www.getyourguide.com/miami-l59/sundiver-snorkel-tours-t234567/"
-        />
-        <OperatorCard
-          name="Crandon Park Kayak Rental"
-          rating="4.6"
-          reviewCount="400+"
-          price="From $25/hr"
-          description="Self-guided kayak rentals in Crandon Park's calm lagoon — perfect for beginners and families."
-          url="https://www.getyourguide.com/miami-l59/crandon-park-kayak-t345678/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

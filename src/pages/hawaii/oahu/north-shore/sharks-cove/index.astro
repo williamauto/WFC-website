@@ -14,7 +14,7 @@ const activities = getActivitiesForSubDestination('oahu', 'north-shore');
 const faqs = [
   {
     question: 'Where is Sharks Cove?',
-    answer: 'Sharks Cove is on Oahu\'s North Shore, just past Waimea Bay on Kamehameha Highway. It\'s a rocky tide pool area with calm, clear water — one of the best shore snorkeling spots in Hawaii.'
+    answer: 'Sharks Cove is on Oahu\'s North Shore, just past Waimea Bay on Kamehameha Highway. It\'s a rocky tide pool area with calm, clear water, one of the best shore snorkeling spots in Hawaii.'
   },
   {
     question: 'Is Sharks Cove safe for snorkeling?',
@@ -22,14 +22,14 @@ const faqs = [
   },
   {
     question: 'Is Sharks Cove free?',
-    answer: 'Yes — Sharks Cove is a public beach with free access. There\'s no entrance fee, but parking is limited and fills up early. Snorkel gear can be rented from nearby shops.'
+    answer: 'Yes, Sharks Cove is a public beach with free access. There\'s no entrance fee, but parking is limited and fills up early. Snorkel gear can be rented from nearby shops.'
   }
 ];
 
 const schema = [
   buildTouristDestinationSchema({
     name: 'Sharks Cove',
-    description: 'Sharks Cove — North Shore tide pools with beginner-friendly snorkeling.',
+    description: 'Sharks Cove, North Shore tide pools with beginner-friendly snorkeling.',
     url: '/hawaii/oahu/north-shore/sharks-cove/',
     activities
   }),
@@ -44,7 +44,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Sharks Cove Snorkeling — North Shore Oahu" description="Sharks Cove snorkeling guide: free access, best times, safety tips, and what you'll see at Oahu's North Shore tide pools." schema={schema}>
+<Layout title="Sharks Cove Snorkeling, North Shore Oahu" description="Sharks Cove snorkeling guide: free access, best times, safety tips, and what you'll see at Oahu's North Shore tide pools." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Hawaii', url: '/hawaii/' },
@@ -55,7 +55,7 @@ const schema = [
 
   <Hero
     title="Sharks Cove Snorkeling"
-    subtitle="Oahu's best free shore snorkeling — volcanic tide pools teeming with sea life."
+    subtitle="Oahu's best free shore snorkeling, volcanic tide pools teeming with sea life."
   />
 
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -71,22 +71,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">North Shore Snorkeling Essentials</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name="North Shore Snorkel Gear Rental"
-          rating="4.7"
-          reviewCount="900+"
-          price="From $15/day"
-          description="Quality snorkel gear rental from shops near Sharks Cove and Waimea Bay."
-          url="https://www.getyourguide.com/oahu-l123/north-shore-gear-t901234/"
-        />
-        <OperatorCard
-          name="North Shore Snorkel Tours"
-          rating="4.8"
-          reviewCount="1,200+"
-          price="From $75"
-          description="Guided snorkeling tours covering Sharks Cove, Waimea Bay, and other North Shore spots."
-          url="https://www.getyourguide.com/oahu-l123/north-shore-tour-t012345/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

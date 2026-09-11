@@ -8,125 +8,72 @@ const schema = [
   buildBreadcrumbSchema([{ label: 'Home', url: '/' }])
 ];
 
-// Featured experiences — curated picks linking to real guides
+// Real, verified spots only. Price and description come from confirmed
+// operator data, not estimates. No ratings or review counts are shown here
+// until we have real, sourced ones to show.
 const featured = [
   {
-    name: 'Emerald Reef Snorkel Tour',
-    area: 'Key Biscayne',
-    price: '$65 / person',
-    rating: '4.9',
+    name: 'Biscayne National Park',
+    area: 'Homestead',
+    price: 'From $83 / person',
     tag: 'Snorkeling',
     icon: '🐠',
-    desc: 'Shallow reef swim over Emerald Reef\'s coral heads, minutes from the marina.',
-    url: '/florida/miami/key-biscayne/snorkeling/'
-  },
-  {
-    name: 'Biscayne Bay Sunset Sail',
-    area: 'Coconut Grove',
-    price: '$89 / person',
-    rating: '4.8',
-    tag: 'Sailing',
-    icon: '⛵',
-    desc: 'A quiet sail across the bay as the Miami skyline turns gold.',
-    url: '/florida/miami/bayside/'
-  },
-  {
-    name: 'Haulover Inlet Jet Ski Run',
-    area: 'Haulover',
-    price: '$120 / hour',
-    rating: '4.7',
-    tag: 'Jet Ski',
-    icon: '🚤',
-    desc: 'Open-water runs past the inlet with a guide who knows the sandbars.',
-    url: '/florida/miami/haulover/jet-ski-rental/'
-  },
-  {
-    name: 'Oleta Mangrove Paddle',
-    area: 'Oleta River State Park',
-    price: '$45 / person',
-    rating: '4.9',
-    tag: 'Paddleboarding',
-    icon: '🛶',
-    desc: 'Glide through Florida\'s largest urban mangrove tunnel system.',
-    url: '/florida/miami/oleta-river/kayaking/'
-  },
-  {
-    name: 'Stiltsville Boat & Snorkel',
-    area: 'Biscayne Bay',
-    price: '$150 / person',
-    rating: '5.0',
-    tag: 'Boat Tours',
-    icon: '🏝️',
-    desc: 'Cruise past the historic stilt houses, then anchor for an open-water snorkel.',
+    desc: 'Boat-entry snorkeling over living coral reef, 95% of the park is water. Six real tours from Biscayne National Park Institute.',
     url: '/florida/miami/biscayne-national-park/snorkeling/'
   },
   {
-    name: 'Alligator Reef Dive Charter',
-    area: 'Islamorada',
-    price: '$135 / person',
-    rating: '4.8',
-    tag: 'Diving',
-    icon: '🪸',
-    desc: 'Two-tank reef dive on one of the Keys\' best-preserved living reefs.',
-    url: '/florida/florida-keys/islamorada/snorkeling/'
+    name: 'Haulover Inlet',
+    area: 'Haulover',
+    price: '$89 / 30 min',
+    tag: 'Jet Ski',
+    icon: '🚤',
+    desc: 'Dedicated inlet with an established rental cluster, the go-to Miami jet-ski launch.',
+    url: '/florida/miami/haulover/jet-ski-rental/'
   },
   {
-    name: 'South Beach Deep Sea Fishing',
-    area: 'South Beach Marina',
-    price: '$220 / boat',
-    rating: '4.6',
-    tag: 'Fishing Charters',
-    icon: '🎣',
-    desc: 'Half-day offshore run for mahi, sailfish, and whatever\'s biting.',
+    name: 'South Beach Jet Ski Rental',
+    area: 'South Beach',
+    price: '$95 / 30 min',
+    tag: 'Jet Ski',
+    icon: '🌊',
+    desc: 'Tourist-dense launch with the widest choice of operators in Miami.',
     url: '/florida/miami/south-beach/'
   },
   {
-    name: 'Virginia Key Kayak & Snorkel',
-    area: 'Virginia Key',
-    price: '$55 / person',
-    rating: '4.9',
-    tag: 'Snorkeling',
-    icon: '🌊',
-    desc: 'Paddle out to a calm reef flat, then snorkel right off the kayak.',
-    url: '/florida/miami/virginia-key/kayaking/'
+    name: 'Oleta River State Park',
+    area: 'Oleta River',
+    price: '$28 / hr rental',
+    tag: 'Kayaking',
+    icon: '🛶',
+    desc: "Mangrove trails inside Florida's largest urban park, calm water, self-guided.",
+    url: '/florida/miami/oleta-river/kayaking/'
   }
-];
-
-const stats = [
-  { value: '180+', label: 'Verified experiences' },
-  { value: '60', label: 'Local operators' },
-  { value: '4.9', label: 'Average guest rating' },
-  { value: '12', label: 'Miami waterways covered' }
 ];
 
 const steps = [
   {
     num: '01',
-    title: 'Browse verified spots',
-    desc: 'Filter Miami\'s coastline by activity, location, and price — every listing is confirmed with the operator directly.'
+    title: 'Browse real spots',
+    desc: "Filter Miami's coastline by activity and location. We only list a spot once we've confirmed how it actually works."
   },
   {
     num: '02',
-    title: 'Compare and book',
-    desc: 'See real availability, transparent pricing, and reviews from guests who actually went out on the water.'
+    title: 'See the honest picture',
+    desc: 'Some spots need a booked tour, some are free and self-guided. We label which is which before you show up.'
   },
   {
     num: '03',
-    title: 'Show up and dive in',
-    desc: 'Your captain or guide meets you dockside with your booking already confirmed. No paperwork, no surprises.'
+    title: 'Book direct, or just go',
+    desc: 'Where a tour is required, book straight from the operator. Where it is not, we tell you exactly how to do it yourself.'
   }
 ];
 
-// Filter tabs — link to real pages where they exist
+// Filter tabs, link to real pages where they exist
 const filters = [
   { label: 'All spots', url: '/activities/' },
   { label: 'Snorkeling', url: '/activities/snorkeling/' },
-  { label: 'Boat tours', url: '/florida/miami/bayside/' },
-  { label: 'Diving', url: '/activities/snorkeling/' },
-  { label: 'Paddleboarding', url: '/activities/paddleboarding/' },
-  { label: 'Sailing', url: '/florida/miami/bayside/' },
   { label: 'Jet ski', url: '/activities/jet-ski-rental/' },
-  { label: 'Fishing charters', url: '/florida/miami/south-beach/' }
+  { label: 'Kayaking', url: '/activities/paddleboarding/' }
 ];
 ---
 
@@ -134,12 +81,11 @@ const filters = [
   <!-- Hero -->
   <section class="bg-mist">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <p class="text-ocean-700 font-semibold tracking-widest uppercase text-sm mb-4">Explore — spots and experiences, picked for the water you're in the mood for</p>
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-ocean-950 leading-tight">MIAMI, ON THE WATER</h1>
-      <p class="mt-4 text-2xl md:text-3xl font-bold text-ocean-800">Find your calm below the surface.</p>
+      <p class="text-ocean-700 font-semibold tracking-widest uppercase text-sm mb-4">Miami, on the water</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-ocean-950 leading-tight">Know the spot before you book it.</h1>
       <p class="mt-6 text-lg text-gray-600 max-w-2xl leading-relaxed">
-        Water Fun Club is Miami's marketplace for marine experiences — snorkeling, boat tours, diving, and paddling,
-        booked straight from the people who run them, from Haulover to Islamorada.
+        Every beach hides a dozen coves and launch points, and only some of them need a tour.
+        We map each one and tell you honestly whether to book ahead or just show up.
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3">
@@ -152,24 +98,14 @@ const filters = [
         <form action="/activities/" class="flex flex-col sm:flex-row gap-2 bg-white rounded-xl p-2 shadow-md border border-ocean-100">
           <input
             type="text"
-            placeholder="Snorkeling, boat tour, jet ski… Anywhere in Miami"
+            placeholder="Snorkeling, jet ski, kayaking... anywhere in Miami"
             class="flex-1 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none rounded-lg"
             aria-label="Search activities"
           />
-          <button type="submit" class="px-6 py-3 bg-sand-400 text-ocean-950 font-semibold rounded-lg hover:bg-sand-300 transition-colors">
+          <button type="submit" class="px-6 py-3 bg-coral-400 text-coral-950 font-semibold rounded-lg hover:bg-coral-500 transition-colors">
             Search
           </button>
         </form>
-      </div>
-
-      <!-- Stats -->
-      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
-        {stats.map(s => (
-          <div>
-            <div class="text-3xl font-extrabold text-ocean-800">{s.value}</div>
-            <div class="text-sm text-gray-500 mt-1">{s.label}</div>
-          </div>
-        ))}
       </div>
     </div>
   </section>
@@ -190,10 +126,7 @@ const filters = [
               <span class="text-5xl">{f.icon}</span>
             </div>
             <div class="p-5 flex flex-col flex-grow">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-semibold text-ocean-700 bg-ocean-50 px-2 py-1 rounded-full">{f.tag}</span>
-                <span class="text-sm font-bold text-sand-600">★ {f.rating}</span>
-              </div>
+              <span class="text-xs font-semibold text-ocean-700 bg-ocean-50 px-2 py-1 rounded-full w-fit mb-2">{f.tag}</span>
               <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600 transition-colors">{f.name}</h3>
               <p class="text-xs text-gray-500 mt-1">{f.area}</p>
               <p class="text-sm text-gray-600 mt-2 leading-relaxed flex-grow">{f.desc}</p>
@@ -205,6 +138,7 @@ const filters = [
           </a>
         ))}
       </div>
+      <p class="text-xs text-gray-500 mt-6">More Miami spots are being verified and added. Every listing above is a real, confirmed operator or a genuinely self-guided spot, not an estimate.</p>
     </div>
   </section>
 
@@ -230,7 +164,7 @@ const filters = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-ocean-950">Beyond Miami</h2>
-        <p class="mt-3 text-gray-600 max-w-2xl mx-auto">The same spot-level guides, for more of the world's best water.</p>
+        <p class="mt-3 text-gray-600 max-w-2xl mx-auto">The same spot-level guides, coming next for more of the world's best water.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <a href="/florida/florida-keys/" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all overflow-hidden border border-ocean-100">
@@ -239,7 +173,7 @@ const filters = [
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Florida Keys</h3>
-            <p class="text-sm text-gray-600 mt-2">Key Largo, Key West, and Islamorada — the only living coral barrier reef in the continental US.</p>
+            <p class="text-sm text-gray-600 mt-2">Key Largo, Key West, and Islamorada, the only living coral barrier reef in the continental US.</p>
             <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore the Keys →</span>
           </div>
         </a>
@@ -249,7 +183,7 @@ const filters = [
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-ocean-900 group-hover:text-ocean-600">Oahu, Hawaii</h3>
-            <p class="text-sm text-gray-600 mt-2">Sharks Cove, Hanauma Bay, Waikiki sunset cruises, and world-class surfing on the North Shore.</p>
+            <p class="text-sm text-gray-600 mt-2">Sharks Cove, Hanauma Bay, and world-class surfing on the North Shore.</p>
             <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">Explore Oahu →</span>
           </div>
         </a>
@@ -264,17 +198,6 @@ const filters = [
           </div>
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- Testimonial -->
-  <section class="bg-ocean-900 text-white py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="text-5xl mb-6">💬</div>
-      <blockquote class="text-2xl md:text-3xl font-semibold leading-relaxed">
-        "We booked a sunset sail out of Coconut Grove an hour before it left the dock. Easiest booking of the whole trip."
-      </blockquote>
-      <p class="mt-6 text-ocean-200 font-medium">— A Water Fun Club guest, Biscayne Bay</p>
     </div>
   </section>
 </Layout>

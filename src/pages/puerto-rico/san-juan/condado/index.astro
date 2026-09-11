@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: 'Is Condado good for paddle boarding?',
-    answer: 'Yes — the Condado Lagoon is one of the best paddle boarding spots in Puerto Rico. The water is calm, shallow, and protected. Rentals cost $25–$40 per hour with lessons available.'
+    answer: 'Yes, the Condado Lagoon is one of the best paddle boarding spots in Puerto Rico. The water is calm, shallow, and protected. Rentals cost $25–$40 per hour with lessons available.'
   },
   {
     question: 'Where can I rent a jet ski in Condado?',
@@ -29,7 +29,7 @@ const faqs = [
 const schema = [
   buildTouristDestinationSchema({
     name: 'Condado',
-    description: 'Condado — beachfront district with paddle boarding and jet ski.',
+    description: 'Condado, beachfront district with paddle boarding and jet ski.',
     url: '/puerto-rico/san-juan/condado/',
     activities
   }),
@@ -43,7 +43,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Condado Water Activities — Paddle Boarding & Jet Ski" description="Condado water activities: paddle boarding in the lagoon, jet ski rentals, and surfing lessons in San Juan." schema={schema}>
+<Layout title="Condado Water Activities, Paddle Boarding & Jet Ski" description="Condado water activities: paddle boarding in the lagoon, jet ski rentals, and surfing lessons in San Juan." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Puerto Rico', url: '/puerto-rico/' },
@@ -53,7 +53,7 @@ const schema = [
 
   <Hero
     title="Condado Water Activities"
-    subtitle="San Juan's beachfront district — calm lagoon paddle boarding and jet ski adventures."
+    subtitle="San Juan's beachfront district, calm lagoon paddle boarding and jet ski adventures."
   />
 
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,22 +69,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Condado Operators</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name="Condado Lagoon Paddle Co."
-          rating="4.7"
-          reviewCount="400+"
-          price="From $30/hr"
-          description="Paddle board and kayak rentals on the calm Condado Lagoon."
-          url="https://www.getyourguide.com/san-juan-l123/condado-paddle-t345678/"
-        />
-        <OperatorCard
-          name="San Juan Jet Ski Adventures"
-          rating="4.6"
-          reviewCount="350+"
-          price="From $90/hr"
-          description="Jet ski rentals and guided lagoon tours with skyline views."
-          url="https://www.getyourguide.com/san-juan-l123/jet-ski-t456789/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

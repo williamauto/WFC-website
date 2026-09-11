@@ -1,30 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --color-ocean-50: #eef8fb;
-  --color-ocean-100: #d9f0f7;
-  --color-ocean-200: #99daee;
-  --color-ocean-300: #66c4e0;
-  --color-ocean-400: #33a8cc;
-  --color-ocean-500: #0a8ab0;
-  --color-ocean-600: #00709a;
-  --color-ocean-700: #00668c;
-  --color-ocean-800: #005980;
-  --color-ocean-900: #004a6e;
-  --color-ocean-950: #003a57;
-  --color-sand-50: #fdf8f0;
-  --color-sand-100: #faf0dd;
-  --color-sand-200: #f2dfb8;
-  --color-sand-300: #eccb92;
-  --color-sand-400: #dda769;
-  --color-sand-500: #c98f4e;
-  --color-sand-600: #b0763a;
-  --color-sand-700: #8f5c2e;
-  --color-sand-800: #6e4624;
-  --color-sand-900: #4d3019;
-  --color-sand-950: #2e1c0e;
-  --color-mist: #f6fdfd;
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+
+  /* "ocean-*" now carries the v2 lagoon system (kept the name so we didn't
+     have to touch every class reference site-wide) */
+  --color-ocean-50: #F2FAF8;
+  --color-ocean-100: #DCF2EE;
+  --color-ocean-200: #B8E6DE;
+  --color-ocean-300: #8ED6CB;
+  --color-ocean-400: #4FC2B4;
+  --color-ocean-500: #12AA9C;
+  --color-ocean-600: #0E7C82;
+  --color-ocean-700: #0B6870;
+  --color-ocean-800: #0A5257;
+  --color-ocean-900: #0B2A2E;
+  --color-ocean-950: #061A1D;
+
+  /* "sand-*" now carries the v2 sand system */
+  --color-sand-50: #FBF6EA;
+  --color-sand-100: #F4EAD2;
+  --color-sand-200: #EDE0BC;
+  --color-sand-300: #E7D6AC;
+  --color-sand-400: #DCC48C;
+  --color-sand-500: #C9B27E;
+  --color-sand-600: #B39A5F;
+  --color-sand-700: #8F7A49;
+  --color-sand-800: #6B5C36;
+  --color-sand-900: #4D3019;
+  --color-sand-950: #2E1C0E;
+
+  /* new: coral, the v2 accent used for primary CTAs */
+  --color-coral-50: #FFF1EA;
+  --color-coral-100: #FDEADB;
+  --color-coral-200: #FFD9C4;
+  --color-coral-300: #FFC1A3;
+  --color-coral-400: #FF9E7F;
+  --color-coral-500: #F58A66;
+  --color-coral-600: #E67F5C;
+  --color-coral-700: #C2603F;
+  --color-coral-950: #241009;
+
+  --color-mist: #F2FAF8;
 }
 
 html {
@@ -34,6 +52,10 @@ html {
 body {
   font-family: var(--font-sans);
   @apply bg-white text-gray-900 antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
 }
 
 .prose-custom h2 {

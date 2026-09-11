@@ -22,14 +22,14 @@ const faqs = [
   },
   {
     question: 'What is the best time for a Bayside boat tour?',
-    answer: 'Sunset tours are the most popular — the skyline lights up and the weather is cooler. Morning tours (10 AM–12 PM) have calmer water and fewer crowds. Book sunset tours 2–3 days ahead in peak season.'
+    answer: 'Sunset tours are the most popular, the skyline lights up and the weather is cooler. Morning tours (10 AM–12 PM) have calmer water and fewer crowds. Book sunset tours 2–3 days ahead in peak season.'
   }
 ];
 
 const schema = [
   buildTouristDestinationSchema({
     name: 'Bayside',
-    description: 'Bayside — downtown Miami waterfront with boat tours and sunset cruises.',
+    description: 'Bayside, downtown Miami waterfront with boat tours and sunset cruises.',
     url: '/florida/miami/bayside/',
     activities
   }),
@@ -53,7 +53,7 @@ const schema = [
 
   <Hero
     title="Bayside Miami Boat Tours"
-    subtitle="Downtown Miami's waterfront hub — where the best boat tours and sunset cruises depart."
+    subtitle="Downtown Miami's waterfront hub, where the best boat tours and sunset cruises depart."
   />
 
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,30 +69,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Bayside Boat Tours</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <OperatorCard
-          name="Miami Sightseeing Cruise"
-          rating="4.5"
-          reviewCount="8,000+"
-          price="From $30"
-          description="90-minute narrated cruise through Biscayne Bay with skyline views."
-          url="https://www.getyourguide.com/miami-l59/sightseeing-cruise-t678901/"
-        />
-        <OperatorCard
-          name="Celebrity Homes Boat Tour"
-          rating="4.6"
-          reviewCount="5,500+"
-          price="From $45"
-          description="Cruise past Star Island and Millionaires Row — see where the stars live."
-          url="https://www.getyourguide.com/miami-l59/celebrity-homes-tour-t789012/"
-        />
-        <OperatorCard
-          name="Miami Sunset Cruise"
-          rating="4.7"
-          reviewCount="3,200+"
-          price="From $55"
-          description="Sunset sail with skyline views, drinks, and the best photo opportunities in Miami."
-          url="https://www.getyourguide.com/miami-l59/sunset-cruise-t890123/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

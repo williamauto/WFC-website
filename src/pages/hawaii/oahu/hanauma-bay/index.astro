@@ -18,18 +18,18 @@ const faqs = [
   },
   {
     question: 'Do I need a reservation for Hanauma Bay?',
-    answer: 'Yes — reservations are required and can be made up to 2 days in advance on the official website. Entry costs $25 for non-residents. The bay is closed on Mondays and Tuesdays.'
+    answer: 'Yes, reservations are required and can be made up to 2 days in advance on the official website. Entry costs $25 for non-residents. The bay is closed on Mondays and Tuesdays.'
   },
   {
     question: 'Is Hanauma Bay good for beginner snorkelers?',
-    answer: 'Yes — the bay has calm, shallow waters and lifeguards on duty. It\'s one of the best places for first-time snorkelers. Arrive early (before 9am) for the best conditions and parking.'
+    answer: 'Yes, the bay has calm, shallow waters and lifeguards on duty. It\'s one of the best places for first-time snorkelers. Arrive early (before 9am) for the best conditions and parking.'
   }
 ];
 
 const schema = [
   buildTouristDestinationSchema({
     name: 'Hanauma Bay',
-    description: 'Hanauma Bay — protected marine sanctuary — Oahu\'s most famous snorkeling spot.',
+    description: 'Hanauma Bay, protected marine sanctuary, Oahu\'s most famous snorkeling spot.',
     url: '/hawaii/oahu/hanauma-bay/',
     activities
   }),
@@ -43,7 +43,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Hanauma Bay Snorkeling — Oahu's Marine Sanctuary" description="Hanauma Bay snorkeling guide: reservations, prices, best times, and what to expect at Oahu's most famous marine sanctuary." schema={schema}>
+<Layout title="Hanauma Bay Snorkeling, Oahu's Marine Sanctuary" description="Hanauma Bay snorkeling guide: reservations, prices, best times, and what to expect at Oahu's most famous marine sanctuary." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Hawaii', url: '/hawaii/' },
@@ -53,7 +53,7 @@ const schema = [
 
   <Hero
     title="Hanauma Bay Snorkeling"
-    subtitle="Hawaii's most famous snorkeling spot — a volcanic crater filled with 400+ species of fish."
+    subtitle="Hawaii's most famous snorkeling spot, a volcanic crater filled with 400+ species of fish."
   />
 
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,22 +69,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Hanauma Bay Essentials</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name="Hanauma Bay Snorkel & Gear"
-          rating="4.6"
-          reviewCount="1,500+"
-          price="From $25"
-          description="Snorkel gear rental and guided tours at the bay. Includes mask, fins, and safety briefing."
-          url="https://www.getyourguide.com/oahu-l123/hanauma-bay-snorkel-t901234/"
-        />
-        <OperatorCard
-          name="Oahu Snorkel Tours"
-          rating="4.8"
-          reviewCount="2,000+"
-          price="From $89"
-          description="Guided snorkeling tours combining Hanauma Bay with other top Oahu spots."
-          url="https://www.getyourguide.com/oahu-l123/oahu-snorkel-tour-t012345/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

@@ -13,15 +13,15 @@ const region = getRegion('miami');
 const faqs = [
   {
     question: 'Where is the best snorkeling in Miami?',
-    answer: 'Biscayne National Park is the best snorkeling in Miami — it protects 95% underwater park with living coral reefs. Key Biscayne and South Pointe Park are also excellent shore-entry options. For the best experience, take a snorkel tour from Biscayne National Park or Key Largo (30 minutes south).'
+    answer: 'Biscayne National Park is the best snorkeling in Miami, it protects 95% underwater park with living coral reefs. Key Biscayne and South Pointe Park are also excellent shore-entry options. For the best experience, take a snorkel tour from Biscayne National Park or Key Largo (30 minutes south).'
   },
   {
     question: 'Do you need a boat for snorkeling in Miami?',
-    answer: 'No — there are excellent shore snorkeling spots in Miami. South Pointe Park jetty, Key Biscayne, and Virginia Key all offer shore entry. However, boat tours reach the best reefs in Biscayne National Park and the Florida Keys, which are only accessible by boat.'
+    answer: 'No, there are excellent shore snorkeling spots in Miami. South Pointe Park jetty, Key Biscayne, and Virginia Key all offer shore entry. However, boat tours reach the best reefs in Biscayne National Park and the Florida Keys, which are only accessible by boat.'
   },
   {
     question: 'What is the best time of year for snorkeling in Miami?',
-    answer: 'Year-round, but the best conditions are March through June when water temperatures are 75–85°F and seas are calm. Summer (July–September) has the warmest water but higher chance of afternoon storms. Winter water stays around 72–76°F — swimmable with a shorty wetsuit.'
+    answer: 'Year-round, but the best conditions are March through June when water temperatures are 75–85°F and seas are calm. Summer (July–September) has the warmest water but higher chance of afternoon storms. Winter water stays around 72–76°F, swimmable with a shorty wetsuit.'
   },
   {
     question: 'How much does snorkeling in Miami cost?',
@@ -36,7 +36,7 @@ const faqs = [
 const schema = [
   buildServiceSchema({
     name: 'Snorkeling in Miami',
-    description: 'Best snorkeling spots and tours in Miami — Biscayne National Park, Key Biscayne, and more.',
+    description: 'Best snorkeling spots and tours in Miami, Biscayne National Park, Key Biscayne, and more.',
     url: '/florida/miami/snorkeling/',
     areaServed: 'Miami, Florida',
     offers: {
@@ -55,7 +55,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Snorkeling in Miami — Best Spots & Tours" description="Discover the best snorkeling in Miami: Biscayne National Park, Key Biscayne, and more. Top spots, tour recommendations, prices, and tips." schema={schema}>
+<Layout title="Snorkeling in Miami, Best Spots & Tours" description="Discover the best snorkeling in Miami: Biscayne National Park, Key Biscayne, and more. Top spots, tour recommendations, prices, and tips." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Florida', url: '/florida/' },
@@ -65,7 +65,7 @@ const schema = [
 
   <Hero
     title="Snorkeling in Miami"
-    subtitle="Miami's best snorkeling is hiding in plain sight — Biscayne National Park protects living coral reefs just 30 minutes from downtown. Here's where to go, what it costs, and how to pick the right tour."
+    subtitle="Miami's best snorkeling is hiding in plain sight, Biscayne National Park protects living coral reefs just 30 minutes from downtown. Here's where to go, what it costs, and how to pick the right tour."
   />
 
   <!-- Best spots -->
@@ -76,7 +76,7 @@ const schema = [
         <div class="flex items-start justify-between">
           <div>
             <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Biscayne National Park</h3>
-            <p class="text-sm text-gray-500 mt-1">⭐ Top pick — 3,600 searches/mo</p>
+            <p class="text-sm text-gray-500 mt-1">⭐ Top pick, 3,600 searches/mo</p>
           </div>
           <span class="text-2xl">🐠</span>
         </div>
@@ -113,7 +113,7 @@ const schema = [
           </div>
           <span class="text-2xl">🪸</span>
         </div>
-        <p class="text-sm text-gray-600 mt-3">John Pennekamp Coral Reef State Park — the only living coral barrier reef in the continental US. 45 minutes from Miami.</p>
+        <p class="text-sm text-gray-600 mt-3">John Pennekamp Coral Reef State Park, the only living coral barrier reef in the continental US. 45 minutes from Miami.</p>
         <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">View guide →</span>
       </a>
     </div>
@@ -124,30 +124,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Recommended Snorkeling Tours</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <OperatorCard
-          name="Biscayne National Park Institute"
-          rating="4.8"
-          reviewCount="1,200+"
-          price="From $59"
-          description="Official park partner offering guided snorkeling tours to the reef — includes gear, naturalist guide, and park entry."
-          url="https://www.getyourguide.com/miami-l59/biscayne-national-park-snorkeling-tour-t123456/"
-        />
-        <OperatorCard
-          name="Sundiver Snorkel Tours"
-          rating="4.9"
-          reviewCount="850+"
-          price="From $65"
-          description="Small-group snorkeling tours from Key Biscayne to the reef. Family-friendly with all gear included."
-          url="https://www.getyourguide.com/miami-l59/sundiver-snorkel-tours-t234567/"
-        />
-        <OperatorCard
-          name="Key Largo Reef Tours"
-          rating="4.7"
-          reviewCount="2,100+"
-          price="From $75"
-          description="Full-day reef snorkeling trips from Key Largo — two reef stops, lunch included, certified guides."
-          url="https://www.getyourguide.com/key-largo-l123/key-largo-two-reef-snorkel-tour-t345678/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
     </div>
@@ -167,7 +146,7 @@ const schema = [
       <p>Most tours include mask, snorkel, and fins. If you're snorkeling from shore, bring your own gear or rent from local shops ($15–$25/day). A rash guard or shorty wetsuit is recommended November–April.</p>
       
       <h3>Safety</h3>
-      <p>Always check conditions before entering the water. Biscayne Bay is generally safe, but heed rip current warnings at ocean beaches. Never touch coral — it's both fragile and protected by law.</p>
+      <p>Always check conditions before entering the water. Biscayne Bay is generally safe, but heed rip current warnings at ocean beaches. Never touch coral, it's both fragile and protected by law.</p>
     </div>
   </section>
 

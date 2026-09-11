@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     question: 'Do you need a reservation for Biscayne National Park snorkeling?',
-    answer: 'Yes — snorkel tours require advance booking, especially in peak season (December–April). The park itself has no entry fee, but boat tours cost $50–$90 per person. Book 2–3 weeks ahead for weekend slots.'
+    answer: 'Yes. Snorkel tours require advance booking, especially in peak season (December to April). The park itself has no entry fee, but boat tours from Biscayne National Park Institute run $83 to $209 per person depending on length. Book two to three weeks ahead for weekend slots.'
   },
   {
     question: 'What will I see snorkeling in Biscayne National Park?',
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: 'Is Biscayne National Park snorkeling good for beginners?',
-    answer: 'Yes — the park\'s protected bay waters are calm and shallow near the reefs. Tour operators provide instruction and all gear. Children as young as 5 can join family-friendly tours.'
+    answer: 'Yes. The park\'s protected bay waters are calm and shallow near the reefs. Tours provide instruction and all gear. Children as young as 5 can join family-friendly tours.'
   },
   {
     question: 'What is the best time of year for Biscayne National Park snorkeling?',
@@ -32,10 +32,10 @@ const faqs = [
 const schema = [
   buildTouristAttractionSchema({
     name: 'Biscayne National Park Snorkeling',
-    description: 'Snorkeling in Biscayne National Park — 95% underwater park with living coral reefs, sea turtles, and 500+ fish species.',
+    description: 'Snorkeling in Biscayne National Park: a 95% underwater park with living coral reefs, sea turtles, and 500+ fish species.',
     url: '/florida/miami/biscayne-national-park/snorkeling/',
     address: 'Homestead, Florida',
-    priceRange: '$50–$90'
+    priceRange: '$83–$209'
   }),
   buildBreadcrumbSchema([
     { label: 'Home', url: '/' },
@@ -48,7 +48,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Biscayne National Park Snorkeling — Tours & Guide" description="Complete guide to snorkeling in Biscayne National Park: tours, prices, what you'll see, how to get there, and tips for the best experience." schema={schema}>
+<Layout title="Biscayne National Park Snorkeling: Tours & Guide" description="Complete guide to snorkeling in Biscayne National Park: tours, prices, what you'll see, how to get there, and tips for the best experience." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Florida', url: '/florida/' },
@@ -59,15 +59,15 @@ const schema = [
 
   <Hero
     title="Biscayne National Park Snorkeling"
-    subtitle="95% of Biscayne National Park is underwater — and it's hiding one of America's best snorkeling reefs just 30 minutes from downtown Miami."
+    subtitle="95% of Biscayne National Park is underwater, hiding one of America's best snorkeling reefs just 30 minutes from downtown Miami."
   />
 
   <!-- Overview -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h2 class="text-2xl font-bold text-ocean-900 mb-6">Overview</h2>
     <div class="prose-custom">
-      <p>Biscayne National Park protects 172,000 acres of bay, mangrove, and coral reef habitat — 95% of it underwater. It's part of the third-largest living coral barrier reef system in the world, stretching from Miami to the Florida Keys.</p>
-      <p>Unlike the crowded reefs of the Keys, Biscayne's reefs see far fewer visitors. You'll snorkel over living coral gardens, past sea turtles, and through schools of tropical fish — often with just a handful of other snorkelers.</p>
+      <p>Biscayne National Park protects 172,000 acres of bay, mangrove, and coral reef habitat, 95% of it underwater. It's part of the third-largest living coral barrier reef system in the world, stretching from Miami to the Florida Keys.</p>
+      <p>Unlike the crowded reefs of the Keys, Biscayne's reefs see far fewer visitors. You'll snorkel over living coral gardens, past sea turtles, and through schools of tropical fish, often with just a handful of other snorkelers.</p>
       <p><strong>Why it's special:</strong> The park's protected status means the reef is healthier than most in Florida. You'll see brain coral, elkhorn coral, sea fans, and an incredible diversity of marine life.</p>
     </div>
   </section>
@@ -78,31 +78,43 @@ const schema = [
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Snorkeling Tours</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <OperatorCard
-          name="Biscayne National Park Institute"
-          rating="4.8"
-          reviewCount="1,200+"
-          price="From $59"
-          description="Official park partner. Guided reef snorkeling with naturalist, all gear included, and park entry covered."
-          url="https://www.getyourguide.com/miami-l59/biscayne-national-park-snorkeling-tour-t123456/"
+          name="Snorkeling for Beginners"
+          price="$83"
+          description="Biscayne National Park Institute. Shorter, beginner-focused trip with extra flotation support."
+          url="https://www.biscaynenationalparkinstitute.org/snorkeling/"
         />
         <OperatorCard
-          name="Biscayne Bay Snorkel Tours"
-          rating="4.7"
-          reviewCount="650+"
-          price="From $65"
-          description="Small-group tours from Coconut Grove. Two reef stops, light breakfast, and certified marine guides."
-          url="https://www.getyourguide.com/miami-l59/biscayne-bay-snorkel-tour-t234567/"
+          name="Snorkel Experience (Homestead)"
+          price="$115"
+          description="Biscayne National Park Institute. 3.5-hour guided reef and mangrove snorkel by powerboat from Dante Fascell Visitor Center, gear included."
+          url="https://www.biscaynenationalparkinstitute.org/snorkeling/"
         />
         <OperatorCard
-          name="Sundiver Snorkel Tours"
-          rating="4.9"
-          reviewCount="850+"
-          price="From $70"
-          description="Premium small-group experience with max 12 guests. Includes reef-safe sunscreen, snacks, and underwater photos."
-          url="https://www.getyourguide.com/miami-l59/sundiver-snorkel-tours-t345678/"
+          name="Snorkeling from Coconut Grove"
+          price="$115"
+          description="Biscayne National Park Institute. 3.5-hour guided snorkel departing Dinner Key Marina."
+          url="https://www.biscaynenationalparkinstitute.org/snorkeling/"
+        />
+        <OperatorCard
+          name="Snorkel & Paddle Eco-Adventure"
+          price="$209"
+          description="Biscayne National Park Institute. 6-hour powerboat trip combining snorkeling and paddling."
+          url="https://www.biscaynenationalparkinstitute.org/snorkeling/"
+        />
+        <OperatorCard
+          name="Snorkel & Island Visit (Coconut Grove)"
+          price="$209"
+          description="Biscayne National Park Institute. 6-hour trip with an island stop, departing Coconut Grove."
+          url="https://www.biscaynenationalparkinstitute.org/snorkeling/"
+        />
+        <OperatorCard
+          name="Sail, Paddle & Snorkel"
+          price="$209"
+          description="Biscayne National Park Institute. 6-hour combo trip by sailboat with a paddling stop."
+          url="https://www.biscaynenationalparkinstitute.org/snorkeling/"
         />
       </div>
-      <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
+      <p class="text-xs text-gray-500 mt-4">All six tours are run directly by Biscayne National Park Institute, the park’s official concessioner. No aggregate rating yet shown, this is a new listing.</p>
     </div>
   </section>
 

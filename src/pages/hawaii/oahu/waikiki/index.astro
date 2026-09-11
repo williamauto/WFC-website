@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: 'Is Waikiki good for beginner surfers?',
-    answer: 'Yes — Waikiki is one of the best places in the world to learn surfing. The waves are small and gentle (1–3 feet most days), the water is warm year-round, and there are dozens of surf schools on the beach. Group lessons cost $60–$100 for 2 hours.'
+    answer: 'Yes, Waikiki is one of the best places in the world to learn surfing. The waves are small and gentle (1–3 feet most days), the water is warm year-round, and there are dozens of surf schools on the beach. Group lessons cost $60–$100 for 2 hours.'
   },
   {
     question: 'What is the best sunset cruise in Waikiki?',
@@ -29,7 +29,7 @@ const faqs = [
 const schema = [
   buildTouristDestinationSchema({
     name: 'Waikiki',
-    description: 'Waikiki — world-famous beach with snorkeling, surfing, and sunset cruises.',
+    description: 'Waikiki, world-famous beach with snorkeling, surfing, and sunset cruises.',
     url: '/hawaii/oahu/waikiki/',
     activities
   }),
@@ -43,7 +43,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Waikiki Water Activities — Surfing, Snorkeling & Cruises" description="Waikiki water activities: surfing lessons, snorkeling, sunset cruises, paddle boarding, and efoil. Complete guide." schema={schema}>
+<Layout title="Waikiki Water Activities, Surfing, Snorkeling & Cruises" description="Waikiki water activities: surfing lessons, snorkeling, sunset cruises, paddle boarding, and efoil. Complete guide." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Hawaii', url: '/hawaii/' },
@@ -53,7 +53,7 @@ const schema = [
 
   <Hero
     title="Waikiki Water Activities"
-    subtitle="The world's most famous beach — gentle waves for learning to surf, calm waters for snorkeling, and legendary sunset cruises."
+    subtitle="The world's most famous beach, gentle waves for learning to surf, calm waters for snorkeling, and legendary sunset cruises."
   />
 
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,30 +69,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Waikiki Experiences</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <OperatorCard
-          name="Holokai Catamaran Sunset Sail"
-          rating="4.8"
-          reviewCount="3,200+"
-          price="From $65"
-          description="The classic Waikiki sunset catamaran sail — drinks included, incredible views of Diamond Head."
-          url="https://www.getyourguide.com/waikiki-l123/holokai-catamaran-t789012/"
-        />
-        <OperatorCard
-          name="Waikiki Surf Lesson"
-          rating="4.9"
-          reviewCount="5,000+"
-          price="From $75"
-          description="Group surf lessons on Waikiki's gentle waves — the best place in the world to learn to surf."
-          url="https://www.getyourguide.com/waikiki-l123/surf-lesson-t890123/"
-        />
-        <OperatorCard
-          name="eFoil Waikiki Experience"
-          rating="5.0"
-          reviewCount="150+"
-          price="From $180"
-          description="Hawaii's #1 efoil experience — fly above Waikiki's calm waters on an electric hydrofoil."
-          url="https://www.getyourguide.com/waikiki-l123/efoil-experience-t901234/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

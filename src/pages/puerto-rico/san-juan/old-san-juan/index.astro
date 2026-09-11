@@ -18,18 +18,18 @@ const faqs = [
   },
   {
     question: 'Can I kayak in Old San Juan?',
-    answer: 'Yes — kayak tours depart from the San Juan Bay area, including sunset paddles along the historic waterfront. Tours cost $45–$65 and are suitable for beginners.'
+    answer: 'Yes, kayak tours depart from the San Juan Bay area, including sunset paddles along the historic waterfront. Tours cost $45–$65 and are suitable for beginners.'
   },
   {
     question: 'What is the best time for a harbor cruise in Old San Juan?',
-    answer: 'Sunset cruises are the most popular — the forts and city lights create a magical atmosphere. Book 2–3 days ahead in peak season (December–April).'
+    answer: 'Sunset cruises are the most popular, the forts and city lights create a magical atmosphere. Book 2–3 days ahead in peak season (December–April).'
   }
 ];
 
 const schema = [
   buildTouristDestinationSchema({
     name: 'Old San Juan',
-    description: 'Old San Juan — historic walled city with harbor boat tours.',
+    description: 'Old San Juan, historic walled city with harbor boat tours.',
     url: '/puerto-rico/san-juan/old-san-juan/',
     activities
   }),
@@ -69,22 +69,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Top Old San Juan Tours</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name="San Juan Harbor Sunset Cruise"
-          rating="4.7"
-          reviewCount="1,500+"
-          price="From $45"
-          description="Sunset sail past El Morro and the San Juan skyline with drinks included."
-          url="https://www.getyourguide.com/san-juan-l123/harbor-sunset-cruise-t789012/"
-        />
-        <OperatorCard
-          name="Old San Juan Kayak Tour"
-          rating="4.6"
-          reviewCount="800+"
-          price="From $50"
-          description="Guided kayak paddle along the historic waterfront at sunset."
-          url="https://www.getyourguide.com/san-juan-l123/kayak-tour-t890123/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links.</p>
     </div>

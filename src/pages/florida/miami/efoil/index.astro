@@ -9,7 +9,7 @@ import { buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '../..
 const faqs = [
   {
     question: 'What is efoil?',
-    answer: 'Efoil (electric hydrofoil) is a surfboard with an electric motor and a hydrofoil wing underneath. As you accelerate, the board lifts above the water — you literally fly above the surface. It\'s the newest water sport, combining surfing, flying, and silence (no gas engine noise).'
+    answer: 'Efoil (electric hydrofoil) is a surfboard with an electric motor and a hydrofoil wing underneath. As you accelerate, the board lifts above the water, you literally fly above the surface. It\'s the newest water sport, combining surfing, flying, and silence (no gas engine noise).'
   },
   {
     question: 'How much does efoil cost in Miami?',
@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: 'Do I need experience to try efoil?',
-    answer: 'No — most operators teach complete beginners. The learning curve is about 30–60 minutes to get flying. You need basic balance and comfort in water, but no prior surfing or wakeboarding experience is required.'
+    answer: 'No, most operators teach complete beginners. The learning curve is about 30–60 minutes to get flying. You need basic balance and comfort in water, but no prior surfing or wakeboarding experience is required.'
   },
   {
     question: 'Is efoil safe?',
@@ -32,7 +32,7 @@ const faqs = [
 const schema = [
   buildServiceSchema({
     name: 'Efoil in Miami',
-    description: 'Efoil lessons and rentals in Miami — fly above the water on an electric hydrofoil. The newest water sport.',
+    description: 'Efoil lessons and rentals in Miami, fly above the water on an electric hydrofoil. The newest water sport.',
     url: '/florida/miami/efoil/',
     areaServed: 'Miami, Florida',
     offers: {
@@ -51,7 +51,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Efoil in Miami — Lessons & Rentals" description="Try efoil in Miami — the newest water sport. Lessons from $150, rentals available on Biscayne Bay. Fly above the water on an electric hydrofoil." schema={schema}>
+<Layout title="Efoil in Miami, Lessons & Rentals" description="Try efoil in Miami, the newest water sport. Lessons from $150, rentals available on Biscayne Bay. Fly above the water on an electric hydrofoil." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Florida', url: '/florida/' },
@@ -61,21 +61,21 @@ const schema = [
 
   <Hero
     title="Efoil in Miami"
-    subtitle="Fly above the water on an electric hydrofoil — the newest, most exciting water sport in Miami. Zero competition, zero noise, 100% adrenaline."
+    subtitle="Fly above the water on an electric hydrofoil, the newest, most exciting water sport in Miami. Zero competition, zero noise, 100% adrenaline."
   />
 
   <!-- What is efoil -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h2 class="text-2xl font-bold text-ocean-900 mb-6">What is Efoil?</h2>
     <div class="prose-custom">
-      <p>An <strong>efoil</strong> (electric hydrofoil) is a surfboard with an electric motor and hydrofoil wing. When you accelerate, the board lifts out of the water and you glide silently above the surface — like flying.</p>
+      <p>An <strong>efoil</strong> (electric hydrofoil) is a surfboard with an electric motor and hydrofoil wing. When you accelerate, the board lifts out of the water and you glide silently above the surface, like flying.</p>
       <p>It's the fastest-growing water sport in the world. Search demand for "efoil rental near me" is up <strong>200% year-over-year</strong>, and Miami is one of the first US cities with dedicated efoil operators.</p>
       <p>Why Miami is perfect for efoil:</p>
       <ul>
-        <li><strong>Calm bay waters</strong> — Biscayne Bay's protected waters are ideal for learning</li>
-        <li><strong>Year-round season</strong> — water stays above 72°F even in winter</li>
-        <li><strong>First-mover advantage</strong> — only a handful of operators exist, so you'll be ahead of the curve</li>
-        <li><strong>Instagram-worthy</strong> — the skyline backdrop makes for incredible photos and videos</li>
+        <li><strong>Calm bay waters</strong>, Biscayne Bay's protected waters are ideal for learning</li>
+        <li><strong>Year-round season</strong>, water stays above 72°F even in winter</li>
+        <li><strong>First-mover advantage</strong>, only a handful of operators exist, so you'll be ahead of the curve</li>
+        <li><strong>Instagram-worthy</strong>, the skyline backdrop makes for incredible photos and videos</li>
       </ul>
     </div>
   </section>
@@ -85,22 +85,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Efoil Operators in Miami</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <OperatorCard
-          name="RideFoil Miami"
-          rating="5.0"
-          reviewCount="120+"
-          price="From $150"
-          description="Biscayne Bay efoil lessons and rentals. Small groups, top-of-the-line Lift efoils, and patient instructors."
-          url="https://www.getyourguide.com/miami-l59/efoil-lesson-t789012/"
-        />
-        <OperatorCard
-          name="eFoil Miami"
-          rating="4.9"
-          reviewCount="85+"
-          price="$395 private lesson"
-          description="Private efoil lessons with one-on-one instruction. Includes all gear, safety briefing, and 90 minutes on the water."
-          url="https://www.getyourguide.com/miami-l59/efoil-miami-private-lesson-t890123/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
     </div>

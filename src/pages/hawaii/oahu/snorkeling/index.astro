@@ -9,19 +9,19 @@ import { buildServiceSchema, buildBreadcrumbSchema, buildFAQSchema } from '../..
 const faqs = [
   {
     question: 'Where is the best snorkeling on Oahu?',
-    answer: 'Sharks Cove on the North Shore is widely considered the best free snorkeling on Oahu. Hanauma Bay is the most famous (and requires reservations). Other excellent spots include Kuilima Cove, Waikiki Beach, and Kaneohe Sandbar. Each offers different conditions — Sharks Cove for reef life, Hanauma Bay for variety, Kuilima Cove for beginners.'
+    answer: 'Sharks Cove on the North Shore is widely considered the best free snorkeling on Oahu. Hanauma Bay is the most famous (and requires reservations). Other excellent spots include Kuilima Cove, Waikiki Beach, and Kaneohe Sandbar. Each offers different conditions, Sharks Cove for reef life, Hanauma Bay for variety, Kuilima Cove for beginners.'
   },
   {
     question: 'Do I need a reservation for Hanauma Bay?',
-    answer: 'Yes — Hanauma Bay requires advance reservations (up to 2 days before your visit). Tickets are $25 for non-residents and sell out quickly, especially on weekends. Book at the official reservation site as soon as your dates are confirmed.'
+    answer: 'Yes, Hanauma Bay requires advance reservations (up to 2 days before your visit). Tickets are $25 for non-residents and sell out quickly, especially on weekends. Book at the official reservation site as soon as your dates are confirmed.'
   },
   {
     question: 'Is snorkeling on Oahu free?',
-    answer: 'Many of Oahu\'s best snorkeling spots are free — Sharks Cove, Kuilima Cove, and Waikiki Beach have no entry fee. Hanauma Bay charges $25 (non-residents). You\'ll pay for parking ($3–$10) and gear rental ($15–$25/day) at most spots.'
+    answer: 'Many of Oahu\'s best snorkeling spots are free, Sharks Cove, Kuilima Cove, and Waikiki Beach have no entry fee. Hanauma Bay charges $25 (non-residents). You\'ll pay for parking ($3–$10) and gear rental ($15–$25/day) at most spots.'
   },
   {
     question: 'What is the best time of year for snorkeling on Oahu?',
-    answer: 'Summer (May–October) offers the calmest water and best visibility across the island. Winter (November–April) brings big surf to the North Shore — snorkel the south shore (Waikiki, Hanauma Bay) instead. Water temperature ranges from 75°F in winter to 82°F in summer.'
+    answer: 'Summer (May–October) offers the calmest water and best visibility across the island. Winter (November–April) brings big surf to the North Shore, snorkel the south shore (Waikiki, Hanauma Bay) instead. Water temperature ranges from 75°F in winter to 82°F in summer.'
   },
   {
     question: 'Can beginners snorkel on Oahu?',
@@ -32,7 +32,7 @@ const faqs = [
 const schema = [
   buildServiceSchema({
     name: 'Snorkeling on Oahu',
-    description: 'Best snorkeling on Oahu — Sharks Cove, Hanauma Bay, Kuilima Cove, and more. Free spots, tours, and tips.',
+    description: 'Best snorkeling on Oahu, Sharks Cove, Hanauma Bay, Kuilima Cove, and more. Free spots, tours, and tips.',
     url: '/hawaii/oahu/snorkeling/',
     areaServed: 'Oahu, Hawaii',
     offers: {
@@ -51,7 +51,7 @@ const schema = [
 ];
 ---
 
-<Layout title="Snorkeling on Oahu — Best Spots & Complete Guide" description="The complete guide to snorkeling on Oahu: Sharks Cove, Hanauma Bay, Kuilima Cove, and more. Free spots, tours, reservations, and tips." schema={schema}>
+<Layout title="Snorkeling on Oahu, Best Spots & Complete Guide" description="The complete guide to snorkeling on Oahu: Sharks Cove, Hanauma Bay, Kuilima Cove, and more. Free spots, tours, reservations, and tips." schema={schema}>
   <Breadcrumbs items={[
     { label: 'Home', url: '/' },
     { label: 'Hawaii', url: '/hawaii/' },
@@ -72,7 +72,7 @@ const schema = [
         <div class="flex items-start justify-between">
           <div>
             <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Sharks Cove</h3>
-            <p class="text-sm text-gray-500 mt-1">⭐ Best overall — free, 6,600 searches/mo</p>
+            <p class="text-sm text-gray-500 mt-1">⭐ Best overall, free, 6,600 searches/mo</p>
           </div>
           <span class="text-2xl">🐠</span>
         </div>
@@ -83,7 +83,7 @@ const schema = [
         <div class="flex items-start justify-between">
           <div>
             <h3 class="font-bold text-ocean-900 group-hover:text-ocean-600">Hanauma Bay</h3>
-            <p class="text-sm text-gray-500 mt-1">Most famous — reservation required</p>
+            <p class="text-sm text-gray-500 mt-1">Most famous, reservation required</p>
           </div>
           <span class="text-2xl">🏝️</span>
         </div>
@@ -109,7 +109,7 @@ const schema = [
           </div>
           <span class="text-2xl">🏄</span>
         </div>
-        <p class="text-sm text-gray-600 mt-3">Snorkel right off Waikiki Beach — calm waters, easy entry, and gear rentals on every corner.</p>
+        <p class="text-sm text-gray-600 mt-3">Snorkel right off Waikiki Beach, calm waters, easy entry, and gear rentals on every corner.</p>
         <span class="inline-flex items-center mt-4 text-sm font-medium text-ocean-600">View guide →</span>
       </a>
     </div>
@@ -120,30 +120,9 @@ const schema = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-ocean-900 mb-6">Recommended Snorkeling Tours</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <OperatorCard
-          name="Kaneohe Sandbar Snorkel Tour"
-          rating="4.8"
-          reviewCount="2,500+"
-          price="From $99"
-          description="Catamaran cruise to the Kaneohe Sandbar with snorkeling, paddle boarding, and lunch included."
-          url="https://www.getyourguide.com/oahu-l123/kaneohe-sandbar-snorkel-tour-t456789/"
-        />
-        <OperatorCard
-          name="Hanauma Bay Snorkeling Tour"
-          rating="4.7"
-          reviewCount="1,800+"
-          price="From $89"
-          description="Guided Hanauma Bay tour with reservation handling, gear, and marine life education."
-          url="https://www.getyourguide.com/oahu-l123/hanauma-bay-snorkeling-tour-t567890/"
-        />
-        <OperatorCard
-          name="North Shore Snorkel Adventure"
-          rating="4.9"
-          reviewCount="750+"
-          price="From $119"
-          description="Small-group tour hitting Sharks Cove and Kuilima Cove with a marine biologist guide."
-          url="https://www.getyourguide.com/oahu-l123/north-shore-snorkel-tour-t678901/"
-        />
+        <div class="rounded-xl border border-dashed border-ocean-200 bg-white p-6 text-center col-span-full">
+            <p class="text-sm text-gray-600">Verified tours and operators for this spot are being added. Check back soon, or <a href="/list-your-business/" class="text-ocean-600 underline">list your business</a> if you run one here.</p>
+          </div>
       </div>
       <p class="text-xs text-gray-500 mt-4">* Water Fun Club may earn a commission from bookings made through these links. Prices are indicative and may vary.</p>
     </div>

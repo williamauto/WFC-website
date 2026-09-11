@@ -36,7 +36,7 @@ const pageCanonical = canonical || (Astro.url.pathname === '/' ? SITE.url : `${S
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   
   {schema && (
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -47,7 +47,7 @@ const pageCanonical = canonical || (Astro.url.pathname === '/' ? SITE.url : `${S
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
       <div class="flex items-center justify-between h-16">
         <a href="/" class="flex items-center space-x-2">
-          <span class="text-2xl">🌊</span>
+          <svg width="26" height="26" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="15" fill="#FF9E7F"/><path d="M6 16c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0M6 21c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" stroke="#0B2A2E" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="10" r="1.6" fill="#0B2A2E"/><circle cx="17.5" cy="7.5" r="1" fill="#0B2A2E"/></svg>
           <span class="font-bold text-xl tracking-tight">Water Fun Club</span>
         </a>
         <div class="hidden md:flex items-center space-x-6">
@@ -76,7 +76,7 @@ const pageCanonical = canonical || (Astro.url.pathname === '/' ? SITE.url : `${S
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="md:col-span-2">
           <div class="flex items-center space-x-2 mb-4">
-            <span class="text-2xl">🌊</span>
+            <svg width="26" height="26" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="15" fill="#FF9E7F"/><path d="M6 16c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0M6 21c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" stroke="#0B2A2E" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="10" r="1.6" fill="#0B2A2E"/><circle cx="17.5" cy="7.5" r="1" fill="#0B2A2E"/></svg>
             <span class="font-bold text-xl text-white">Water Fun Club</span>
           </div>
           <p class="text-sm leading-relaxed">{SITE.description}</p>
